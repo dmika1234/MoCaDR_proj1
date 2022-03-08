@@ -1,0 +1,1 @@
+# Project nr 1 for Methods of classification and dimensionality reduction
