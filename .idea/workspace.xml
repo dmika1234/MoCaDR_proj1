@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Adding dataset">
-      <change afterPath="$PROJECT_DIR$/Report/out/test.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/out/test.synctex.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/test.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auxil/test.aux" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auxil/test.log" afterDir="false" />
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Setting up LaTeX">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/out/test.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/test.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/out/test.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/test.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxil/test.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/test.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxil/test.log" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/test.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,20 +48,23 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Studia\MoCaDR_proj1" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Studia\MoCaDR_proj1\Report" />
+    </key>
   </component>
   <component name="RunManager" selected="LaTeX.test">
-    <configuration name="test" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" temporary="true">
+    <configuration name="test" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
       <texify>
         <compiler>PDFLATEX</compiler>
         <compiler-path />
         <sumatra-path />
-        <pdf-viewer>NONE</pdf-viewer>
+        <pdf-viewer>SUMATRA</pdf-viewer>
         <viewer-command />
         <compiler-arguments />
         <envs />
         <main-file>$PROJECT_DIR$/Report/test.tex</main-file>
         <output-path>$PROJECT_DIR$/Report/out</output-path>
-        <auxil-path>$PROJECT_DIR$/auxil</auxil-path>
+        <auxil-path>$PROJECT_DIR$/Report/auxil</auxil-path>
         <compile-twice>false</compile-twice>
         <output-format>PDF</output-format>
         <latex-distribution>MIKTEX</latex-distribution>
@@ -98,11 +100,6 @@
       <item itemvalue="LaTeX.test" />
       <item itemvalue="Python.main" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="LaTeX.test" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -122,7 +119,7 @@
       <workItem from="1646816479175" duration="461000" />
       <workItem from="1646896158453" duration="762000" />
       <workItem from="1646896945682" duration="630000" />
-      <workItem from="1646897595717" duration="1349000" />
+      <workItem from="1646897595717" duration="2651000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -166,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646816860800</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Setting up LaTeX">
+      <created>1646898995949</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1646898995949</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +192,8 @@
     <MESSAGE value="a" />
     <MESSAGE value="init commit" />
     <MESSAGE value="Adding dataset" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding dataset" />
+    <MESSAGE value="Setting up LaTeX" />
+    <option name="LAST_COMMIT_MESSAGE" value="Setting up LaTeX" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

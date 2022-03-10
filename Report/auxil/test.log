@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.3.10)  10 MAR 2022 08:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.3.10)  10 MAR 2022 09:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -87,7 +87,7 @@ File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count271
 \l__pdf_internal_box=\box52
 )
-(D:/Studia\MoCaDR_proj1\auxil\test.aux)
+(D:/Studia\MoCaDR_proj1\Report\auxil\test.aux)
 \openout1 = `test.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -106,18 +106,18 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
  [1
 
-{C:/Users/dmika/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (D:/Studia\M
-oCaDR_proj1\auxil\test.aux) ) 
+{C:/Users/dmika/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+(D:/Studia\MoCaDR_proj1\Report\auxil\test.aux) ) 
 Here is how much of TeX's memory you used:
  1100 strings out of 478582
- 16739 string characters out of 2856538
+ 16781 string characters out of 2856538
  307400 words of memory out of 3000000
  19350 multiletter control sequences out of 15000+600000
  469559 words of font info for 29 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  54i,5n,62p,202b,111s stack positions out of 5000i,500n,10000p,200000b,80000s
-<D:/Programy/MikTeX/fonts/type1/public/amsfonts/cm
-/cmr10.pfb>
+<D:/Programy/MikTeX/fonts/type1
+/public/amsfonts/cm/cmr10.pfb>
 Output written on D:/Studia\MoCaDR_proj1\Report\out\test.pdf (1 page, 13491 byt
 es).
 PDF statistics:
