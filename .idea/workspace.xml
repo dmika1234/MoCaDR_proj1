@@ -5,19 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Setting up LaTeX">
+      <change afterPath="$PROJECT_DIR$/.idea/rAvailablePackageCache.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/rGraphicsSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/rSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cleaning_data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/out/test.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/test.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/out/test.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/test.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auxil/test.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/test.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auxil/test.log" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/test.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="RMarkdown.document" />
+        <option value="Jupyter Notebook" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -42,7 +60,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="CodeWithMe" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -120,6 +138,12 @@
       <workItem from="1646896158453" duration="762000" />
       <workItem from="1646896945682" duration="630000" />
       <workItem from="1646897595717" duration="2651000" />
+      <workItem from="1646900622776" duration="425000" />
+      <workItem from="1646915517163" duration="449000" />
+      <workItem from="1646915983800" duration="240000" />
+      <workItem from="1646916258164" duration="389000" />
+      <workItem from="1646916663441" duration="393000" />
+      <workItem from="1646933050771" duration="816000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -170,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646898995949</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Setting up LaTeX">
+      <created>1646900639924</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1646900639924</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
