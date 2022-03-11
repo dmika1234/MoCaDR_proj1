@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import random as rng
 
+# We don't need timestamp column
 raw_df = pd.read_csv('Datasets/ratings_dirt.csv')
 df = raw_df.drop('timestamp', axis=1)
 df.to_csv('Datasets/ratings.csv')

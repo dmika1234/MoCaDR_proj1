@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Cleaning data">
-      <change beforePath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/auxil/test.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/test.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/auxil/test.log" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/test.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/out/test.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/test.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/out/test.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/test.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cleaning_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cleaning_data.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/manipulating_datasets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manipulating_datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/manipulating_datasets.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +139,7 @@
       <workItem from="1646916663441" duration="393000" />
       <workItem from="1646933050771" duration="1105000" />
       <workItem from="1646936230049" duration="1064000" />
-      <workItem from="1647027781891" duration="1076000" />
+      <workItem from="1647027781891" duration="1229000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -212,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646934068924</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Cleaning data">
+      <created>1647028888721</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1647028888721</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
