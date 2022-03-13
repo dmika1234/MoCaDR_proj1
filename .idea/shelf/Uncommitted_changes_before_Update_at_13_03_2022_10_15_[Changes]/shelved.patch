@@ -1,0 +1,104 @@
+Index: Report/test.tex
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>%! Author = Miszka\r\n%! Date = 10.03.2022\r\n\r\n% Preamble\r\n\\documentclass[11pt]{article}\r\n\r\n% Packages\r\n\\usepackage{amsmath}\r\n\r\n% Document\r\n\\begin{document}\r\n\r\nHello LaTeX!\r\n    -Hello\r\n\r\n\\end{document}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Report/test.tex b/Report/test.tex
+--- a/Report/test.tex	(revision b51c3c961e093debf15af5d79775f7c9502ce87b)
++++ b/Report/test.tex	(date 1646943171761)
+@@ -13,4 +13,5 @@
+ Hello LaTeX!
+     -Hello
+ 
++
+ \end{document}
+\ No newline at end of file
+Index: cleaning_data.ipynb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n \"cells\": [\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 16,\r\n   \"metadata\": {\r\n    \"collapsed\": true\r\n   },\r\n   \"outputs\": [],\r\n   \"source\": [\r\n    \"import numpy as np\\n\",\r\n    \"import pandas as pd\\n\",\r\n    \"import random as rng\"\r\n   ]\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 7,\r\n   \"outputs\": [],\r\n   \"source\": [\r\n    \"raw_df = pd.read_csv('Datasets/ratings_dirt.csv')\\n\",\r\n    \"df = raw_df.drop('timestamp', axis=1)\\n\",\r\n    \"df.to_csv('Datasets/ratings.csv')\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"pycharm\": {\r\n     \"name\": \"#%%\\n\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 26,\r\n   \"outputs\": [],\r\n   \"source\": [\r\n    \"# Take some small subset of our data for testing purposes\\n\",\r\n    \"rand_ix = rng.sample(list(np.unique(df['userId'].values)), 10)\\n\",\r\n    \"sub_df = df.loc[df['userId'].isin(rand_ix)]\\n\",\r\n    \"sub_df.to_csv('Datasets/small_ratings.csv')\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"pycharm\": {\r\n     \"name\": \"#%%\\n\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": null,\r\n   \"outputs\": [],\r\n   \"source\": [],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"pycharm\": {\r\n     \"name\": \"#%%\\n\"\r\n    }\r\n   }\r\n  }\r\n ],\r\n \"metadata\": {\r\n  \"kernelspec\": {\r\n   \"display_name\": \"Python 3\",\r\n   \"language\": \"python\",\r\n   \"name\": \"python3\"\r\n  },\r\n  \"language_info\": {\r\n   \"codemirror_mode\": {\r\n    \"name\": \"ipython\",\r\n    \"version\": 2\r\n   },\r\n   \"file_extension\": \".py\",\r\n   \"mimetype\": \"text/x-python\",\r\n   \"name\": \"python\",\r\n   \"nbconvert_exporter\": \"python\",\r\n   \"pygments_lexer\": \"ipython2\",\r\n   \"version\": \"2.7.6\"\r\n  }\r\n },\r\n \"nbformat\": 4,\r\n \"nbformat_minor\": 0\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cleaning_data.ipynb b/cleaning_data.ipynb
+--- a/cleaning_data.ipynb	(revision b51c3c961e093debf15af5d79775f7c9502ce87b)
++++ b/cleaning_data.ipynb	(date 1646943171775)
+@@ -57,6 +57,15 @@
+      "name": "#%%\n"
+     }
+    }
++  },
++  {
++   "cell_type": "markdown",
++   "source": [
++    "$x^2$"
++   ],
++   "metadata": {
++    "collapsed": false
++   }
+   }
+  ],
+  "metadata": {
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb\" name=\"Changes\" comment=\"Tamara init\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Report/auxil/test.aux\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Report/auxil/test.aux\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Report/auxil/test.log\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Report/auxil/test.log\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Report/out/test.pdf\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Report/out/test.pdf\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Report/out/test.synctex.gz\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Report/out/test.synctex.gz\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Report/test.tex\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Report/test.tex\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"RMarkdown.document\" />\r\n        <option value=\"Jupyter Notebook\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"267VjyGJ9wr8oG7c6vyJzNQTvFk\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\r\n    <property name=\"node.js.detected.package.tslint\" value=\"true\" />\r\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\r\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.pluginManager\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Studia\\MoCaDR_proj1\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Studia\\MoCaDR_proj1\\Report\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"LaTeX.test\">\r\n    <configuration name=\"test\" type=\"LATEX_RUN_CONFIGURATION\" factoryName=\"LaTeX configuration factory\">\r\n      <texify>\r\n        <compiler>PDFLATEX</compiler>\r\n        <compiler-path />\r\n        <sumatra-path>C:\\Users\\admin\\AppData\\Local\\SumatraPDF</sumatra-path>\r\n        <pdf-viewer>SUMATRA</pdf-viewer>\r\n        <viewer-command />\r\n        <compiler-arguments />\r\n        <envs />\r\n        <main-file>$PROJECT_DIR$/Report/test.tex</main-file>\r\n        <output-path>$PROJECT_DIR$/Report/out</output-path>\r\n        <auxil-path>$PROJECT_DIR$/Report/auxil</auxil-path>\r\n        <compile-twice>false</compile-twice>\r\n        <output-format>PDF</output-format>\r\n        <latex-distribution>MIKTEX</latex-distribution>\r\n        <has-been-run>true</has-been-run>\r\n        <bib-run-config>[]</bib-run-config>\r\n        <makeindex-run-config>[]</makeindex-run-config>\r\n      </texify>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"main\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"MoCaDR_proj1\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/main.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"LaTeX.test\" />\r\n      <item itemvalue=\"Python.main\" />\r\n    </list>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration>C:\\Users\\dmika\\AppData\\Roaming\\Subversion</configuration>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb\" name=\"Changes\" comment=\"\" />\r\n      <created>1646774751311</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1646774751311</updated>\r\n      <workItem from=\"1646774754054\" duration=\"26000\" />\r\n      <workItem from=\"1646774814002\" duration=\"835000\" />\r\n      <workItem from=\"1646775670059\" duration=\"47000\" />\r\n      <workItem from=\"1646775727774\" duration=\"757000\" />\r\n      <workItem from=\"1646816479175\" duration=\"461000\" />\r\n      <workItem from=\"1646896158453\" duration=\"762000\" />\r\n      <workItem from=\"1646896945682\" duration=\"630000\" />\r\n      <workItem from=\"1646897595717\" duration=\"2651000\" />\r\n      <workItem from=\"1646900622776\" duration=\"425000\" />\r\n      <workItem from=\"1646915517163\" duration=\"449000\" />\r\n      <workItem from=\"1646915983800\" duration=\"240000\" />\r\n      <workItem from=\"1646916258164\" duration=\"389000\" />\r\n      <workItem from=\"1646916663441\" duration=\"393000\" />\r\n      <workItem from=\"1646933050771\" duration=\"1105000\" />\r\n      <workItem from=\"1646936230049\" duration=\"1064000\" />\r\n      <workItem from=\"1646941565247\" duration=\"350000\" />\r\n      <workItem from=\"1646941946220\" duration=\"993000\" />\r\n      <workItem from=\"1646942992542\" duration=\"87000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"a\">\r\n      <created>1646775274557</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646775274557</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"init commit\">\r\n      <created>1646775361377</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646775361377</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"init commit\">\r\n      <created>1646775521666</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646775521666</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"init commit\">\r\n      <created>1646775784756</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646775784756</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"init commit\">\r\n      <created>1646775870305</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646775870305</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Adding dataset\">\r\n      <created>1646816860800</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646816860800</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Setting up LaTeX\">\r\n      <created>1646898995949</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646898995949</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Setting up LaTeX\">\r\n      <created>1646900639924</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646900639924</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Cleaning data\">\r\n      <created>1646934068924</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646934068924</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Tamara init\">\r\n      <created>1646941777689</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646941777689</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"11\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"a\" />\r\n    <MESSAGE value=\"init commit\" />\r\n    <MESSAGE value=\"Adding dataset\" />\r\n    <MESSAGE value=\"Setting up LaTeX\" />\r\n    <MESSAGE value=\"Cleaning data\" />\r\n    <MESSAGE value=\"Tamara init\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Tamara init\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\r\n          <url>file://$PROJECT_DIR$/main.py</url>\r\n          <line>8</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision b51c3c961e093debf15af5d79775f7c9502ce87b)
++++ b/.idea/workspace.xml	(date 1647162896922)
+@@ -4,13 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Tamara init">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Report/auxil/test.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/test.aux" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Report/auxil/test.log" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/test.log" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Report/out/test.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/test.pdf" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Report/out/test.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/test.synctex.gz" afterDir="false" />
++    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Tamarka testing">
+       <change beforePath="$PROJECT_DIR$/Report/test.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Report/test.tex" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/cleaning_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cleaning_data.ipynb" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -146,7 +142,7 @@
+       <workItem from="1646936230049" duration="1064000" />
+       <workItem from="1646941565247" duration="350000" />
+       <workItem from="1646941946220" duration="993000" />
+-      <workItem from="1646942992542" duration="87000" />
++      <workItem from="1646942992542" duration="829000" />
+     </task>
+     <task id="LOCAL-00001" summary="a">
+       <created>1646775274557</created>
+@@ -218,7 +214,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1646941777689</updated>
+     </task>
+-    <option name="localTasksCounter" value="11" />
++    <task id="LOCAL-00011" summary="Tamarka testing">
++      <created>1646943128045</created>
++      <option name="number" value="00011" />
++      <option name="presentableId" value="LOCAL-00011" />
++      <option name="project" value="LOCAL" />
++      <updated>1646943128045</updated>
++    </task>
++    <option name="localTasksCounter" value="12" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -243,7 +246,8 @@
+     <MESSAGE value="Setting up LaTeX" />
+     <MESSAGE value="Cleaning data" />
+     <MESSAGE value="Tamara init" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Tamara init" />
++    <MESSAGE value="Tamarka testing" />
++    <option name="LAST_COMMIT_MESSAGE" value="Tamarka testing" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>

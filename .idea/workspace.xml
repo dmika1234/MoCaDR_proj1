@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Cleaning data">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cleaning_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cleaning_data.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Cleaning data" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
