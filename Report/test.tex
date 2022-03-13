@@ -1,4 +1,4 @@
-%! Author = Miszka
+%! Author = Miszka and Tamarka
 %! Date = 10.03.2022
 
 % Preamble
@@ -41,7 +41,7 @@ The aim is to approximate $Z$ by a matrix of smaller rank.
 Precisely, we want to find matrix $\tilde{Z}_r$ of rank $r$ and $r << rank(Z)$, so that $\|Z - \tilde{Z}_r\|$ is small.
 
 From the theorem on the lecture we can present $Z$ as follows
-$$Z = U \Lambda^{\frac{1}{2}} V^T,$$
+\[Z = U \Lambda^{\frac{1}{2}} V^T,\]
 where
 \begin{itemize}
     \item $U$ is $n \times d$ matrix such that $U U^T = I$,
@@ -51,7 +51,7 @@ where
 
 
 We construct $\tilde{Z}_r$ as
-$$\tilde{Z}_r = U_r \Lambda_r^{\frac{1}{2}}V_r^T,$$
+\[\tilde{Z}_r = U_r \Lambda_r^{\frac{1}{2}}V_r^T,\]
 where
 \begin{itemize}
     \item $U_r$ is $n \times r$ matrix such that it is a truncation of matrix $U$ to its first $r$ columns,
