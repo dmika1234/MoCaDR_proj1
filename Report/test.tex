@@ -5,12 +5,60 @@
 \documentclass[11pt]{article}
 
 % Packages
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{parskip}
+\usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{titling}
+%\usepackage{itemize}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{graphics}
+\usepackage{caption}
+\usepackage{array}
+\setlength{\droptitle}{-2cm}
+%\newgeometry{tmargin=1.9cm, bmargin=1.9cm, lmargin=1.7cm, rmargin=1.7cm}
+
+
+
+\author{Tamara Frączek, Dominik Mika}
+\title{Methods of classification and dimensionality reduction - Report 1}
+\date{\today}
 
 % Document
 \begin{document}
+\maketitle
 
-Hello LaTeX!
-    -Hello
+\textbf{SVD}
 
+We get a real $n \times d$ dimensional matrix $Z$.
+(We may assume that $n \ge d$.)
+The aim is to approximate $Z$ by a matrix of smaller rank.
+Precisely, we want to find matrix $\tilde{Z}_r$ of rank $r$ and $r << rank(Z)$, so that $\|Z - \tilde{Z}_r\|$ is small.
+
+From the theorem on the lecture we can present $Z$ as follows
+$$Z = U \Lambda^{\frac{1}{2}} V^T,$$
+where
+\begin{itemize}
+    \item $U$ is $n \times d$ matrix such that $U U^T = I$,
+    \item $V$ is a $d \times d$ matrix such that $V V^T = I$,
+    \item $\Lambda$ is a $d \times d$ diagonal matrix with values $\lambda_1, \dots, \lambda_d$ on diagonal such that $\lambda_1 \ge \dots \ge \lambda_d \ge 0$.
+\end{itemize}
+
+
+We construct $\tilde{Z}_r$ as
+$$\tilde{Z}_r = U_r \Lambda_r^{\frac{1}{2}}V_r^T,$$
+where
+\begin{itemize}
+    \item $U_r$ is $n \times r$ matrix such that it is a truncation of matrix $U$ to its first $r$ columns,
+    \item $V_r$ is $r \times d$ matrix such that it is truncations of matrix $V$ to its first $r$ columns,
+    \item $\Lambda_r$ is $r \times r$ diagonal matrix with $\lambda_1, \dots, \lambda_r$ on diagonal.
+\end{itemize}
 \end{document}

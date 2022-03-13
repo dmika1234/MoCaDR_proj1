@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Tamarka testing">
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="SVD Tamarka">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cleaning_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cleaning_data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/test.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Report/test.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647163191686</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="SVD Tamarka">
+      <created>1647166061150</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1647166061150</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,6 +259,7 @@
     <MESSAGE value="Setting up LaTeX" />
     <MESSAGE value="Cleaning data" />
     <MESSAGE value="Tamarka testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tamarka testing" />
+    <MESSAGE value="SVD Tamarka" />
+    <option name="LAST_COMMIT_MESSAGE" value="SVD Tamarka" />
   </component>
 </project>
