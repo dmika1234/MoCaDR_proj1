@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Testing methods">
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Testing SVD1">
+      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/algorithm_functions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/performing_algorithms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cleaning_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cleaning_data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/sample_test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/sample_test.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/sample_train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/sample_train.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms_script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cleaning_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/cleaning_data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manipulating_datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/manipulating_datasets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/splitting_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/splitting_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +60,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Sem1_Projects/MonteCarlo/middle_square_method.py" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -63,10 +72,11 @@
       <recent name="D:\Studia\MoCaDR_proj1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Studia\MoCaDR_proj1\src" />
       <recent name="D:\Studia\MoCaDR_proj1\Report" />
     </key>
   </component>
-  <component name="RunManager" selected="LaTeX.test">
+  <component name="RunManager" selected="Python.performing_algorithms">
     <configuration name="test" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
       <texify>
         <compiler>PDFLATEX</compiler>
@@ -101,7 +111,29 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\Studia\MoCaDR_proj1\manipulating_datasets.py" />
+      <option name="SCRIPT_NAME" value="D:\Studia\MoCaDR_proj1\src\manipulating_datasets.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="performing_algorithms" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MoCaDR_proj1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:\Studia\MoCaDR_proj1\src\performing_algorithms.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -123,7 +155,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/splitting_data.py" />
+      <option name="SCRIPT_NAME" value="D:\Studia\MoCaDR_proj1\src\splitting_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -136,9 +168,11 @@
       <item itemvalue="LaTeX.test" />
       <item itemvalue="Python.manipulating_datasets" />
       <item itemvalue="Python.splitting_data" />
+      <item itemvalue="Python.performing_algorithms" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.performing_algorithms" />
         <item itemvalue="Python.splitting_data" />
       </list>
     </recent_temporary>
@@ -173,7 +207,11 @@
       <workItem from="1647071928401" duration="2390000" />
       <workItem from="1647181792640" duration="2955000" />
       <workItem from="1647276453225" duration="264000" />
-      <workItem from="1647276734574" duration="7710000" />
+      <workItem from="1647276734574" duration="7738000" />
+      <workItem from="1647331415050" duration="71000" />
+      <workItem from="1647531959133" duration="276000" />
+      <workItem from="1647532253804" duration="33000" />
+      <workItem from="1647532314901" duration="3523000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -294,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647184756535</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Testing SVD1">
+      <created>1647284557846</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1647284557846</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,9 +367,11 @@
     <MESSAGE value="Experimenting with 'NaN' values" />
     <MESSAGE value="Removing duplicated packages" />
     <MESSAGE value="Testing methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing methods" />
+    <MESSAGE value="Testing SVD1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing SVD1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/main_py$algorithms_script.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1647535849226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/MoCaDR_proj1$splitting_data.coverage" NAME="splitting_data Coverage Results" MODIFIED="1647174411611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
