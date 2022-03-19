@@ -2,7 +2,7 @@
 %! Date = 10.03.2022
 
 % Preamble
-\documentclass[11pt]{article}
+\documentclass[11pt]{amsart}
 
 % Packages
 \usepackage{float}
@@ -23,6 +23,7 @@
 \setlength{\droptitle}{-2cm}
 %\newgeometry{tmargin=1.9cm, bmargin=1.9cm, lmargin=1.7cm, rmargin=1.7cm}
 
+\DeclareMathOperator*{\argmin}{arg\,min}
 
 
 \author{Tamara Frączek, Dominik Mika}
@@ -33,29 +34,43 @@
 \begin{document}
 \maketitle
 
-\textbf{SVD}
 
-We get a real $n \times d$ dimensional matrix $Z$.
-(We may assume that $n \ge d$.)
-The aim is to approximate $Z$ by a matrix of smaller rank.
-Precisely, we want to find matrix $\tilde{Z}_r$ of rank $r$ and $r << rank(Z)$, so that $\|Z - \tilde{Z}_r\|$ is small.
+\section{Description of methods}
+\subsection*{SVD1}
 
-From the theorem on the lecture we can present $Z$ as follows
-\[Z = U \Lambda^{\frac{1}{2}} V^T,\]
-where
-\begin{itemize}
-    \item $U$ is $n \times d$ matrix such that $U U^T = I$,
-    \item $V$ is a $d \times d$ matrix such that $V V^T = I$,
-    \item $\Lambda$ is a $d \times d$ diagonal matrix with values $\lambda_1, \dots, \lambda_d$ on diagonal such that $\lambda_1 \ge \dots \ge \lambda_d \ge 0$.
-\end{itemize}
+We get a $n \times d$ dimensional matrix $Z$ that we want to approximate by a different matrix $\tilde{Z}$.
+We want somehow $\tilde{Z}$ to maintain only ''the most important'' informations from $Z$.
+That's what we can get using SVD decomposition of matrix and cutting out the smallest eigenvalues.
 
-
-We construct $\tilde{Z}_r$ as
+Presicely, we want to find matrix $\tilde{Z}_r$ of rank $r$ ($r < rank(Z)$), so that $\|Z - \tilde{Z}_r\|$ is small.
+Using SVD decomposition $Z = U \Lambda^{\frac{1}{2}} V^T$ we construct $\tilde{Z}$ as
 \[\tilde{Z}_r = U_r \Lambda_r^{\frac{1}{2}}V_r^T,\]
+where $\Lambda_r$ contains $r$ biggest eigenvalues of $Z$ and $U_r$, $V_r$ contains only columns corresponding to those eigenvalues.
+
+
+\subsection*{NMF}
+We get a real $n \times d$ dimensional matrix $Z$, such that $n \ge d$.
+The aim is to approximate $Z$ as
+\[Z \approx WH,\]
 where
 \begin{itemize}
-    \item $U_r$ is $n \times r$ matrix such that it is a truncation of matrix $U$ to its first $r$ columns,
-    \item $V_r$ is $r \times d$ matrix such that it is truncations of matrix $V$ to its first $r$ columns,
-    \item $\Lambda_r$ is $r \times r$ diagonal matrix with $\lambda_1, \dots, \lambda_r$ on diagonal.
+    \item $W$ is $n \times r$ matrix of nonegative elements,
+    \item $H$ is $r \times d$ matrix of nonnegative elements.
 \end{itemize}
+Precisely, we look for
+\[\argmin_{W, H} \|Z - WH \|^2,\]
+where $\|A\|^2 = \sum_{i, j} A_{ij}^2$.
+
+
+\subsection*{SVD2}
+
+\section{Our data}
+\subsection*{Description}
+\subsection*{Performing methods}
+\subsection*{Choosing parameters}
+
+\section{Results}
+
+
+
 \end{document}
