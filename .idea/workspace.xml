@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Testing methods">
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="SVD opis Tamarka">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cleaning_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cleaning_data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/test.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Report/test.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647184756535</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="SVD opis Tamarka">
+      <created>1647698852885</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1647698852885</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,7 +329,8 @@
     <MESSAGE value="Experimenting with 'NaN' values" />
     <MESSAGE value="Removing duplicated packages" />
     <MESSAGE value="Testing methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing methods" />
+    <MESSAGE value="SVD opis Tamarka" />
+    <option name="LAST_COMMIT_MESSAGE" value="SVD opis Tamarka" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MoCaDR_proj1$splitting_data.coverage" NAME="splitting_data Coverage Results" MODIFIED="1647174411611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

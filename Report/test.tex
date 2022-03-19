@@ -39,10 +39,10 @@
 \subsection*{SVD1}
 
 We get a $n \times d$ dimensional matrix $Z$ that we want to approximate by a different matrix $\tilde{Z}$.
-We want somehow $\tilde{Z}$ to maintain only ''the most important'' informations from $Z$.
+We want somehow $\tilde{Z}$ to maintain only ''the most important'' information from $Z$.
 That's what we can get using SVD decomposition of matrix and cutting out the smallest eigenvalues.
 
-Presicely, we want to find matrix $\tilde{Z}_r$ of rank $r$ ($r < rank(Z)$), so that $\|Z - \tilde{Z}_r\|$ is small.
+Precisely, we want to find matrix $\tilde{Z}_r$ of rank $r$ ($r < rank(Z)$), so that $\|Z - \tilde{Z}_r\|$ is small.
 Using SVD decomposition $Z = U \Lambda^{\frac{1}{2}} V^T$ we construct $\tilde{Z}$ as
 \[\tilde{Z}_r = U_r \Lambda_r^{\frac{1}{2}}V_r^T,\]
 where $\Lambda_r$ contains $r$ biggest eigenvalues of $Z$ and $U_r$, $V_r$ contains only columns corresponding to those eigenvalues.
@@ -54,8 +54,8 @@ The aim is to approximate $Z$ as
 \[Z \approx WH,\]
 where
 \begin{itemize}
-    \item $W$ is $n \times r$ matrix of nonegative elements,
-    \item $H$ is $r \times d$ matrix of nonnegative elements.
+    \item $W$ is $n \times r$ matrix of non-negative elements,
+    \item $H$ is $r \times d$ matrix of non-negative elements.
 \end{itemize}
 Precisely, we look for
 \[\argmin_{W, H} \|Z - WH \|^2,\]
