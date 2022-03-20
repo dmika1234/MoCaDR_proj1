@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="SVD opis Tamarka">
+      <change afterPath="$PROJECT_DIR$/src/syf2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_03_2022_10_15_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_03_2022_10_15__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/test.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Report/test.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/sample_test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/sample_test.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/sample_train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/sample_train.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cleaning_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/syf1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/performing_algorithms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/performing_algorithms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splitting_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/splitting_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="RMarkdown.document" />
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -66,7 +73,7 @@
       <recent name="D:\Studia\MoCaDR_proj1\Report" />
     </key>
   </component>
-  <component name="RunManager" selected="LaTeX.test">
+  <component name="RunManager" selected="Python.performing_algorithms">
     <configuration name="test" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
       <texify>
         <compiler>PDFLATEX</compiler>
@@ -110,6 +117,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="performing_algorithms" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MoCaDR_proj1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/performing_algorithms.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="splitting_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MoCaDR_proj1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -136,9 +165,11 @@
       <item itemvalue="LaTeX.test" />
       <item itemvalue="Python.manipulating_datasets" />
       <item itemvalue="Python.splitting_data" />
+      <item itemvalue="Python.performing_algorithms" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.performing_algorithms" />
         <item itemvalue="Python.splitting_data" />
       </list>
     </recent_temporary>
@@ -174,6 +205,8 @@
       <workItem from="1647181792640" duration="2955000" />
       <workItem from="1647276453225" duration="264000" />
       <workItem from="1647276734574" duration="7710000" />
+      <workItem from="1647699257802" duration="1713000" />
+      <workItem from="1647774897107" duration="5656000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -301,7 +334,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647698852885</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="SVD opis Tamarka">
+      <created>1647699044053</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1647699044053</updated>
+    </task>
+    <task id="LOCAL-00020" summary="SVD opis Tamarka">
+      <created>1647699173625</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1647699173625</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,6 +380,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="SVD opis Tamarka" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/main_py$performing_algorithms.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1647784050444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/MoCaDR_proj1$splitting_data.coverage" NAME="splitting_data Coverage Results" MODIFIED="1647174411611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
