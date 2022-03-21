@@ -56,4 +56,4 @@ else:
 
 
 np.savetxt('../Datasets/test_array.csv', test_array, delimiter=',')
-train_df.to_csv('../Datasets/train_df.csv')
+train_df.to_csv('../Datasets/train_df.csv', index=False)

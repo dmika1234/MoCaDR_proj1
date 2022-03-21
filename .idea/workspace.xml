@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Fruition of SVD1">
-      <change beforePath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2022_18_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2022_18_34__Changes_.xml" afterDir="false" />
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Creating functions for imputation">
+      <change afterPath="$PROJECT_DIR$/Results/rmse_diffr_svd1_weighted.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/choosing_parameters.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/performing_algorithms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/performing_algorithms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/splitting_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/splitting_manipulating_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syf2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/syf2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splitting_manipulating_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/splitting_manipulating_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="RMarkdown.document" />
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -73,7 +70,7 @@
       <recent name="D:\Studia\MoCaDR_proj1\Report" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.algorithm_functions">
+  <component name="RunManager" selected="Python.performing_algorithms (1)">
     <configuration name="test" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
       <texify>
         <compiler>PDFLATEX</compiler>
@@ -238,9 +235,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.algorithm_functions" />
         <item itemvalue="Python.performing_algorithms (1)" />
         <item itemvalue="Python.splitting_manipulating_data (1)" />
+        <item itemvalue="Python.algorithm_functions" />
         <item itemvalue="Python.performing_algorithms" />
         <item itemvalue="Python.splitting_manipulating_data" />
       </list>
@@ -283,7 +280,8 @@
       <workItem from="1647532314901" duration="3523000" />
       <workItem from="1647808987031" duration="154000" />
       <workItem from="1647861875451" duration="2898000" />
-      <workItem from="1647864822646" duration="517000" />
+      <workItem from="1647864822646" duration="651000" />
+      <workItem from="1647868447233" duration="3792000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -411,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647284557846</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Creating functions for imputation">
+      <created>1647865447166</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1647865447166</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,13 +445,14 @@
     <MESSAGE value="Removing duplicated packages" />
     <MESSAGE value="Testing methods" />
     <MESSAGE value="Testing SVD1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing SVD1" />
+    <MESSAGE value="Creating functions for imputation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating functions for imputation" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$algorithm_functions.coverage" NAME="algorithm_functions Coverage Results" MODIFIED="1647864470937" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$algorithms_script.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1647535849226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$splitting_manipulating_data__1_.coverage" NAME="splitting_manipulating_data (1) Coverage Results" MODIFIED="1647863152924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$splitting_manipulating_data__1_.coverage" NAME="splitting_manipulating_data (1) Coverage Results" MODIFIED="1647870795349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/MoCaDR_proj1$splitting_data.coverage" NAME="splitting_data Coverage Results" MODIFIED="1647174411611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$performing_algorithms__1_.coverage" NAME="performing_algorithms (1) Coverage Results" MODIFIED="1647863398659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$performing_algorithms__1_.coverage" NAME="performing_algorithms (1) Coverage Results" MODIFIED="1647871297630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>
