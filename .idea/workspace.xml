@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Restults for different r">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2022_18_34_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2022_18_34__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/choosing_parameters.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/choosing_parameters.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/performing_algorithms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/performing_algorithms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syf2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/syf2.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="RMarkdown.document" />
-        <option value="Python Script" />
         <option value="Jupyter Notebook" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -56,7 +61,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -67,7 +72,7 @@
       <recent name="D:\Studia\MoCaDR_proj1\Report" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.performing_algorithms (1)">
+  <component name="RunManager" selected="Python.a">
     <configuration name="test" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
       <texify>
         <compiler>PDFLATEX</compiler>
@@ -87,6 +92,28 @@
         <bib-run-config>[]</bib-run-config>
         <makeindex-run-config>[]</makeindex-run-config>
       </texify>
+      <method v="2" />
+    </configuration>
+    <configuration name="a" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MoCaDR_proj1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/a.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="algorithm_functions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -199,44 +226,22 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="splitting_manipulating_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="MoCaDR_proj1" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\Studia\MoCaDR_proj1\src\splitting_manipulating_data.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="LaTeX.test" />
       <item itemvalue="Python.manipulating_datasets" />
       <item itemvalue="Python.performing_algorithms" />
-      <item itemvalue="Python.splitting_manipulating_data" />
       <item itemvalue="Python.splitting_manipulating_data (1)" />
       <item itemvalue="Python.performing_algorithms (1)" />
       <item itemvalue="Python.algorithm_functions" />
+      <item itemvalue="Python.a" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.a" />
         <item itemvalue="Python.performing_algorithms (1)" />
         <item itemvalue="Python.splitting_manipulating_data (1)" />
         <item itemvalue="Python.algorithm_functions" />
         <item itemvalue="Python.performing_algorithms" />
-        <item itemvalue="Python.splitting_manipulating_data" />
       </list>
     </recent_temporary>
   </component>
@@ -280,7 +285,9 @@
       <workItem from="1647864822646" duration="651000" />
       <workItem from="1647868447233" duration="3792000" />
       <workItem from="1647876840698" duration="75000" />
-      <workItem from="1647894778296" duration="1059000" />
+      <workItem from="1647894778296" duration="2195000" />
+      <workItem from="1647979682475" duration="3043000" />
+      <workItem from="1648054754944" duration="5327000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -422,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647876877198</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Restults for different r">
+      <created>1647895954850</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1647895954850</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +473,8 @@
     <SUITE FILE_PATH="coverage/main_py$algorithm_functions.coverage" NAME="algorithm_functions Coverage Results" MODIFIED="1647864470937" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$algorithms_script.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1647535849226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$splitting_manipulating_data__1_.coverage" NAME="splitting_manipulating_data (1) Coverage Results" MODIFIED="1647870795349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$a.coverage" NAME="a Coverage Results" MODIFIED="1648057368569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/MoCaDR_proj1$splitting_data.coverage" NAME="splitting_data Coverage Results" MODIFIED="1647174411611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$performing_algorithms__1_.coverage" NAME="performing_algorithms (1) Coverage Results" MODIFIED="1647871297630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$performing_algorithms__1_.coverage" NAME="performing_algorithms (1) Coverage Results" MODIFIED="1648057220868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>

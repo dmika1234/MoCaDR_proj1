@@ -1,21 +1,68 @@
 import numpy as np
 import pandas as pd
 from sklearn.decomposition import TruncatedSVD
+from sklearn.decomposition import NMF
 
 
 # Functions for algorithms
-def perform_svd1(train_array: np.ndarray, test_array: np.ndarray, n_components: int) -> float:
+def perform_svd1(train_array: np.ndarray, test_array: np.ndarray, r: int) -> float:
 
-    svd = TruncatedSVD(n_components=n_components)
+    svd = TruncatedSVD(n_components=r)
     svd.fit(train_array)
     Sigma2 = np.diag(svd.singular_values_)
     VT = svd.components_
     W = svd.transform(train_array) / svd.singular_values_
     H = np.dot(Sigma2, VT)
     Z_tilde = np.dot(W, H)
+    # Calculating RMSE
+    rmse = calc_rmse(test_array, Z_tilde)
+
+    return rmse
+
+
+# na_indx = train_df.isna()
+def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: int,
+                 max_iter: int = 2, min_diff: float = 1e-10):
+    Z_ii = Z_i = train_array
+    i = 0
+    diff = 1000
+    while (i < max_iter) & (diff > min_diff):
+        train_array[na_indx] = np.array(Z_ii[na_indx]).reshape(-1)
+        Z_i = train_array
+        svd = TruncatedSVD(n_components=r)
+        svd.fit(Z_i)
+        Sigma2 = np.diag(svd.singular_values_)
+        VT = svd.components_
+        W = svd.transform(train_array) / svd.singular_values_
+        H = np.dot(Sigma2, VT)
+        Z_ii = np.dot(W, H)
+        diff = ((Z_ii - Z_i) ** 2).sum() / (Z_ii.shape[0] * Z_ii.shape[1])
+        i += 1
+        Z_i = Z_ii
 
     # Calculating RMSE
-    diff = test_array - Z_tilde
+    rmse = calc_rmse(test_array, Z_i)
+
+    return rmse, i
+
+
+
+def perform_nmf(train_array: np.ndarray, test_array: np.ndarray, r: int, random_state: int = 0) -> float:
+
+    model = NMF(n_components=r, init='random', random_state=random_state)
+    W = model.fit_transform(train_array)
+    H = model.components_
+    Z_tilde = np.dot(W, H)
+    # Calculating RMSE
+    rmse = calc_rmse(test_array, Z_tilde)
+
+    return rmse
+
+
+# Function to calculate RMSE
+def calc_rmse(test_array: np.ndarray, estimated_array: np.ndarray) -> float:
+
+    diff = test_array - estimated_array
     num_of_vals = (~np.isnan(diff)).sum()
     # Delete not NaN values to further summing
     diff = diff[~np.isnan(diff)]
@@ -51,6 +98,7 @@ def fillna_means_combined(dataframe, value: float) -> np.ndarray:
     train_array = np.array(dataframe)
     train_array[na_indx] = np.array(fill_array[na_indx]).reshape(-1)
     return train_array
+
 
 def fillna_means_weighted(dataframe, column_weight: float, row_weight: float) -> np.ndarray:
     col_means = np.matrix(dataframe.mean().values)
