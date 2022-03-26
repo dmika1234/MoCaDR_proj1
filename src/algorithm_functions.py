@@ -23,13 +23,16 @@ def perform_svd1(train_array: np.ndarray, test_array: np.ndarray, r: int) -> flo
 
 # na_indx = train_df.isna()
 def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: int,
-                 max_iter: int = 2, min_diff: float = 1e-10):
-    Z_ii = Z_i = train_array
+                 max_iter: int = 10) -> tuple:
+
+    Z_i = copy.deepcopy(train_array)
+    m = copy.deepcopy(train_array[~na_indx])
     i = 0
-    diff = 1000
-    while (i < max_iter) & (diff > min_diff):
-        train_array[na_indx] = np.array(Z_i[na_indx]).reshape(-1)
-        Z_i = copy.deepcopy(train_array)
+    rmse_i = calc_rmse(test_array, Z_i)
+    rmse_ii = 0
+    while (i < max_iter) & (rmse_i > rmse_ii):
+        Z_i[~na_indx] = np.array(m).reshape(-1)
+        rmse_i = calc_rmse(test_array, Z_i)
         svd = TruncatedSVD(n_components=r)
         svd.fit(Z_i)
         Sigma2 = np.diag(svd.singular_values_)
@@ -37,14 +40,12 @@ def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: in
         W = svd.transform(train_array) / svd.singular_values_
         H = np.dot(Sigma2, VT)
         Z_ii = np.dot(W, H)
-        diff = ((Z_ii - Z_i) ** 2).sum() / (Z_ii.shape[0] * Z_ii.shape[1])
+        # diff = ((Z_ii - Z_i) ** 2).sum() / (Z_ii.shape[0] * Z_ii.shape[1])
         i += 1
+        rmse_ii = calc_rmse(test_array, Z_ii)
         Z_i = copy.deepcopy(Z_ii)
 
-    # Calculating RMSE
-    rmse = calc_rmse(test_array, Z_i)
-
-    return rmse, i
+    return rmse_ii, i
 
 
 
