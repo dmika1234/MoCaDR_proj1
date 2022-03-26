@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Restults for different r">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2022_18_34_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2022_18_34__Changes_.xml" beforeDir="false" />
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Implementing NMF and SVD2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algorithm_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/choosing_parameters.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/choosing_parameters.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/performing_algorithms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/performing_algorithms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syf2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/syf2.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -287,7 +283,8 @@
       <workItem from="1647876840698" duration="75000" />
       <workItem from="1647894778296" duration="2195000" />
       <workItem from="1647979682475" duration="3043000" />
-      <workItem from="1648054754944" duration="5327000" />
+      <workItem from="1648054754944" duration="5401000" />
+      <workItem from="1648322414443" duration="880000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -436,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647895954850</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Implementing NMF and SVD2">
+      <created>1648060465122</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1648060465122</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,7 +471,8 @@
     <MESSAGE value="Testing SVD1" />
     <MESSAGE value="Creating functions for imputation" />
     <MESSAGE value="Restults for different r" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restults for different r" />
+    <MESSAGE value="Implementing NMF and SVD2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing NMF and SVD2" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$algorithm_functions.coverage" NAME="algorithm_functions Coverage Results" MODIFIED="1647864470937" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />

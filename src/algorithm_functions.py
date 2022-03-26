@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import copy
 from sklearn.decomposition import TruncatedSVD
 from sklearn.decomposition import NMF
 
@@ -27,8 +28,8 @@ def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: in
     i = 0
     diff = 1000
     while (i < max_iter) & (diff > min_diff):
-        train_array[na_indx] = np.array(Z_ii[na_indx]).reshape(-1)
-        Z_i = train_array
+        train_array[na_indx] = np.array(Z_i[na_indx]).reshape(-1)
+        Z_i = copy.deepcopy(train_array)
         svd = TruncatedSVD(n_components=r)
         svd.fit(Z_i)
         Sigma2 = np.diag(svd.singular_values_)
@@ -38,7 +39,7 @@ def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: in
         Z_ii = np.dot(W, H)
         diff = ((Z_ii - Z_i) ** 2).sum() / (Z_ii.shape[0] * Z_ii.shape[1])
         i += 1
-        Z_i = Z_ii
+        Z_i = copy.deepcopy(Z_ii)
 
     # Calculating RMSE
     rmse = calc_rmse(test_array, Z_i)
