@@ -48,7 +48,6 @@ def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: in
     return rmse_ii, i
 
 
-
 def perform_nmf(train_array: np.ndarray, test_array: np.ndarray, r: int, random_state: int = 0) -> float:
 
     model = NMF(n_components=r, init='random', random_state=random_state)
@@ -102,7 +101,8 @@ def fillna_means_combined(dataframe, value: float) -> np.ndarray:
     return train_array
 
 
-def fillna_means_weighted(dataframe, column_weight: float, row_weight: float) -> np.ndarray:
+def fillna_means_weighted(dataframe, column_weight: float) -> np.ndarray:
+    row_weight = 1 - column_weight
     col_means = np.matrix(dataframe.mean().values)
     row_means = np.matrix(dataframe.mean(axis=1).values).T
     fill_matrix = np.log(np.dot(np.exp(row_weight * row_means), np.exp(column_weight * col_means)))
