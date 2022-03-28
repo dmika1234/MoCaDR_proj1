@@ -60,6 +60,17 @@ def perform_nmf(train_array: np.ndarray, test_array: np.ndarray, r: int, random_
     return rmse
 
 
+def perform_sgd(train_array, test_array, r: int, init_vec, eta: float, alpha: float):
+    n, d = train_array.shape
+    W = np.zeros([n, r])
+    H = np.zeros([r, d])
+
+    while True:
+        E = train_array - np.dot(W, H)
+
+
+
+
 # Function to calculate RMSE
 def calc_rmse(test_array: np.ndarray, estimated_array: np.ndarray) -> float:
 
