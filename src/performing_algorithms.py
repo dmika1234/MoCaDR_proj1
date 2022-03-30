@@ -1,10 +1,4 @@
 from src.algorithm_functions import *
-import pandas as pd
-import numpy as np
-
-# Loading data
-train_df = pd.read_csv('../Datasets/train_df.csv')
-test_array = np.loadtxt('../Datasets/test_array.csv', delimiter=',')
 
 
 # # Imputing with 0
@@ -39,20 +33,11 @@ test_array = np.loadtxt('../Datasets/test_array.csv', delimiter=',')
 # results7 = perform_nmf(train_array_weighted, test_array, r=16)
 
 # Finding best weigths for imputation
-col_weight_arr = np.arange(0, 1 + 0.01, 0.01)
-results_diff_weight = pd.DataFrame({'Column weight': col_weight_arr, 'RMSE': np.zeros(col_weight_arr.size)})
-for i, weight in enumerate(col_weight_arr):
-    train_array_weighted = fillna_means_weighted(train_df, weight)
-    results_diff_weight['RMSE'][i] = perform_svd1(train_array_weighted, test_array, r=16)
-    print(i)
-
-results_diff_weight.to_csv('../Results/rmse_diff_weight_svd1_weighted.csv', index=False)
-
-# print('0: ', results)
-# print('Global mean: ', results2)
-# print('Column means: ', results3)
-# print('Row means: ', results4)
-# print('Combined means: ', results5)
-# print('SVD: ', results6)
-# print('NMF: ', results7)
-# print(results6_diffR)
+# col_weight_arr = np.arange(0, 1 + 0.01, 0.01)
+# results_diff_weight = pd.DataFrame({'Column weight': col_weight_arr, 'RMSE': np.zeros(col_weight_arr.size)})
+# for i, weight in enumerate(col_weight_arr):
+#     train_array_weighted = fillna_means_weighted(train_df, weight)
+#     results_diff_weight['RMSE'][i] = perform_svd1(train_array_weighted, test_array, r=16)
+#     print(i)
+#
+# results_diff_weight.to_csv('../Results/rmse_diff_weight_svd1_weighted.csv', index=False)

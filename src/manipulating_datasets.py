@@ -3,9 +3,9 @@ import pandas as pd
 import random as rng
 
 # We don't need timestamp column
-raw_df = pd.read_csv('../Datasets/ratings_dirt.csv')
+raw_df = pd.read_csv('../Datasets/ratings.csv')
 df = raw_df.drop('timestamp', axis=1)
-df.to_csv('Datasets/ratings.csv')
+df.to_csv('Datasets/ratings2.csv')
 
 # Take some small subset of our data for testing purposes
 rand_ix = rng.sample(list(np.unique(df['userId'].values)), 10)

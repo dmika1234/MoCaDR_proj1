@@ -1,12 +1,14 @@
 import pandas as pd
 import numpy as np
+import os
 from sklearn.model_selection import train_test_split
 
 
-data = pd.read_csv('../Datasets/ratings.csv')
+os.chdir('D:\Studia\MoCaDR_proj1')
+
+data = pd.read_csv('Datasets/ratings.csv')
+data = data[['userId', 'movieId', 'rating']]
 train_df, test_df = train_test_split(data, train_size=0.90, stratify=data['userId'])
-train_df.drop('Unnamed: 0', inplace=True, axis=1)
-test_df.drop('Unnamed: 0', inplace=True, axis=1)
 
 train_set = train_df
 test_set = test_df
@@ -52,8 +54,8 @@ if len(movies_ids_miss2) != 0:
     test_df.sort_index(axis=1, inplace=True)
     test_array = np.array(test_df)
 else:
-    test_array = test_wide
+    test_array = np.array(test_wide)
 
 
-np.savetxt('../Datasets/test_array.csv', test_array, delimiter=',')
-train_df.to_csv('../Datasets/train_df.csv', index=False)
+np.savetxt('Datasets/test_array.csv', test_array, delimiter=',')
+train_df.to_csv('Datasets/train_df.csv', index=False)
