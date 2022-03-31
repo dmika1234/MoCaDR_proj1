@@ -28,7 +28,7 @@ def perform_svd1(train_array: np.ndarray, test_array: np.ndarray, r: int) -> flo
 
 # na_indx = train_df.isna()
 def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: int,
-                 max_iter: int = 10) -> tuple:
+                 max_iter: int = 20) -> tuple:
 
     Z_i = copy.deepcopy(train_array)
     m = copy.deepcopy(train_array[~na_indx])
