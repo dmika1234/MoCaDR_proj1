@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Computing results">
-      <change afterPath="$PROJECT_DIR$/Results/results_svd1_final.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/results_svd2_final.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presenting_results.ipynb" afterDir="false" />
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Computing and preparing results">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compute_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/compute_results.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syf2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/syf2.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +66,7 @@
       <recent name="D:\Studia\MoCaDR_proj1\Report" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.algorithm_functions">
+  <component name="RunManager" selected="LaTeX.test">
     <configuration name="test" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
       <texify>
         <compiler>PDFLATEX</compiler>
@@ -228,7 +222,8 @@
       <workItem from="1648745021548" duration="477000" />
       <workItem from="1648745556380" duration="589000" />
       <workItem from="1648825210089" duration="2171000" />
-      <workItem from="1648882228905" duration="1143000" />
+      <workItem from="1648882228905" duration="1205000" />
+      <workItem from="1648894918852" duration="42000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -412,7 +407,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648745491573</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Computing and preparing results">
+      <created>1648883395863</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1648883395863</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,7 +447,8 @@
     <MESSAGE value="Restults for different r" />
     <MESSAGE value="Implementing NMF and SVD2" />
     <MESSAGE value="Computing results" />
-    <option name="LAST_COMMIT_MESSAGE" value="Computing results" />
+    <MESSAGE value="Computing and preparing results" />
+    <option name="LAST_COMMIT_MESSAGE" value="Computing and preparing results" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$splitting_manipulating_data.coverage" NAME="splitting_manipulating_data Coverage Results" MODIFIED="1648627073782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
