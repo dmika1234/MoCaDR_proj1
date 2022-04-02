@@ -6,7 +6,7 @@ import argparse
 
 os.chdir('D:\Studia\MoCaDR_proj1')
 
-
+# py -m src.compute_results --max_r 300 --alg nmf
 def ParseArguments():
     parser = argparse.ArgumentParser(description="Computing results for different methods and different r")
     parser.add_argument('--max_r', default="1", required=False, help='We compute results from 1 to max_r dimensions')
@@ -21,6 +21,7 @@ func_name = 'perform_' + alg
 func_to_call = getattr(algs, func_name)
 
 # Loading and splitting data
+np.random.seed(2022)
 train_df, test_array = split_ratings('Datasets/ratings.csv')
 # DataFrames for storing results
 max_r = int(max_r)

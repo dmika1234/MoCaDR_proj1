@@ -55,7 +55,7 @@ def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: in
 
 def perform_nmf(train_array: np.ndarray, test_array: np.ndarray, r: int, random_state: int = 0) -> float:
 
-    model = NMF(n_components=r, init='random', random_state=random_state)
+    model = NMF(n_components=r, init='random', random_state=random_state, max_iter=200)
     W = model.fit_transform(train_array)
     H = model.components_
     Z_tilde = np.dot(W, H)
@@ -103,11 +103,13 @@ def fillna_row_means(dataframe) -> np.ndarray:
 # results3 = perform_svd1(train_array3, test_array, 10)
 
 
-def fillna_means_combined(dataframe, value: float) -> np.ndarray:
+def fillna_means_combined(dataframe) -> np.ndarray:
+    global_mean = dataframe.mean().mean()
     col_means = np.matrix(dataframe.mean().values)
     row_means = np.matrix(dataframe.mean(axis=1).values).T
     #   Creating custom values to fill NaN in train_df
-    fill_matrix = np.dot(row_means, col_means / value)
+    fill_matrix = np.dot(row_means, col_means / global_mean)
+    fill_matrix = np.minimum(fill_matrix, 5)
     fill_df = pd.DataFrame(fill_matrix)
     fill_df = fill_df.T.fillna(fill_df.mean(axis=1)).T
     fill_array = np.array(fill_df)
