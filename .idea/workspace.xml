@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="writing report">
-      <change afterPath="$PROJECT_DIR$/Report/fig/test.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_04_2022_09_45__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_04_2022_09_45__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_03_2022_20_37_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_03_2022_20_37__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Report/fig/nmf_all.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Report/fig/nmf_w.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Report/fig/svd1_all.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Report/fig/svd1_w.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Report/fig/svd2_all.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Report/fig/svd2_w.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compute_results2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/results_svd2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/results_svd2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/fig/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/results_nmf.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/results_nmf_all.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/results_svd1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/results_svd1_all.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/results_svd2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/results_svd2_all.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presenting_results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/presenting_results.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="RMarkdown.document" />
-        <option value="Python Script" />
         <option value="Jupyter Notebook" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -63,7 +67,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.project" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -234,7 +238,9 @@
       <workItem from="1648894918852" duration="42000" />
       <workItem from="1648907235493" duration="335000" />
       <workItem from="1648972489419" duration="23000" />
-      <workItem from="1648996432282" duration="238000" />
+      <workItem from="1648996432282" duration="303000" />
+      <workItem from="1649000389077" duration="2036000" />
+      <workItem from="1649017521679" duration="1510000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -432,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648907401379</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="writing report">
+      <created>1648996680325</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1648996680325</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
