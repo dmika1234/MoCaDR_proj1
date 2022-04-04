@@ -18,12 +18,16 @@
 \usepackage{enumerate}
 \usepackage{multirow}
 \usepackage{graphics}
+\usepackage{graphicx}
 \usepackage{caption}
 \usepackage{array}
 \usepackage{xcolor}
 
+\graphicspath{ {./fig/} }
+
+
 \setlength{\droptitle}{-2cm}
-%\newgeometry{tmargin=1.9cm, bmargin=1.9cm, lmargin=1.7cm, rmargin=1.7cm}
+\newgeometry{tmargin=1.9cm, bmargin=1.9cm, lmargin=1.7cm, rmargin=1.7cm}
 
 \DeclareMathOperator*{\argmin}{arg\,min}
 
@@ -134,13 +138,18 @@ where $\mathcal{T}$ contains pairs $(u,m)$ from test set.
 
 Because three of our methods (SVD1, SVD2 and NMF) are given a full matrix $\boldsymbol{Z}$, so they need the missing data to be imputed before performing.
 
-We decided to impute the data in \tami{...} different ways:
-\tami{
+We decided to impute the data in 4 different ways:
 \begin{itemize}
     \item putting 0 everywhere,
-    \item
+    \item putting global mean everywhere,
+    \item putting row mean,
+    \item putting weighted row and column mean ($\alpha \cdot \text{\textsf{row\_mean}} + (1-\alpha) \cdot \text{\textsf{col\_mean}}$, where $\alpha$ is \tami{...}).
 \end{itemize}
-}
+
+\begin{figure}[H]
+\includegraphics[scale=0.6]{weights}
+\label{fig:figure}
+\end{figure}
 
 \tami{??In SVD2 we make a correction -- czy to tu}
 
@@ -149,10 +158,30 @@ We decided to impute the data in \tami{...} different ways:
 \subsection*{Choosing parameters}
 
 \subsubsection*{SVD1} r
+\begin{figure}[H]
+\includegraphics[scale=0.45]{svd1_all}
+\label{fig:figure}
+\end{figure}
+\tami{te wykresy po lewej trzeba zrobić od 0}
 
-\subsubsection*{SVD2} r?, czy tutaj warunek zatrzymania
+\subsubsection*{SVD2} r, czy tutaj \tami{warunek zatrzymania ????????}
+\begin{figure}[H]
+\includegraphics[scale=0.45]{svd2_all}
+\label{fig:figure}
+\end{figure}
 
 \subsubsection*{NMF} r
+\begin{figure}[H]
+\includegraphics[scale=0.45]{nmf_all}
+\label{fig:figure}
+\end{figure}
+
+
+
+\begin{figure}[H]
+\includegraphics[scale=0.6]{boxplot_reps}
+\label{fig:figure}
+\end{figure}
 
 \subsubsection*{SGD} $\eta$, warunek początkowy
 
