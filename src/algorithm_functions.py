@@ -53,6 +53,29 @@ def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: in
     return rmse_ii, i
 
 
+def perform_svd2_test(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: int,
+                 num_iter: int = 100):
+    res = pd.DataFrame({'iter': np.arange(num_iter) + 1, 'rmse': np.zeros(num_iter)})
+    Z_i = copy.deepcopy(train_array)
+    m = copy.deepcopy(train_array[~na_indx])
+    i = 0
+    rmse_ii = 0
+    while i < num_iter:
+        Z_i[~na_indx] = np.array(m).reshape(-1)
+        svd = TruncatedSVD(n_components=r)
+        svd.fit(Z_i)
+        Sigma2 = np.diag(svd.singular_values_)
+        VT = svd.components_
+        W = svd.transform(train_array) / svd.singular_values_
+        H = np.dot(Sigma2, VT)
+        Z_ii = np.dot(W, H)
+        # diff = ((Z_ii - Z_i) ** 2).sum() / (Z_ii.shape[0] * Z_ii.shape[1])
+        res.loc[i, 'rmse'] = calc_rmse(test_array, Z_ii)
+        Z_i = copy.deepcopy(Z_ii)
+        i += 1
+    return res
+
+
 def perform_nmf(train_array: np.ndarray, test_array: np.ndarray, r: int, random_state: int = 0) -> float:
 
     model = NMF(n_components=r, init='random', random_state=random_state, max_iter=200)
@@ -97,10 +120,11 @@ def fillna_row_means(dataframe) -> np.ndarray:
     return np.array(dataframe.T.fillna(dataframe.mean(axis=1)).T)
 
 
-# Imputing with column means
-# train_array3 = train_df.fillna(train_df.mean())
-# train_array3 = np.array(train_array3.T.fillna(train_array3.mean(axis=1)).T)
-# results3 = perform_svd1(train_array3, test_array, 10)
+def fillna_col_means(dataframe) -> np.ndarray:
+    glob_mean = dataframe.mean().mean()
+    col_means  = dataframe.mean()
+    col_means[col_means.isna()] = glob_mean
+    return np.array(dataframe.fillna(col_means))
 
 
 def fillna_means_combined(dataframe) -> np.ndarray:
