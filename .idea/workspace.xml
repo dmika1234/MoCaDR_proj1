@@ -4,20 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="computing results">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_03_2022_17_48_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_03_2022_17_48__Changes_.xml" beforeDir="false" />
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="2.04 report">
+      <change afterPath="$PROJECT_DIR$/TODO.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2022_08_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_04_2022_08_35__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/results_nmf_all.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Syf/results_nmf_all.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/results_reps.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Syf/results_reps.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/results_svd1_all.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Syf/results_svd1_all.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/results_svd1_final.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Syf/results_svd1_final.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/results_svd2_all.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Syf/results_svd2_all.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/results_svd2_final.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Syf/results_svd2_final.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/results_weights.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Syf/results_weights.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/rmse_diff_weight_svd1_weighted.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Syf/rmse_diff_weight_svd1_weighted.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/rmse_diffr_svd1_weighted.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Syf/rmse_diffr_svd1_weighted.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/report.synctex(busy)" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/report.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Report/report.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxil/report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/auxil/report.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxil/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/auxil/report.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/out/report.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presenting_results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/presenting_results.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +26,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="RMarkdown.document" />
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -74,7 +72,6 @@
       <recent name="D:\Studia\MoCaDR_proj1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Studia\MoCaDR_proj1\Results\Syf" />
       <recent name="D:\Studia\MoCaDR_proj1\Report" />
     </key>
   </component>
@@ -241,9 +238,6 @@
       <workItem from="1648576643019" duration="4941000" />
       <workItem from="1648885683106" duration="2799000" />
       <workItem from="1649100586613" duration="401000" />
-      <workItem from="1649142695450" duration="1248000" />
-      <workItem from="1649154173111" duration="1535000" />
-      <workItem from="1649225210342" duration="2520000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -392,14 +386,7 @@
       <option name="project" value="LOCAL" />
       <updated>1648327858794</updated>
     </task>
-    <task id="LOCAL-00022" summary="computing results">
-      <created>1649155805892</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1649155805892</updated>
-    </task>
-    <option name="localTasksCounter" value="23" />
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,18 +416,10 @@
     <MESSAGE value="Testing methods" />
     <MESSAGE value="SVD opis Tamarka" />
     <MESSAGE value="Testing SVD2" />
-    <MESSAGE value="computing results" />
-    <option name="LAST_COMMIT_MESSAGE" value="computing results" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing SVD2" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/main_py$splitting_manipulating_data.coverage" NAME="splitting_manipulating_data Coverage Results" MODIFIED="1648627073782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$algorithm_functions.coverage" NAME="algorithm_functions Coverage Results" MODIFIED="1648826781925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$computing_results.coverage" NAME="computing_results Coverage Results" MODIFIED="1648727756891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$algorithms_script.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1647535849226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$splitting_manipulating_data__1_.coverage" NAME="splitting_manipulating_data (1) Coverage Results" MODIFIED="1647870795349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$a.coverage" NAME="a Coverage Results" MODIFIED="1648057368569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$performing_algorithms.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1647784050444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/MoCaDR_proj1$splitting_data.coverage" NAME="splitting_data Coverage Results" MODIFIED="1647174411611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$performing_algorithms__1_.coverage" NAME="performing_algorithms (1) Coverage Results" MODIFIED="1648057220868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$performing_algorithms.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1648365686686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>

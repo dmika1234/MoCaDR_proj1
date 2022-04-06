@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.3.10)  4 APR 2022 21:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.3.10)  6 APR 2022 09:19
 entering extended mode
 **./report.tex
 (report.tex
@@ -278,39 +278,6 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-*geometry* verbose mode - [ newgeometry ] result:
-* driver: 
-* paper: <default>
-* layout: <same size as paper>
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
-* h-part:(L,W,R)=(48.36958pt, 517.55583pt, 48.36958pt)
-* v-part:(T,H,B)=(54.06006pt, 686.84987pt, 54.06006pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=517.55583pt
-* \textheight=686.84987pt
-* \oddsidemargin=-23.9004pt
-* \evensidemargin=-23.9004pt
-* \topmargin=-40.20993pt
-* \headheight=8.0pt
-* \headsep=14.0pt
-* \topskip=10.0pt
-* \footskip=12.0pt
-* \marginparwidth=90.0pt
-* \marginparsep=11.0pt
-* \columnsep=10.0pt
-* \skip\footins=7.0pt plus 11.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
-
-
 ("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3backend\l3backen
 d-pdfmode.def"
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
@@ -364,15 +331,15 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
-* h-part:(L,W,R)=(48.36958pt, 517.55583pt, 48.36958pt)
-* v-part:(T,H,B)=(54.06006pt, 686.84987pt, 54.06006pt)
+* h-part:(L,W,R)=(73.71613pt, 430.00462pt, 110.57425pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=517.55583pt
-* \textheight=686.84987pt
-* \oddsidemargin=-23.9004pt
-* \evensidemargin=-23.9004pt
-* \topmargin=-40.20993pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=1.44614pt
+* \evensidemargin=38.30426pt
+* \topmargin=1.12738pt
 * \headheight=8.0pt
 * \headsep=14.0pt
 * \topskip=10.0pt
@@ -423,55 +390,54 @@ LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
 ("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1cmss.fd"
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-[1
-
-{C:/Users/admin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-<./fig/weights.png, id=21, 487.0998pt x 329.5512pt>
+[1{C:/Users/admin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+<./fig/weights.png, id=19, 487.0998pt x 329.5512pt>
 File: ./fig/weights.png Graphic file (type png)
 <use ./fig/weights.png>
 Package pdftex.def Info: ./fig/weights.png  used on input line 150.
 (pdftex.def)             Requested size: 292.26213pt x 197.73222pt.
-<./fig/svd1_all.png, id=23, 1194.26175pt x 403.9893pt>
+ [2]
+<./fig/svd1_all.png, id=28, 1194.26175pt x 403.9893pt>
 File: ./fig/svd1_all.png Graphic file (type png)
 <use ./fig/svd1_all.png>
 Package pdftex.def Info: ./fig/svd1_all.png  used on input line 162.
 (pdftex.def)             Requested size: 537.41283pt x 181.7935pt.
 
-Overfull \hbox (19.857pt too wide) in paragraph at lines 162--164
+Overfull \hbox (107.4082pt too wide) in paragraph at lines 162--164
  [][] 
  []
 
-
-Underfull \vbox (badness 1968) has occurred while \output is active []
-
- [2 <./fig/weights.png>]
-<./fig/svd2_all.png, id=30, 1194.26175pt x 403.9893pt>
+<./fig/svd2_all.png, id=29, 1194.26175pt x 403.9893pt>
 File: ./fig/svd2_all.png Graphic file (type png)
 <use ./fig/svd2_all.png>
 Package pdftex.def Info: ./fig/svd2_all.png  used on input line 169.
 (pdftex.def)             Requested size: 537.41283pt x 181.7935pt.
 
-Overfull \hbox (19.857pt too wide) in paragraph at lines 169--171
+Overfull \hbox (107.4082pt too wide) in paragraph at lines 169--171
  [][] 
  []
 
-<./fig/nmf_all.png, id=31, 1194.26175pt x 405.07335pt>
+[3 <./fig/weights.png> <./fig/svd1_all.png>]
+<./fig/nmf_all.png, id=35, 1194.26175pt x 405.07335pt>
 File: ./fig/nmf_all.png Graphic file (type png)
 <use ./fig/nmf_all.png>
 Package pdftex.def Info: ./fig/nmf_all.png  used on input line 175.
 (pdftex.def)             Requested size: 537.41283pt x 182.28131pt.
 
-Overfull \hbox (19.857pt too wide) in paragraph at lines 175--177
+Overfull \hbox (107.4082pt too wide) in paragraph at lines 175--177
  [][] 
  []
 
-<./fig/boxplot_reps.png, id=32, 403.9893pt x 310.761pt>
+<./fig/boxplot_reps.png, id=36, 403.9893pt x 310.761pt>
 File: ./fig/boxplot_reps.png Graphic file (type png)
 <use ./fig/boxplot_reps.png>
 Package pdftex.def Info: ./fig/boxplot_reps.png  used on input line 182.
 (pdftex.def)             Requested size: 242.39545pt x 186.45804pt.
-[3 <./fig/svd1_all.png> <./fig/svd2_all.png> <./fig/nmf_all.png>] [4 <./fig/box
-plot_reps.png>] (C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report.aux)
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4 <./fig/svd2_all.png> <./fig/nmf_all.png>] [5 <./fig/boxplot_reps.png>]
+(C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -479,14 +445,14 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  6188 strings out of 481556
  89482 string characters out of 2913869
- 336573 words of memory out of 3000000
+ 334638 words of memory out of 3000000
  21180 multiletter control sequences out of 15000+200000
  552539 words of font info for 78 fonts, out of 3000000 for 9000
  1302 hyphenation exceptions out of 8191
  39i,8n,43p,815b,228s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
-ecrm0800.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
-ec/dpi600\ecss1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
+ecss1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
+ec/dpi600\ecrm0800.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
 /jknappen/ec/dpi600\ecti1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts
 /pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\admin\AppData\Local\MiKTeX
 \2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\admin\AppData\Lo
@@ -505,10 +471,10 @@ C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 amsfonts/cm/cmsy10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/admin/AppData/Local/Programs/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report.pdf (4
- pages, 686901 bytes).
+Output written on C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report.pdf (5
+ pages, 687896 bytes).
 PDF statistics:
- 278 PDF objects out of 1000 (max. 8388607)
+ 282 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
