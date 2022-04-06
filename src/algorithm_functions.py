@@ -28,14 +28,14 @@ def perform_svd1(train_array: np.ndarray, test_array: np.ndarray, r: int) -> flo
 
 # na_indx = train_df.isna()
 def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: int,
-                 max_iter: int = 20) -> tuple:
+                      max_iter: int = 100, min_diff: float = 0.008) -> tuple:
 
     Z_i = copy.deepcopy(train_array)
     m = copy.deepcopy(train_array[~na_indx])
     i = 0
-    rmse_i = calc_rmse(test_array, Z_i)
-    rmse_ii = 0
-    while (i < max_iter) & (rmse_i > rmse_ii):
+    diff = 10 ** 5
+
+    while (i < max_iter) & (min_diff < diff):
         Z_i[~na_indx] = np.array(m).reshape(-1)
         rmse_i = calc_rmse(test_array, Z_i)
         svd = TruncatedSVD(n_components=r)
@@ -45,35 +45,12 @@ def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: in
         W = svd.transform(train_array) / svd.singular_values_
         H = np.dot(Sigma2, VT)
         Z_ii = np.dot(W, H)
-        # diff = ((Z_ii - Z_i) ** 2).sum() / (Z_ii.shape[0] * Z_ii.shape[1])
+        diff = ((Z_ii - Z_i) ** 2).sum() / (Z_ii.shape[0] * Z_ii.shape[1])
         i += 1
-        rmse_ii = calc_rmse(test_array, Z_ii)
+        rmse = calc_rmse(test_array, Z_ii)
         Z_i = copy.deepcopy(Z_ii)
 
-    return rmse_ii, i
-
-
-def perform_svd2_test(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: int,
-                 num_iter: int = 100):
-    res = pd.DataFrame({'iter': np.arange(num_iter) + 1, 'rmse': np.zeros(num_iter)})
-    Z_i = copy.deepcopy(train_array)
-    m = copy.deepcopy(train_array[~na_indx])
-    i = 0
-    rmse_ii = 0
-    while i < num_iter:
-        Z_i[~na_indx] = np.array(m).reshape(-1)
-        svd = TruncatedSVD(n_components=r)
-        svd.fit(Z_i)
-        Sigma2 = np.diag(svd.singular_values_)
-        VT = svd.components_
-        W = svd.transform(train_array) / svd.singular_values_
-        H = np.dot(Sigma2, VT)
-        Z_ii = np.dot(W, H)
-        # diff = ((Z_ii - Z_i) ** 2).sum() / (Z_ii.shape[0] * Z_ii.shape[1])
-        res.loc[i, 'rmse'] = calc_rmse(test_array, Z_ii)
-        Z_i = copy.deepcopy(Z_ii)
-        i += 1
-    return res
+    return rmse, i
 
 
 def perform_nmf(train_array: np.ndarray, test_array: np.ndarray, r: int, random_state: int = 0) -> float:
