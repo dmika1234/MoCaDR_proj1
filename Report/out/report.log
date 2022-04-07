@@ -257,20 +257,7 @@ File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count280
 \l__pdf_internal_box=\box57
 )
-(D:/Studia\MoCaDR_proj1\out\report.aux
-
-LaTeX Warning: Label `fig:figure' multiply defined.
-
-
-LaTeX Warning: Label `fig:figure' multiply defined.
-
-
-LaTeX Warning: Label `fig:figure' multiply defined.
-
-
-LaTeX Warning: Label `fig:figure' multiply defined.
-
-)
+No file report.aux.
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
@@ -289,7 +276,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
 LaTeX Font Info:    ... okay on input line 42.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
 
- (D:\Programy\MikTeX\tex/latex/amsfonts\umsa.fd
+(D:\Programy\MikTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
@@ -368,7 +355,13 @@ File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 File: ./fig//weights.png Graphic file (type png)
 <use ./fig//weights.png>
 Package pdftex.def Info: ./fig//weights.png  used on input line 150.
-(pdftex.def)             Requested size: 292.26213pt x 197    Requested size: 537.41283pt x 181.7935pt.
+(pdftex.def)             Requested size: 292.26213pt x 197.73222pt.
+ [2]
+<./fig//svd1_all.png, id=28, 1194.26175pt x 403.9893pt>
+File: ./fig//svd1_all.png Graphic file (type png)
+<use ./fig//svd1_all.png>
+Package pdftex.def Info: ./fig//svd1_all.png  used on input line 162.
+(pdftex.def)             Requested size: 537.41283pt x 181.7935pt.
 
 Overfull \hbox (107.4082pt too wide) in paragraph at lines 162--164
  [][] 
@@ -404,14 +397,14 @@ Package pdftex.def Info: ./fig//boxplot_reps.png  used on input line 182.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4 <./fig//svd2_all.png> <./fig//nmf_all.png>] [5 <./fig//boxplot_reps.png>]
-(D:/Studia\MoCaDR_proj1\out\report.aux)
+(D:/Studia\MoCaDR_proj1\Report\out\report.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
  6754 strings out of 478582
- 102835 string characters out of 2856538
+ 102870 string characters out of 2856538
  402871 words of memory out of 3000000
  24685 multiletter control sequences out of 15000+600000
  489460 words of font info for 82 fonts, out of 8000000 for 9000
@@ -425,10 +418,6 @@ pen/ec/dpi600\ecbx1095.pk> <C:\Users\dmika\AppData\Local\MiKTeX\fonts/pk/ljfour
 /jknappen/ec/dpi600\eccc1095.pk> <C:\Users\dmika\AppData\Local\MiKTeX\fonts/pk/
 ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\dmika\AppData\Local\MiKTeX\fon
 ts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\dmika\AppData\Local\MiKT
-eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk>
-!pdfTeX error: pdflatex: fflush() failed (Invalid argument)
- ==> Fatal error occurred, no output PDF file produced!
-200.pk> <C:\Users\dmika\AppData\Local\MiKT
 eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><D:/Programy/MikTeX/fonts/typ
 e1/public/amsfonts/cm/cmex10.pfb><D:/Programy/MikTeX/fonts/type1/public/amsfont
 s/cm/cmmi10.pfb><D:/Programy/MikTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D
@@ -438,8 +427,8 @@ ic/amsfonts/cm/cmr6.pfb><D:/Programy/MikTeX/fonts/type1/public/amsfonts/cm/cmr8
 .pfb><D:/Programy/MikTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Programy
 /MikTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><D:/Programy/MikTeX/fonts/type
 1/public/amsfonts/cm/cmsy8.pfb>
-Output written on D:/Studia\MoCaDR_proj1\out\report.pdf (5 pages, 696590 bytes)
-.
+Output written on D:/Studia\MoCaDR_proj1\Report\out\report.pdf (5 pages, 696590
+ bytes).
 PDF statistics:
  292 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
