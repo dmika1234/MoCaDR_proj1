@@ -78,11 +78,12 @@ def perform_sgd(train_array, test_array, r: int, init_vec, eta: float, alpha: fl
 
 # Function to calculate RMSE
 def calc_rmse(test_array: np.ndarray, estimated_array: np.ndarray) -> float:
-
+    test_array  = np.array(test_array, dtype=np.longdouble)
+    estimated_array = np.array(estimated_array, dtype=np.longdouble)
     diff = test_array - estimated_array
     num_of_vals = (~np.isnan(diff)).sum()
     # Delete not NaN values to further summing
-    diff = diff[~np.isnan(diff)]
+    diff = np.array(diff[~np.isnan(diff)], dtype=np.longdouble)
     rmse = np.sqrt(1 / np.abs(num_of_vals) * ((diff ** 2).sum()))
 
     return rmse
