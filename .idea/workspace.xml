@@ -4,39 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Correcting svd2">
-      <change afterPath="$PROJECT_DIR$/Report/fig/svd1_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/fig/svd1_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/fig/svd2_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/fig/svd2_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/out/report.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/out/report.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/out/report.synctex.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/results_r_w_svd1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/report.synctex(busy)" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compute_r_weights.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compute_stop_svd2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_04_2022_09_03__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_04_2022_09_03__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_03_2022_09_29_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_03_2022_09_29__Changes_.xml" beforeDir="false" />
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Computing stop condition svd2">
+      <change afterPath="$PROJECT_DIR$/Results/results_stop_svd2.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/fig/svd1_all.png" beforeDir="false" afterPath="$PROJECT_DIR$/Report/fig/svd1_all.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/out/test.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/out/test.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/results_svd2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/results_svd2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/report.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/out/report.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/report.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/report.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compute_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/compute_results_allr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compute_results3.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/compute_results3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/auxil/test.aux" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/auxil/test.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/fig/svd1_r_w.png" beforeDir="false" afterPath="$PROJECT_DIR$/Report/fig/svd1_r_w.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/results_r_w_svd1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/results_r_w_svd1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxil/report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxil/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/choosing_parameters.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compute_results_svd2.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presenting_results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/presenting_results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syf2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/syf2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syf1.ipynb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +61,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Report" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -90,6 +70,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Studia\MoCaDR_proj1\Report" />
       <recent name="D:\Studia\MoCaDR_proj1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -97,7 +78,7 @@
       <recent name="D:\Studia\MoCaDR_proj1\Report" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.compute_results3">
+  <component name="RunManager" selected="LaTeX.report">
     <configuration name="report" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" temporary="true">
       <texify>
         <compiler>PDFLATEX</compiler>
@@ -109,7 +90,7 @@
         <envs />
         <main-file>$PROJECT_DIR$/Report/report.tex</main-file>
         <output-path>$PROJECT_DIR$/Report/out</output-path>
-        <auxil-path>{projectDir}/auxil</auxil-path>
+        <auxil-path>$PROJECT_DIR$/Report/auxil</auxil-path>
         <compile-twice>false</compile-twice>
         <output-format>PDF</output-format>
         <latex-distribution>MIKTEX</latex-distribution>
@@ -210,16 +191,16 @@
     <list>
       <item itemvalue="LaTeX.report" />
       <item itemvalue="Python.manipulating_datasets" />
-      <item itemvalue="Python.splitting_data" />
-      <item itemvalue="Python.performing_algorithms" />
       <item itemvalue="Python.compute_results3" />
+      <item itemvalue="Python.performing_algorithms" />
+      <item itemvalue="Python.splitting_data" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.splitting_data" />
+        <item itemvalue="Python.performing_algorithms" />
         <item itemvalue="Python.compute_results3" />
         <item itemvalue="LaTeX.report" />
-        <item itemvalue="Python.performing_algorithms" />
-        <item itemvalue="Python.splitting_data" />
       </list>
     </recent_temporary>
   </component>
@@ -268,7 +249,9 @@
       <workItem from="1649252977347" duration="33000" />
       <workItem from="1649256897698" duration="20000" />
       <workItem from="1649263859461" duration="4502000" />
-      <workItem from="1649340598453" duration="2855000" />
+      <workItem from="1649340598453" duration="3005000" />
+      <workItem from="1649345448932" duration="596000" />
+      <workItem from="1649407349351" duration="1316000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -424,7 +407,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649155805892</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Computing stop condition svd2">
+      <created>1649345310151</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1649345310151</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,7 +445,8 @@
     <MESSAGE value="SVD opis Tamarka" />
     <MESSAGE value="Testing SVD2" />
     <MESSAGE value="computing results" />
-    <option name="LAST_COMMIT_MESSAGE" value="computing results" />
+    <MESSAGE value="Computing stop condition svd2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Computing stop condition svd2" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$splitting_manipulating_data.coverage" NAME="splitting_manipulating_data Coverage Results" MODIFIED="1648627073782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
