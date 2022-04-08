@@ -3,7 +3,7 @@
 - r: 5:20 i potem co 5 do 50
 - weights: od 0.2 do 0.6
 ## SVD2
-- r: 
+- r: 5:15 i potem co 5 do 30
 - weights: od 0.2 do 0.6
 
 ## NMF

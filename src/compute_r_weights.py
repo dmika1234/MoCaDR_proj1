@@ -37,7 +37,7 @@ if alg == 'svd1':
 
 # SVD2
 if alg == 'svd2':
-    r_vec = np.concatenate((np.arange(5, 20), np.arange(20, 51, 5)))
+    r_vec = np.concatenate((np.arange(5, 15), np.arange(15, 31, 5)))
     results = pd.DataFrame({'col_weight': np.repeat(weights_vec, len(r_vec)),
                             'r': np.tile(r_vec, len(weights_vec)),
                             'RMSE': np.zeros(len(r_vec) * len(weights_vec))})
@@ -45,13 +45,13 @@ if alg == 'svd2':
     for weight in tqdm(weights_vec):
         train_array = fillna_means_weighted(train_df, weight)
         for r in tqdm(r_vec, leave=False):
-            results.loc[ix, 'RMSE'] = perform_svd2(train_df.isna(), train_array, test_array, r=r)[0]
+            results.loc[ix, 'RMSE'] = perform_svd2(train_df.isna(), train_array, test_array, r=r, min_diff=0.0086)[0]
             ix += 1
     results.to_csv('Results/results_r_w_svd2.csv', index=False)
 
 # NMF
-if alg == 'svd2':
-    r_vec = np.concatenate((np.arange(5, 20), np.arange(20, 51, 5)))
+if alg == 'nmf':
+    r_vec = np.concatenate((np.arange(5, 15, 5), np.arange(15, 56)))
     results = pd.DataFrame({'col_weight': np.repeat(weights_vec, len(r_vec)),
                             'r': np.tile(r_vec, len(weights_vec)),
                             'RMSE': np.zeros(len(r_vec) * len(weights_vec))})
