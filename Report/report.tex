@@ -22,6 +22,8 @@
 \usepackage{caption}
 \usepackage{array}
 \usepackage{xcolor}
+\usepackage{subcaption}
+
 
 \graphicspath{ {./fig/} }
 
@@ -96,6 +98,16 @@ Precisely, we look for such $W_r$ and $H_r$ that $\|Z - W_r H_r \|^2$ is the sma
 
 \subsubsection*{SGD}
 
+This method, similarly as previous ones want to estimate matrix $Z$ with a product of matrices
+$W$ and $H$, but not necessarily obtaining the whole matrix $Z$.
+
+Let's assume that we have only some values of $z_{ij}$ and let call those pairs $(i,j)$ where we know the value of $Z$ as $I$.
+We look for
+$$\argmin_{W, H} \sum_{(i,j)\in I} (z_{ij} - w_i^T h_j)^2 + \lambda(\|w_i^T\|^2 + \|h_j\|^2),$$
+where $h_j$ is $j$-th column of $h$, $w_i^T$ is $i$-th row of $W$ and $\lambda > 0$ is a parameter.
+So roughly speaking we look for $W$ and $H$ such that $Z \approx WH$ for elements known in $Z$, but also we want $W$ and $H$ to have quite small values (it gives us the part of sum with parameter $\lambda$).
+
+\tami{opis metody...}
 
 \section{Implementation}
 
@@ -120,7 +132,7 @@ And the test set is used to evaluate how our programs work.
 
 
 To give our programs enough information about every user we split the data so that the train set contain 90\% of ratings of each user (and the test set the remaining ones).
-
+\tami{tutaj coś o tym, że będziemy to powtarzać??}
 
 Let call the matrix containing the data from the train set as $\boldsymbol{Z}$ and the matrix containing the data from the test set as $\boldsymbol{T}$.
 
@@ -136,81 +148,258 @@ where $\mathcal{T}$ contains pairs $(u,m)$ from test set.
 
 \subsection*{Imputing the missing data}
 
-Because three of our methods (SVD1, SVD2 and NMF) are given a full matrix $\boldsymbol{Z}$, so they need the missing data to be imputed before performing.
+Since three of our methods (SVD1, SVD2 and NMF) are given a full matrix $\boldsymbol{Z}$ then they need the missing data to be imputed before performing.
 
 We decided to impute the data in 4 different ways:
 \begin{itemize}
     \item putting 0 everywhere,
     \item putting global mean everywhere,
     \item putting row mean,
-    \item putting weighted row and column mean ($\alpha \cdot \text{\textsf{col\_mean}} + (1-\alpha) \cdot \text{\textsf{row\_mean}}$, where $\alpha$ is \tami{...}).
+    \item putting weighted row and column mean ($\alpha \cdot \text{\textsf{col\_mean}} + (1-\alpha) \cdot \text{\textsf{row\_mean}}$, where $\alpha$ is a parameter).
 \end{itemize}
-
-\tami{??In SVD2 we make a correction -- czy to tu}
 
 \tami{tutaj przemyślenia na temat tego czemu niektóre metody działają lepiej i dlaczego}
 
-\section*{Parameters tuning and results}
+\section{Parameters tuning and results}
 
-\subsection*{SVD1} r
-wprowdzanie, powiedzenie, że trzeba dobrać r
+\tami{coś o tym, że metody pozostawiaja trochę dowolności?}
 
-napisać co to jest to weighted
+Before performing our methods and obtaining results we have to set some parameters.
+
+First of all, all the methods need a parameter $r$, which is the rank of matrices in $Z$ decomposition.
+SGD needs also learning rate and $\lambda$.
+And iteration methods need maximum of possible iterations or a stop condition.
+
+What's more, for all of our methods we want to choose optimal $\alpha$ in the last method of imputing data.
+
+
+
+\subsection*{SVD1}
+
+\tami{co tu napisać}
+
+\tami{napisać co to jest to weighted}
+
+At the beginning we consider only \tami{...}
+
+Below, we present a graph showing dependence of RMSE on $r$.
 
 \begin{figure}[H]
-\includegraphics[scale=1]{fig/svd1_1}
-\label{fig:figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.43]{svd1_1}
+%  \captionof{figure}{A figure}
+%  \label{fig:test1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.43]{svd1_2}
+%  \captionof{figure}{Another figure}
+%  \label{fig:test2}
+\end{minipage}
 \end{figure}
-\tami{te wykresy po lewej trzeba zrobić od 0}
 
-\begin{figure}[H]
-\includegraphics[scale=0.45]{fig/svd1_2}
-\label{fig:figure}
-\end{figure}
+Also we present a table with the lowest RMSE for every imputation method and the parameter $r$ that gave it.
+\begin{table}[H]
+\begin{tabular}{c|ccccc}
+& 0 & column means & global mean & weighted means & row means \\
+\hline
+$r$ & 7 & 13 & 15 & 9 & 6 \\
+RMSE & 2.866 & 0.946 & 0.987 & 0.877 & 0.904 \\
+\end{tabular}
+\end{table}
+%wnioski, że ma wpływ jak uzupełniamy
+%jakieś wnioski, te zera beznadziejne
+%że weighted wypadają najlepiej i chcemy to alfa dobrać optymalnie
 
-umieścić obok siebie
+First of all, we observe that as we expected the imputation method does matter.
+It is most clearly seen looking at RMSE of data filled with zeros, that for the best $r$ is around $2.9$.
+Other methods also differ a lot.
+The lowest RMSE obtain the data filled with weighted data.
+That's why we may suspect that optimizing $\alpha$ can give even better results.
 
-mała tabelka o tym jakie r najlepsze wychodzi dla tych metod
+%wprowadzenie, że dobieramy alfa
+%no i ten rysunek wyżej nam pozwala obciąć r
+%że robimy minimalizację po dwóch parametrach
 
-wnioski, że ma wpływ jak uzupełniamy
-jakieś wnioski, te zera beznadziejne
-że weighted wypadają najlepiej i chcemy to alfa dobrać optymalnie
-
-
-wprowadzenie, że dobieramy alfa
-no i ten rysunek wyżej nam pozwala obciąć r
-że robimy minimalizację po dwóch parametrach
+To get optimal result we perform optimization with respect to two parameters: $\alpha$ and $r$.
+As we can see on the picture above only $r$ between $0$ and $50$ give some reasonable results, so we consider only those (we could use all $r$, but it is time consuming).
+Below, we present graph showing dependence of RMSE on $\alpha$ and $r$ for data \tami{...}
 
 \begin{figure}[H]
 \includegraphics[scale=0.45]{fig/svd1_r_w}
 \label{fig:figure}
 \end{figure}
 
-tabelka z wynikami dla różnych alfa
+Below we present also table with \tami{...} lowest RMSE and pairs $(\alpha, r)$ that gave those.
+\begin{table}[H]
+\begin{tabular}{cc|c}
+\toprule
+ $\alpha$ &  $r$ &     RMSE \\
+\midrule
+\hline
+       0.39 & 10 & 0.873987 \\
+       0.38 & 10 & 0.874244 \\
+       0.42 & 10 & 0.874274 \\
+       0.36 & 10 & 0.874449 \\
+       0.39 & 11 & 0.874469 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-wnioski, że
-wyniki jakie r i waga daje nalepsze rmse, no i że to ma sens
+As we can see 10 seems to be the best $r$ and 0.39 seems to be the best $\alpha$.
+Also in all those results $(\alpha, r)$ are close to them.
+\tami{So $\alpha = 0.39$ and $r = 10$ are parameters that we use to perform this method further in the report.}
 
-tabelka z najlepszymi wynikami
+Since in columns we keep indexes of movies, it means that our filled data take a bit more information from user ratings mean than from the movie ratings mean.
+That is probably logical \tami{...}
 
-%\subsubsection*{SVD2} r, czy tutaj \tami{warunek zatrzymania ????????}
-%\begin{figure}[H]
-%\includegraphics[scale=0.45]{fig/syf/svd2_all}
-%\label{fig:figure}
-%\end{figure}
-%
-%\subsubsection*{NMF} r
-%\begin{figure}[H]
-%\includegraphics[scale=0.45]{fig/syf/nmf_all}
-%\label{fig:figure}
-%\end{figure}
+To conclude this subsection we present our best results obtained using these methods.
+\tami{which means what}
+
+\tami{tabelka z najlepszymi wynikami}
 
 
+\subsection*{SVD2}
+In this case we want to proceed as in SVD1 case.
+
+\tami{??In SVD2 we make a correction -- czy to tu}
+
+stop condition
 
 
-\subsection*{SGD} $\eta$, warunek początkowy
 
-\section{Results}
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.43]{svd2_1}
+%  \captionof{figure}{A figure}
+%  \label{fig:test1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.43]{svd2_2}
+%  \captionof{figure}{Another figure}
+%  \label{fig:test2}
+\end{minipage}
+\end{figure}
+
+\begin{table}[H]
+\begin{tabular}{c|ccccc}
+& 0 & column means & global mean & weighted means & row means \\
+\hline
+$r$ & 19 & 10 & 6 & 13 & 7 \\
+RMSE & 2.779 & 0.942 & 0.942 & 0.875 & 0.878 \\
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\includegraphics[scale = 0.45]{svd2_r_w}
+\end{figure}
+
+\begin{table}[H]
+\begin{tabular}{rrr}
+\toprule
+$\alpha$ &  $r$ &     RMSE \\
+\midrule
+\hline
+       0.25 &  8 & 0.867393 \\
+       0.26 &  8 & 0.867397 \\
+       0.24 &  8 & 0.867402 \\
+       0.27 &  8 & 0.867410 \\
+       0.28 &  8 & 0.867494 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{NMF}
+
+In this case since we have only $r$ and $\alpha$ to find, we proceed in exactly the same way as in the case of SVD.
+So, firstly we present a graph showing dependence of RMSE on $r$. \tami{in some cases...}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.43]{nmf_1}
+%  \captionof{figure}{A figure}
+%  \label{fig:test1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.43]{nmf_2}
+%  \captionof{figure}{Another figure}
+%  \label{fig:test2}
+\end{minipage}
+\end{figure}
+
+Comparing this graph to the graph for SVD we can see that \tami{tutaj o tym, że jest bardziej takie postrzępione}
+
+Below we also present a table with the lowest RMSE for every imputation method and the parameter $r$ that gave it.
+
+\begin{table}[H]
+\begin{tabular}{c|ccccc}
+& 0 & column means & global mean & weighted means & row means \\
+\hline
+$r$ & 6 & 47 & 30 & 37 & 15\\
+RMSE & 2.900 & 0.946 & 0.987 & 0.877 & 0.905 \\
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{cc|c}
+\toprule
+$\alpha$ &  $r$ &     RMSE \\
+\midrule
+\hline
+       0.40 & 37 & 0.874794 \\
+       0.41 & 37 & 0.874817 \\
+       0.39 & 18 & 0.874841 \\
+       0.39 & 37 & 0.874848 \\
+       0.40 & 18 & 0.874849 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+As we can see the parameters $r$ are in general bigger than in previous cases.
+\tami{czy będą bardziej porostrzelane}
+
+Now we pefrorm the optimization with respect to $\alpha$ and $r$ and present a graph showing the results.
+
+\begin{figure}[H]
+\includegraphics[scale = 0.45]{nmf_r_w}
+\end{figure}
+
+\tami{tabelka z najlepszymi r i alpha}
+\tami{jakie r i alpha wybieramy}
+
+\tami{tabelka z najlepszymi wynikami}
+
+\subsection*{SGD}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.43]{svd1_1}
+%  \captionof{figure}{A figure}
+%  \label{fig:test1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.43]{svd1_2}
+%  \captionof{figure}{Another figure}
+%  \label{fig:test2}
+\end{minipage}
+\end{figure}
+
+
+
+\section{}
+
+\section{Conclusions}
 
 
 
