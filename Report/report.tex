@@ -143,47 +143,72 @@ We decided to impute the data in 4 different ways:
     \item putting 0 everywhere,
     \item putting global mean everywhere,
     \item putting row mean,
-    \item putting weighted row and column mean ($\alpha \cdot \text{\textsf{row\_mean}} + (1-\alpha) \cdot \text{\textsf{col\_mean}}$, where $\alpha$ is \tami{...}).
+    \item putting weighted row and column mean ($\alpha \cdot \text{\textsf{col\_mean}} + (1-\alpha) \cdot \text{\textsf{row\_mean}}$, where $\alpha$ is \tami{...}).
 \end{itemize}
-
-\begin{figure}[H]
-\includegraphics[scale=0.6]{fig/syf/weights}
-\label{fig:figure}
-\end{figure}
 
 \tami{??In SVD2 we make a correction -- czy to tu}
 
 \tami{tutaj przemyślenia na temat tego czemu niektóre metody działają lepiej i dlaczego}
 
-\subsection*{Choosing parameters}
+\section*{Parameters tuning and results}
 
-\subsubsection*{SVD1} r
+\subsection*{SVD1} r
+wprowdzanie, powiedzenie, że trzeba dobrać r
+
+napisać co to jest to weighted
+
 \begin{figure}[H]
-\includegraphics[scale=0.45]{fig/syf/svd1_all}
+\includegraphics[scale=1]{fig/svd1_1}
 \label{fig:figure}
 \end{figure}
 \tami{te wykresy po lewej trzeba zrobić od 0}
 
-\subsubsection*{SVD2} r, czy tutaj \tami{warunek zatrzymania ????????}
 \begin{figure}[H]
-\includegraphics[scale=0.45]{fig/syf/svd2_all}
+\includegraphics[scale=0.45]{fig/svd1_2}
 \label{fig:figure}
 \end{figure}
 
-\subsubsection*{NMF} r
+umieścić obok siebie
+
+mała tabelka o tym jakie r najlepsze wychodzi dla tych metod
+
+wnioski, że ma wpływ jak uzupełniamy
+jakieś wnioski, te zera beznadziejne
+że weighted wypadają najlepiej i chcemy to alfa dobrać optymalnie
+
+
+wprowadzenie, że dobieramy alfa
+no i ten rysunek wyżej nam pozwala obciąć r
+że robimy minimalizację po dwóch parametrach
+
 \begin{figure}[H]
-\includegraphics[scale=0.45]{fig/syf/nmf_all}
+\includegraphics[scale=0.45]{fig/svd1_r_w}
 \label{fig:figure}
 \end{figure}
 
+tabelka z wynikami dla różnych alfa
+
+wnioski, że
+wyniki jakie r i waga daje nalepsze rmse, no i że to ma sens
+
+tabelka z najlepszymi wynikami
+
+%\subsubsection*{SVD2} r, czy tutaj \tami{warunek zatrzymania ????????}
+%\begin{figure}[H]
+%\includegraphics[scale=0.45]{fig/syf/svd2_all}
+%\label{fig:figure}
+%\end{figure}
+%
+%\subsubsection*{NMF} r
+%\begin{figure}[H]
+%\includegraphics[scale=0.45]{fig/syf/nmf_all}
+%\label{fig:figure}
+%\end{figure}
 
 
-\begin{figure}[H]
-\includegraphics[scale=0.6]{fig/syf/boxplot_reps}
-\label{fig:figure}
-\end{figure}
 
-\subsubsection*{SGD} $\eta$, warunek początkowy
+
+\subsection*{SGD} $\eta$, warunek początkowy
 
 \section{Results}
 
