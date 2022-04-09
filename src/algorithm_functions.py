@@ -1,13 +1,11 @@
 import numpy as np
 import pandas as pd
+import random
 import copy
 import os
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import TruncatedSVD
 from sklearn.decomposition import NMF
-
-
-os.chdir('../')
 
 
 # Functions for algorithms
@@ -37,7 +35,6 @@ def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: in
 
     while (i < max_iter) & (min_diff < diff):
         Z_i[~na_indx] = np.array(m).reshape(-1)
-        rmse_i = calc_rmse(test_array, Z_i)
         svd = TruncatedSVD(n_components=r)
         svd.fit(Z_i)
         Sigma2 = np.diag(svd.singular_values_)
@@ -46,12 +43,40 @@ def perform_svd2(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: in
         H = np.dot(Sigma2, VT)
         Z_ii = np.dot(W, H)
         diff = ((Z_ii - Z_i) ** 2).sum() / (Z_ii.shape[0] * Z_ii.shape[1])
-        i += 1
-        rmse = calc_rmse(test_array, Z_ii)
         Z_i = copy.deepcopy(Z_ii)
+        i += 1
+
+    rmse = calc_rmse(test_array, Z_ii)
 
     return rmse, i
 
+
+def perform_svd22(na_indx, train_array: np.ndarray, test_array: np.ndarray, r: int,
+                      max_iter: int = 100, min_diff: float = 0.0089) -> tuple:
+
+    Z_i = copy.deepcopy(train_array)
+    m = copy.deepcopy(train_array[~na_indx])
+    i = 0
+    diff = 10 ** 5
+
+    while (i < max_iter) & (min_diff < diff):
+        Z_i[~na_indx] = np.array(m).reshape(-1)
+        svd = TruncatedSVD(n_components=r)
+        svd.fit(Z_i)
+        Sigma2 = np.diag(svd.singular_values_)
+        VT = svd.components_
+        W = svd.transform(train_array) / svd.singular_values_
+        H = np.dot(Sigma2, VT)
+        Z_ii = np.dot(W, H)
+        diff = ((Z_ii - Z_i) ** 2).sum() / (Z_ii.shape[0] * Z_ii.shape[1])
+        Z_i = copy.deepcopy(Z_ii)
+        i += 1
+
+    Z_ii = np.min(Z_ii, 5.0)
+    Z_ii = np.round(Z_ii)
+    rmse = calc_rmse(test_array, Z_ii)
+
+    return rmse, i
 
 def perform_nmf(train_array: np.ndarray, test_array: np.ndarray, r: int, random_state: int = 0) -> float:
 
@@ -65,19 +90,54 @@ def perform_nmf(train_array: np.ndarray, test_array: np.ndarray, r: int, random_
     return rmse
 
 
-def perform_sgd(train_array, test_array, r: int, init_vec, eta: float, alpha: float):
+# W = np.matrix(np.full((n, r), np.sqrt(global_mean) / np.sqrt(r)), dtype=np.longdouble)
+# H = np.matrix(np.full((r, d), np.sqrt(global_mean) / np.sqrt(r)), dtype=np.longdouble)
+def perform_sgd(train_df, test_array, init_W, init_H, r: int, lada: float, learning_rate: float,
+                max_iter: int = 10000, min_diff: float = 5e-10):
+
+    train_array = np.array(train_df)
     n, d = train_array.shape
-    W = np.zeros([n, r])
-    H = np.zeros([r, d])
+    W = np.matrix(init_W, dtype=np.longdouble)
+    H = np.matrix(init_H, dtype=np.longdouble)
+    W_prev = copy.deepcopy(W)
+    H_prev = copy.deepcopy(H)
+    possible_ix = np.argwhere(train_df.notnull().values).tolist()
+    diff_W = min_diff + 1
+    diff_H = min_diff + 1
+    iter = 0
 
-    while True:
-        E = train_array - np.dot(W, H)
+    while (iter < max_iter) & (min_diff < diff_W) & (min_diff < diff_H):
+        ix = random.sample(range(0, len(possible_ix)), 1)
+        i, j = possible_ix[ix[0]]
+        grad_w = -2 * ((train_array[i, j] - np.float64(W[i, :] * H[:, j])) * H[:, j]).T + 2 * lada * W[i, :]
+        grad_h = -2 * ((train_array[i, j] - np.float64(W[i, :] * H[:, j])) * W[i, :]).T + 2 * lada * H[:, j]
+        W[i, :] = W[i, :] - learning_rate * grad_w
+        H[:, j] = H[:, j] - learning_rate * grad_h
+        diff_W = np.abs(W - W_prev).sum() / (n * r)
+        diff_H = np.abs(H - H_prev).sum() / (r * d)
+        W_prev = copy.deepcopy(W)
+        H_prev = copy.deepcopy(H)
+        iter += 1
 
+    Z_tilde = np.dot(W, H)
+    rmse = calc_rmse_longdouble(test_array, Z_tilde)
 
+    return rmse, iter
 
 
 # Function to calculate RMSE
 def calc_rmse(test_array: np.ndarray, estimated_array: np.ndarray) -> float:
+    diff = test_array - estimated_array
+    num_of_vals = (~np.isnan(diff)).sum()
+    # Delete not NaN values to further summing
+    diff = diff[~np.isnan(diff)]
+    rmse = np.sqrt(1 / np.abs(num_of_vals) * ((diff ** 2).sum()))
+
+    return rmse
+
+
+# Function to calculate RMSE for SGD
+def calc_rmse_longdouble(test_array: np.ndarray, estimated_array: np.ndarray) -> float:
     test_array  = np.array(test_array, dtype=np.longdouble)
     estimated_array = np.array(estimated_array, dtype=np.longdouble)
     diff = test_array - estimated_array
