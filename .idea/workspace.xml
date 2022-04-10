@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="planning">
-      <change afterPath="$PROJECT_DIR$/auxil/report.aux" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auxil/report.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/report.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/report.synctex.gz" afterDir="false" />
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="computing results">
+      <change afterPath="$PROJECT_DIR$/Results/results_sgd_all_2021.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compute_results_sgd_all.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_04_2022_09_45_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_04_2022_09_45__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_04_2022_08_52__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_04_2022_08_52__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_04_2022_18_50__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_04_2022_18_50__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_04_2022_22_22__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_04_2022_22_22__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/auxil/report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/auxil/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/out/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/report.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/out/report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/report.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/report.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Report/report.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presenting_results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/presenting_results.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +75,7 @@
       <recent name="D:\Studia\MoCaDR_proj1\Report" />
     </key>
   </component>
-  <component name="RunManager" selected="LaTeX.report">
+  <component name="RunManager" selected="Python.compute_results_sgd_test">
     <configuration name="report" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" temporary="true">
       <texify>
         <compiler>PDFLATEX</compiler>
@@ -93,8 +86,8 @@
         <compiler-arguments />
         <envs />
         <main-file>$PROJECT_DIR$/Report/report.tex</main-file>
-        <output-path>$PROJECT_DIR$/out</output-path>
-        <auxil-path>$PROJECT_DIR$/auxil</auxil-path>
+        <output-path>$PROJECT_DIR$/Report/out</output-path>
+        <auxil-path>$PROJECT_DIR$/Report/auxil</auxil-path>
         <compile-twice>false</compile-twice>
         <output-format>PDF</output-format>
         <latex-distribution>MIKTEX</latex-distribution>
@@ -118,6 +111,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/compute_results3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="compute_results_sgd_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MoCaDR_proj1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/compute_results_sgd_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -198,9 +213,11 @@
       <item itemvalue="Python.compute_results3" />
       <item itemvalue="Python.performing_algorithms" />
       <item itemvalue="Python.splitting_data" />
+      <item itemvalue="Python.compute_results_sgd_test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.compute_results_sgd_test" />
         <item itemvalue="LaTeX.report" />
         <item itemvalue="Python.splitting_data" />
         <item itemvalue="Python.performing_algorithms" />
@@ -258,7 +275,6 @@
       <workItem from="1649407349351" duration="1672000" />
       <workItem from="1649429201664" duration="3019000" />
       <workItem from="1649438274438" duration="1751000" />
-      <workItem from="1649535983650" duration="89000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -449,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649492068004</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="computing results">
+      <created>1649518863744</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1649518863744</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -485,15 +508,16 @@
     <option name="LAST_COMMIT_MESSAGE" value="computing results" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/main_py$performing_algorithms.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1647784050444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$algorithms_script.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1647535849226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$splitting_manipulating_data.coverage" NAME="splitting_manipulating_data Coverage Results" MODIFIED="1648627073782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$performing_algorithms__1_.coverage" NAME="performing_algorithms (1) Coverage Results" MODIFIED="1648057220868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$splitting_manipulating_data__1_.coverage" NAME="splitting_manipulating_data (1) Coverage Results" MODIFIED="1647870795349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$compute_results3.coverage" NAME="compute_results3 Coverage Results" MODIFIED="1649268385203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/MoCaDR_proj1$splitting_data.coverage" NAME="splitting_data Coverage Results" MODIFIED="1647174411611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$a.coverage" NAME="a Coverage Results" MODIFIED="1648057368569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$algorithm_functions.coverage" NAME="algorithm_functions Coverage Results" MODIFIED="1648826781925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$computing_results.coverage" NAME="computing_results Coverage Results" MODIFIED="1648727756891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$algorithms_script.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1647535849226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$splitting_manipulating_data__1_.coverage" NAME="splitting_manipulating_data (1) Coverage Results" MODIFIED="1647870795349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$a.coverage" NAME="a Coverage Results" MODIFIED="1648057368569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$compute_results3.coverage" NAME="compute_results3 Coverage Results" MODIFIED="1649268385203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$compute_results_sgd_test.coverage" NAME="compute_results_sgd_test Coverage Results" MODIFIED="1649528622400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/MoCaDR_proj1$splitting_data.coverage" NAME="splitting_data Coverage Results" MODIFIED="1647174411611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$performing_algorithms__1_.coverage" NAME="performing_algorithms (1) Coverage Results" MODIFIED="1648057220868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$performing_algorithms.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1648365686686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>
