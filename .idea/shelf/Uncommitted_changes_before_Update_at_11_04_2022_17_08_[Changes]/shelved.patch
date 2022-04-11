@@ -1,0 +1,1297 @@
+Index: src/compute_results_sgd_reps.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/compute_results_sgd_reps.py b/src/compute_results_sgd_reps.py
+new file mode 100644
+--- /dev/null	(date 1649674699729)
++++ b/src/compute_results_sgd_reps.py	(date 1649674699729)
+@@ -0,0 +1,24 @@
++from src.algorithm_functions import *
++from tqdm import tqdm
++
++os.chdir('D:\Studia\MoCaDR_proj1')
++
++rep_vec = np.arange(20) + 1
++lambda_vec = np.array([0.011, 0.0099])
++eta_vec = np.array([0.001, 0.004, 0.007])
++r_vec = np.array([2, 4, 7, 9, 16])
++combs = np.array(np.meshgrid(rep_vec, lambda_vec, eta_vec, r_vec)).T.reshape(-1, 4)
++results = pd.DataFrame(combs)
++results['RMSE'] = 0.0
++results.columns = ['rep', 'lambda', 'eta', 'r', 'RMSE']
++results = results.reset_index()
++
++for ix, row in tqdm(results.iterrows()):
++    train_df, test_array = split_ratings('Datasets/ratings.csv')
++    global_mean = train_df.mean().mean()
++    n, d = train_df.shape
++    W = np.matrix(np.full((n, int(row['r'])), np.sqrt(global_mean) / np.sqrt(row['r'])), dtype=np.longdouble)
++    H = np.matrix(np.full((int(row['r']), d), np.sqrt(global_mean) / np.sqrt(int(row['r']))), dtype=np.longdouble)
++    results.loc[ix, 'RMSE'] = perform_sgd(train_df, test_array, init_W=W, init_H=H, r=int(row['r']), lada=row['lambda'],
++                                          learning_rate=row['eta'], max_iter=10000, min_diff=5e-10)[0]
++    results.to_csv('Results/results_sgd_reps.csv', index=False)
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb\" name=\"Changes\" comment=\"computing results for sgd and correcting plots\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/presenting_results.ipynb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/presenting_results.ipynb\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"RMarkdown.document\" />\r\n        <option value=\"Jupyter Notebook\" />\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"267VjyGJ9wr8oG7c6vyJzNQTvFk\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/Report\" />\r\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\r\n    <property name=\"node.js.detected.package.tslint\" value=\"true\" />\r\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\r\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"configurable.group.language\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Studia\\MoCaDR_proj1\\Report\" />\r\n      <recent name=\"D:\\Studia\\MoCaDR_proj1\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Studia\\MoCaDR_proj1\\Report\\fig\\syf\" />\r\n      <recent name=\"D:\\Studia\\MoCaDR_proj1\\Results\\Syf\" />\r\n      <recent name=\"D:\\Studia\\MoCaDR_proj1\\Report\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Python.compute_results_sgd_test\">\r\n    <configuration name=\"report\" type=\"LATEX_RUN_CONFIGURATION\" factoryName=\"LaTeX configuration factory\" temporary=\"true\">\r\n      <texify>\r\n        <compiler>PDFLATEX</compiler>\r\n        <compiler-path />\r\n        <sumatra-path />\r\n        <pdf-viewer>SUMATRA</pdf-viewer>\r\n        <viewer-command />\r\n        <compiler-arguments />\r\n        <envs />\r\n        <main-file>$PROJECT_DIR$/Report/report.tex</main-file>\r\n        <output-path>$PROJECT_DIR$/Report/out</output-path>\r\n        <auxil-path>$PROJECT_DIR$/Report/auxil</auxil-path>\r\n        <compile-twice>false</compile-twice>\r\n        <output-format>PDF</output-format>\r\n        <latex-distribution>MIKTEX</latex-distribution>\r\n        <has-been-run>true</has-been-run>\r\n        <bib-run-config>[]</bib-run-config>\r\n        <makeindex-run-config>[]</makeindex-run-config>\r\n      </texify>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"compute_results3\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"MoCaDR_proj1\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/src\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/src/compute_results3.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"compute_results_sgd_test\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"MoCaDR_proj1\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/src\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/src/compute_results_sgd_test.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"manipulating_datasets\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"MoCaDR_proj1\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"D:\\Studia\\MoCaDR_proj1\\manipulating_datasets.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"performing_algorithms\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"MoCaDR_proj1\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/src\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/src/performing_algorithms.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"splitting_data\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"MoCaDR_proj1\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/splitting_data.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"LaTeX.report\" />\r\n      <item itemvalue=\"Python.manipulating_datasets\" />\r\n      <item itemvalue=\"Python.compute_results3\" />\r\n      <item itemvalue=\"Python.performing_algorithms\" />\r\n      <item itemvalue=\"Python.splitting_data\" />\r\n      <item itemvalue=\"Python.compute_results_sgd_test\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.compute_results_sgd_test\" />\r\n        <item itemvalue=\"LaTeX.report\" />\r\n        <item itemvalue=\"Python.splitting_data\" />\r\n        <item itemvalue=\"Python.performing_algorithms\" />\r\n        <item itemvalue=\"Python.compute_results3\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration>C:\\Users\\dmika\\AppData\\Roaming\\Subversion</configuration>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb\" name=\"Changes\" comment=\"\" />\r\n      <created>1646774751311</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1646774751311</updated>\r\n      <workItem from=\"1646774754054\" duration=\"26000\" />\r\n      <workItem from=\"1646774814002\" duration=\"835000\" />\r\n      <workItem from=\"1646775670059\" duration=\"47000\" />\r\n      <workItem from=\"1646775727774\" duration=\"757000\" />\r\n      <workItem from=\"1646816479175\" duration=\"461000\" />\r\n      <workItem from=\"1646896158453\" duration=\"762000\" />\r\n      <workItem from=\"1646896945682\" duration=\"630000\" />\r\n      <workItem from=\"1646897595717\" duration=\"2651000\" />\r\n      <workItem from=\"1646900622776\" duration=\"425000\" />\r\n      <workItem from=\"1646915517163\" duration=\"449000\" />\r\n      <workItem from=\"1646915983800\" duration=\"240000\" />\r\n      <workItem from=\"1646916258164\" duration=\"389000\" />\r\n      <workItem from=\"1646916663441\" duration=\"393000\" />\r\n      <workItem from=\"1646933050771\" duration=\"1105000\" />\r\n      <workItem from=\"1646936230049\" duration=\"1064000\" />\r\n      <workItem from=\"1647027781891\" duration=\"1279000\" />\r\n      <workItem from=\"1647071928401\" duration=\"2390000\" />\r\n      <workItem from=\"1647181792640\" duration=\"2955000\" />\r\n      <workItem from=\"1647276453225\" duration=\"264000\" />\r\n      <workItem from=\"1647276734574\" duration=\"7710000\" />\r\n      <workItem from=\"1647699257802\" duration=\"1713000\" />\r\n      <workItem from=\"1647774897107\" duration=\"5656000\" />\r\n      <workItem from=\"1648326375030\" duration=\"985000\" />\r\n      <workItem from=\"1648327394372\" duration=\"485000\" />\r\n      <workItem from=\"1648481964443\" duration=\"4660000\" />\r\n      <workItem from=\"1648576643019\" duration=\"4941000\" />\r\n      <workItem from=\"1648885683106\" duration=\"2799000\" />\r\n      <workItem from=\"1649100586613\" duration=\"401000\" />\r\n      <workItem from=\"1649142695450\" duration=\"1248000\" />\r\n      <workItem from=\"1649154173111\" duration=\"1535000\" />\r\n      <workItem from=\"1649225210342\" duration=\"2520000\" />\r\n      <workItem from=\"1649252977347\" duration=\"33000\" />\r\n      <workItem from=\"1649256897698\" duration=\"20000\" />\r\n      <workItem from=\"1649263859461\" duration=\"4502000\" />\r\n      <workItem from=\"1649340598453\" duration=\"3005000\" />\r\n      <workItem from=\"1649345448932\" duration=\"596000\" />\r\n      <workItem from=\"1649407349351\" duration=\"1672000\" />\r\n      <workItem from=\"1649429201664\" duration=\"3019000\" />\r\n      <workItem from=\"1649438274438\" duration=\"1751000\" />\r\n      <workItem from=\"1649601806697\" duration=\"9000\" />\r\n      <workItem from=\"1649617160604\" duration=\"489000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"a\">\r\n      <created>1646775274557</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646775274557</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"init commit\">\r\n      <created>1646775361377</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646775361377</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"init commit\">\r\n      <created>1646775521666</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646775521666</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"init commit\">\r\n      <created>1646775784756</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646775784756</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"init commit\">\r\n      <created>1646775870305</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646775870305</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Adding dataset\">\r\n      <created>1646816860800</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646816860800</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Setting up LaTeX\">\r\n      <created>1646898995949</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646898995949</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Setting up LaTeX\">\r\n      <created>1646900639924</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646900639924</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Cleaning data\">\r\n      <created>1646934068924</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1646934068924</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Cleaning data\">\r\n      <created>1647028888721</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1647028888721</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Cleaning data\">\r\n      <created>1647029054319</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1647029054319</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Tamarka testing\">\r\n      <created>1647163191686</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1647163191686</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Experimenting with 'NaN' values\">\r\n      <created>1647168883206</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1647168883206</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"Experimenting with 'NaN' values\">\r\n      <created>1647175373237</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1647175373237</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Removing duplicated packages\">\r\n      <created>1647175629524</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1647175629524</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"Testing methods\">\r\n      <created>1647184013664</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1647184013664</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"Testing methods\">\r\n      <created>1647184756535</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1647184756535</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"SVD opis Tamarka\">\r\n      <created>1647698852885</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1647698852885</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"SVD opis Tamarka\">\r\n      <created>1647699044053</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1647699044053</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"SVD opis Tamarka\">\r\n      <created>1647699173625</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1647699173625</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Testing SVD2\">\r\n      <created>1648327858794</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1648327858794</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"computing results\">\r\n      <created>1649155805892</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1649155805892</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"Computing stop condition svd2\">\r\n      <created>1649345310151</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1649345310151</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"Computing stop condition svd2\">\r\n      <created>1649408687739</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1649408687739</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"Presenting results for NMF\">\r\n      <created>1649408979238</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1649408979239</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"computing results\">\r\n      <created>1649434249565</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1649434249565</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"computing results\">\r\n      <created>1649492068004</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1649492068004</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00028\" summary=\"computing results\">\r\n      <created>1649518863744</created>\r\n      <option name=\"number\" value=\"00028\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1649518863744</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00029\" summary=\"computing results for sgd and correcting plots\">\r\n      <created>1649594927715</created>\r\n      <option name=\"number\" value=\"00029\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1649594927715</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00030\" summary=\"computing results for sgd and correcting plots\">\r\n      <created>1649594938450</created>\r\n      <option name=\"number\" value=\"00030\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1649594938450</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"31\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"a\" />\r\n    <MESSAGE value=\"init commit\" />\r\n    <MESSAGE value=\"Adding dataset\" />\r\n    <MESSAGE value=\"Setting up LaTeX\" />\r\n    <MESSAGE value=\"Cleaning data\" />\r\n    <MESSAGE value=\"Tamarka testing\" />\r\n    <MESSAGE value=\"Experimenting with 'NaN' values\" />\r\n    <MESSAGE value=\"Removing duplicated packages\" />\r\n    <MESSAGE value=\"Testing methods\" />\r\n    <MESSAGE value=\"SVD opis Tamarka\" />\r\n    <MESSAGE value=\"Testing SVD2\" />\r\n    <MESSAGE value=\"Computing stop condition svd2\" />\r\n    <MESSAGE value=\"Presenting results for NMF\" />\r\n    <MESSAGE value=\"computing results\" />\r\n    <MESSAGE value=\"computing results for sgd and correcting plots\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"computing results for sgd and correcting plots\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/main_py$splitting_manipulating_data.coverage\" NAME=\"splitting_manipulating_data Coverage Results\" MODIFIED=\"1648627073782\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/src\" />\r\n    <SUITE FILE_PATH=\"coverage/main_py$algorithm_functions.coverage\" NAME=\"algorithm_functions Coverage Results\" MODIFIED=\"1648826781925\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/src\" />\r\n    <SUITE FILE_PATH=\"coverage/main_py$computing_results.coverage\" NAME=\"computing_results Coverage Results\" MODIFIED=\"1648727756891\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/src\" />\r\n    <SUITE FILE_PATH=\"coverage/main_py$algorithms_script.coverage\" NAME=\"performing_algorithms Coverage Results\" MODIFIED=\"1647535849226\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/src\" />\r\n    <SUITE FILE_PATH=\"coverage/main_py$splitting_manipulating_data__1_.coverage\" NAME=\"splitting_manipulating_data (1) Coverage Results\" MODIFIED=\"1647870795349\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/src\" />\r\n    <SUITE FILE_PATH=\"coverage/main_py$a.coverage\" NAME=\"a Coverage Results\" MODIFIED=\"1648057368569\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/src\" />\r\n    <SUITE FILE_PATH=\"coverage/main_py$compute_results3.coverage\" NAME=\"compute_results3 Coverage Results\" MODIFIED=\"1649268385203\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/src\" />\r\n    <SUITE FILE_PATH=\"coverage/main_py$compute_results_sgd_test.coverage\" NAME=\"compute_results_sgd_test Coverage Results\" MODIFIED=\"1649528622400\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/src\" />\r\n    <SUITE FILE_PATH=\"coverage/MoCaDR_proj1$splitting_data.coverage\" NAME=\"splitting_data Coverage Results\" MODIFIED=\"1647174411611\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$\" />\r\n    <SUITE FILE_PATH=\"coverage/main_py$performing_algorithms__1_.coverage\" NAME=\"performing_algorithms (1) Coverage Results\" MODIFIED=\"1648057220868\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/src\" />\r\n    <SUITE FILE_PATH=\"coverage/main_py$performing_algorithms.coverage\" NAME=\"performing_algorithms Coverage Results\" MODIFIED=\"1648365686686\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/src\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 334daf19f542c19cd5f934002a5f6a1e6a2315c6)
++++ b/.idea/workspace.xml	(date 1649689685997)
+@@ -5,7 +5,12 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="computing results for sgd and correcting plots">
++      <change afterPath="$PROJECT_DIR$/src/compute_results_sgd_reps.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Report/auxil/report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.aux" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Report/auxil/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.log" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Report/out/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/report.pdf" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Report/out/report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/report.synctex.gz" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/presenting_results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/presenting_results.ipynb" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -69,7 +74,7 @@
+       <recent name="D:\Studia\MoCaDR_proj1\Report" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.compute_results_sgd_test">
++  <component name="RunManager" selected="LaTeX.report">
+     <configuration name="report" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" temporary="true">
+       <texify>
+         <compiler>PDFLATEX</compiler>
+@@ -211,8 +216,8 @@
+     </list>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Python.compute_results_sgd_test" />
+         <item itemvalue="LaTeX.report" />
++        <item itemvalue="Python.compute_results_sgd_test" />
+         <item itemvalue="Python.splitting_data" />
+         <item itemvalue="Python.performing_algorithms" />
+         <item itemvalue="Python.compute_results3" />
+@@ -270,7 +275,8 @@
+       <workItem from="1649429201664" duration="3019000" />
+       <workItem from="1649438274438" duration="1751000" />
+       <workItem from="1649601806697" duration="9000" />
+-      <workItem from="1649617160604" duration="489000" />
++      <workItem from="1649617160604" duration="513000" />
++      <workItem from="1649673294361" duration="2605000" />
+     </task>
+     <task id="LOCAL-00001" summary="a">
+       <created>1646775274557</created>
+@@ -482,7 +488,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1649594938450</updated>
+     </task>
+-    <option name="localTasksCounter" value="31" />
++    <task id="LOCAL-00031" summary="computing results for sgd and correcting plots">
++      <created>1649617669345</created>
++      <option name="number" value="00031" />
++      <option name="presentableId" value="LOCAL-00031" />
++      <option name="project" value="LOCAL" />
++      <updated>1649617669345</updated>
++    </task>
++    <option name="localTasksCounter" value="32" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+Index: Report/auxil/report.log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.3.10)  9 APR 2022 22:27\r\nentering extended mode\r\n**./report.tex\r\n(report.tex\r\nLaTeX2e <2020-02-02> patch level 2\r\nL3 programming layer <2020-02-14>\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/amscls\\amsart.cls\"\r\nDocument Class: amsart 2017/10/31 v2.20.4\r\n\\linespacing=\\dimen134\r\n\\normalparindent=\\dimen135\r\n\\normaltopskip=\\skip47\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/amsmath\\amsmath.st\r\ny\"\r\nPackage: amsmath 2020/01/20 v2.17e AMS math features\r\n\\@mathmargin=\\skip48\r\n\r\nFor additional information on amsmath, use the `?' option.\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/amsmath\\amstext.st\r\ny\"\r\nPackage: amstext 2000/06/29 v2.01 AMS text\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/amsmath\\amsgen.sty\r\n\"\r\nFile: amsgen.sty 1999/11/30 v2.0 generic functions\r\n\\@emptytoks=\\toks14\r\n\\ex@=\\dimen136\r\n))\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/amsmath\\amsbsy.sty\r\n\"\r\nPackage: amsbsy 1999/11/29 v1.2d Bold Symbols\r\n\\pmbraise@=\\dimen137\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/amsmath\\amsopn.sty\r\n\"\r\nPackage: amsopn 2016/03/08 v2.02 operator names\r\n)\r\n\\inf@bad=\\count167\r\nLaTeX Info: Redefining \\frac on input line 227.\r\n\\uproot@=\\count168\r\n\\leftroot@=\\count169\r\nLaTeX Info: Redefining \\overline on input line 389.\r\n\\classnum@=\\count170\r\n\\DOTSCASE@=\\count171\r\nLaTeX Info: Redefining \\ldots on input line 486.\r\nLaTeX Info: Redefining \\dots on input line 489.\r\nLaTeX Info: Redefining \\cdots on input line 610.\r\n\\Mathstrutbox@=\\box45\r\n\\strutbox@=\\box46\r\n\\big@size=\\dimen138\r\nLaTeX Font Info:    Redeclaring font encoding OML on input line 733.\r\nLaTeX Font Info:    Redeclaring font encoding OMS on input line 734.\r\n\\macc@depth=\\count172\r\n\\c@MaxMatrixCols=\\count173\r\n\\dotsspace@=\\muskip16\r\n\\c@parentequation=\\count174\r\n\\dspbrk@lvl=\\count175\r\n\\tag@help=\\toks15\r\n\\row@=\\count176\r\n\\column@=\\count177\r\n\\maxfields@=\\count178\r\n\\andhelp@=\\toks16\r\n\\eqnshift@=\\dimen139\r\n\\alignsep@=\\dimen140\r\n\\tagshift@=\\dimen141\r\n\\tagwidth@=\\dimen142\r\n\\totwidth@=\\dimen143\r\n\\lineht@=\\dimen144\r\n\\@envbody=\\toks17\r\n\\multlinegap=\\skip49\r\n\\multlinetaggap=\\skip50\r\n\\mathdisplay@stack=\\toks18\r\nLaTeX Info: Redefining \\[ on input line 2859.\r\nLaTeX Info: Redefining \\] on input line 2860.\r\n)\r\nLaTeX Font Info:    Trying to load font information for U+msa on input line 398\r\n.\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/amsfonts\\umsa.fd\"\r\nFile: umsa.fd 2013/01/14 v3.01 AMS symbols A\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/amsfonts\\amsfonts.\r\nsty\"\r\nPackage: amsfonts 2013/01/14 v3.01 Basic AMSFonts support\r\n\\symAMSa=\\mathgroup4\r\n\\symAMSb=\\mathgroup5\r\nLaTeX Font Info:    Redeclaring math symbol \\hbar on input line 98.\r\nLaTeX Font Info:    Overwriting math alphabet `\\mathfrak' in version `bold'\r\n(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.\r\n)\r\n\\copyins=\\insert199\r\n\\abstractbox=\\box47\r\n\\listisep=\\skip51\r\n\\c@part=\\count179\r\n\\c@section=\\count180\r\n\\c@subsection=\\count181\r\n\\c@subsubsection=\\count182\r\n\\c@paragraph=\\count183\r\n\\c@subparagraph=\\count184\r\n\\c@figure=\\count185\r\n\\c@table=\\count186\r\n\\abovecaptionskip=\\skip52\r\n\\belowcaptionskip=\\skip53\r\n\\captionindent=\\dimen145\r\n\\thm@style=\\toks19\r\n\\thm@bodyfont=\\toks20\r\n\\thm@headfont=\\toks21\r\n\\thm@notefont=\\toks22\r\n\\thm@headpunct=\\toks23\r\n\\thm@preskip=\\skip54\r\n\\thm@postskip=\\skip55\r\n\\thm@headsep=\\skip56\r\n\\dth@everypar=\\toks24\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/float\\float.sty\"\r\nPackage: float 2001/11/08 v1.3d Float enhancements (AL)\r\n\\c@float@type=\\count187\r\n\\float@exts=\\toks25\r\n\\float@box=\\box48\r\n\\@float@everytoks=\\toks26\r\n\\@floatcapt=\\box49\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/base\\fontenc.sty\"\r\nPackage: fontenc 2020/02/11 v2.0o Standard LaTeX package\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/geometry\\geometry.\r\nsty\"\r\nPackage: geometry 2020/01/02 v5.9 Page Geometry\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/graphics\\keyval.st\r\ny\"\r\nPackage: keyval 2014/10/28 v1.15 key=value parser (DPC)\r\n\\KV@toks@=\\toks27\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/generic/iftex\\ifvtex.sty\r\n\"\r\nPackage: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.\r\n (\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/generic/iftex\\iftex.sty\r\n\"\r\nPackage: iftex 2019/11/07 v1.0c TeX engine tests\r\n))\r\n\\Gm@cnth=\\count188\r\n\\Gm@cntv=\\count189\r\n\\c@Gm@tempcnt=\\count190\r\n\\Gm@bindingoffset=\\dimen146\r\n\\Gm@wd@mp=\\dimen147\r\n\\Gm@odd@mp=\\dimen148\r\n\\Gm@even@mp=\\dimen149\r\n\\Gm@layoutwidth=\\dimen150\r\n\\Gm@layoutheight=\\dimen151\r\n\\Gm@layouthoffset=\\dimen152\r\n\\Gm@layoutvoffset=\\dimen153\r\n\\Gm@dimlist=\\toks28\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/geometry\\geometry.\r\ncfg\"))\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/parskip\\parskip.st\r\ny\"\r\nPackage: parskip 2020-01-22 v2.0d non-zero parskip adjustments\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/kvoptions\\kvoption\r\ns.sty\"\r\nPackage: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/generic/ltxcmds\\ltxcmds.\r\nsty\"\r\nPackage: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/generic/kvsetkeys\\kvsetk\r\neys.sty\"\r\nPackage: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)\r\n))\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/etoolbox\\etoolbox.\r\nsty\"\r\nPackage: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)\r\n\\etb@tempcnta=\\count191\r\n)\r\nCouldn't patch \\@starttoc\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/amsfonts\\amssymb.s\r\nty\"\r\nPackage: amssymb 2013/01/14 v3.01 AMS font symbols\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/titling\\titling.st\r\ny\"\r\nPackage: titling 2009/09/04 v2.1d maketitle typesetting\r\n\\thanksmarkwidth=\\skip57\r\n\\thanksmargin=\\skip58\r\n\\droptitle=\\skip59\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/tools\\enumerate.st\r\ny\"\r\nPackage: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)\r\n\\@enLab=\\toks29\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/multirow\\multirow.\r\nsty\"\r\nPackage: multirow 2019/05/31 v2.5 Span multiple rows of a table\r\n\\multirow@colwidth=\\skip60\r\n\\multirow@cntb=\\count192\r\n\\multirow@dima=\\skip61\r\n\\bigstrutjot=\\dimen154\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/graphics\\graphics.\r\nsty\"\r\nPackage: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/graphics\\trig.sty\"\r\nPackage: trig 2016/01/03 v1.10 sin cos tan (DPC)\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/graphics-cfg\\graph\r\nics.cfg\"\r\nFile: graphics.cfg 2016/06/04 v1.11 sample graphics configuration\r\n)\r\nPackage graphics Info: Driver file: pdftex.def on input line 105.\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/graphics-def\\pdfte\r\nx.def\"\r\nFile: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex\r\n))\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/graphics\\graphicx.\r\nsty\"\r\nPackage: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)\r\n\\Gin@req@height=\\dimen155\r\n\\Gin@req@width=\\dimen156\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/caption\\caption.st\r\ny\"\r\nPackage: caption 2020/10/26 v3.5g Customizing captions (AR)\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/caption\\caption3.s\r\nty\"\r\nPackage: caption3 2020/10/21 v2.2e caption3 kernel (AR)\r\n\\captionmargin=\\dimen157\r\n\\captionmargin@=\\dimen158\r\n\\captionwidth=\\dimen159\r\n\\caption@tempdima=\\dimen160\r\n\\caption@indent=\\dimen161\r\n\\caption@parindent=\\dimen162\r\n\\caption@hangindent=\\dimen163\r\nPackage caption Info: AMS or SMF document class detected.\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/caption\\caption-am\r\ns-smf.sto\"\r\nFile: caption-ams-smf.sto 2020/08/22 v2.0 Adaption of the caption package to th\r\ne AMS and SMF document classes (AR)\r\n))\r\n\\c@caption@flags=\\count193\r\n\\c@continuedfloat=\\count194\r\nPackage caption Info: float package is loaded.\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/tools\\array.sty\"\r\nPackage: array 2019/08/31 v2.4l Tabular extension package (FMi)\r\n\\col@sep=\\dimen164\r\n\\ar@mcellbox=\\box50\r\n\\extrarowheight=\\dimen165\r\n\\NC@list=\\toks30\r\n\\extratabsurround=\\skip62\r\n\\backup@length=\\skip63\r\n\\ar@cellbox=\\box51\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/xcolor\\xcolor.sty\"\r\nPackage: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/graphics-cfg\\color\r\n.cfg\"\r\nFile: color.cfg 2016/01/02 v1.6 sample color configuration\r\n)\r\nPackage xcolor Info: Driver file: pdftex.def on input line 225.\r\nPackage xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.\r\nPackage xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.\r\nPackage xcolor Info: Model `RGB' extended on input line 1364.\r\nPackage xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.\r\nPackage xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.\r\nPackage xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.\r\nPackage xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.\r\nPackage xcolor Info: Model `Gray' substituted by `gray' on input line 1370.\r\nPackage xcolor Info: Model `wave' substituted by `hsb' on input line 1371.\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/caption\\subcaption\r\n.sty\"\r\nPackage: subcaption 2020/10/07 v1.3j Sub-captions (AR)\r\n\\c@subfigure=\\count195\r\n\\c@subtable=\\count196\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/l3backend\\l3backen\r\nd-pdfmode.def\"\r\nFile: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode\r\n\\l__kernel_color_stack_int=\\count197\r\n\\l__pdf_internal_box=\\box52\r\n)\r\n(C:/Users\\admin\\PycharmProjects\\MoCaDR_proj1\\Report\\out\\report.aux\r\n\r\nLaTeX Warning: Label `fig:figure' multiply defined.\r\n\r\n\r\nLaTeX Warning: Label `fig:figure' multiply defined.\r\n\r\n\r\nLaTeX Warning: Label `fig:figure' multiply defined.\r\n\r\n\r\nLaTeX Warning: Label `fig:figure' multiply defined.\r\n\r\n)\r\n\\openout1 = `report.aux'.\r\n\r\nLaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.\r\nLaTeX Font Info:    ... okay on input line 44.\r\nLaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.\r\nLaTeX Font Info:    ... okay on input line 44.\r\nLaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.\r\nLaTeX Font Info:    ... okay on input line 44.\r\nLaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.\r\nLaTeX Font Info:    ... okay on input line 44.\r\nLaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.\r\nLaTeX Font Info:    ... okay on input line 44.\r\nLaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.\r\nLaTeX Font Info:    ... okay on input line 44.\r\nLaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.\r\nLaTeX Font Info:    ... okay on input line 44.\r\nLaTeX Font Info:    Trying to load font information for U+msa on input line 44.\r\n\r\n (\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/amsfonts\\umsa.fd\"\r\nFile: umsa.fd 2013/01/14 v3.01 AMS symbols A\r\n)\r\nLaTeX Font Info:    Trying to load font information for U+msb on input line 44.\r\n\r\n (\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/amsfonts\\umsb.fd\"\r\nFile: umsb.fd 2013/01/14 v3.01 AMS symbols B\r\n)\r\n*geometry* driver: auto-detecting\r\n*geometry* detected driver: pdftex\r\n*geometry* verbose mode - [ preamble ] result:\r\n* driver: pdftex\r\n* paper: <default>\r\n* layout: <same size as paper>\r\n* layoutoffset:(h,v)=(0.0pt,0.0pt)\r\n* modes: twoside \r\n* h-part:(L,W,R)=(73.71613pt, 430.00462pt, 110.57425pt)\r\n* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)\r\n* \\paperwidth=614.295pt\r\n* \\paperheight=794.96999pt\r\n* \\textwidth=430.00462pt\r\n* \\textheight=556.47656pt\r\n* \\oddsidemargin=1.44614pt\r\n* \\evensidemargin=38.30426pt\r\n* \\topmargin=1.12738pt\r\n* \\headheight=8.0pt\r\n* \\headsep=14.0pt\r\n* \\topskip=10.0pt\r\n* \\footskip=12.0pt\r\n* \\marginparwidth=90.0pt\r\n* \\marginparsep=11.0pt\r\n* \\columnsep=10.0pt\r\n* \\skip\\footins=7.0pt plus 11.0pt\r\n* \\hoffset=0.0pt\r\n* \\voffset=0.0pt\r\n* \\mag=1000\r\n* \\@twocolumnfalse\r\n* \\@twosidetrue\r\n* \\@mparswitchtrue\r\n* \\@reversemarginfalse\r\n* (1in=72.27pt=25.4mm, 1cm=28.453pt)\r\n\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/context/base/mkii\\supp-p\r\ndf.mkii\"\r\n[Loading MPS to PDF converter (version 2006.09.02).]\r\n\\scratchcounter=\\count198\r\n\\scratchdimen=\\dimen166\r\n\\scratchbox=\\box53\r\n\\nofMPsegments=\\count266\r\n\\nofMParguments=\\count267\r\n\\everyMPshowfont=\\toks31\r\n\\MPscratchCnt=\\count268\r\n\\MPscratchDim=\\dimen167\r\n\\MPnumerator=\\count269\r\n\\makeMPintoPDFobject=\\count270\r\n\\everyMPtoPDFconversion=\\toks32\r\n)\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/epstopdf-pkg\\epsto\r\npdf-base.sty\"\r\nPackage: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf\r\nPackage epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4\r\n85.\r\n)\r\nPackage caption Info: Begin \\AtBeginDocument code.\r\nPackage caption Info: End \\AtBeginDocument code.\r\n\r\n\r\nLaTeX Warning: No \\author given.\r\n\r\n[1{C:/Users/admin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]\r\nLaTeX Font Info:    Trying to load font information for T1+cmss on input line 1\r\n17.\r\n\r\n(\"C:\\Users\\admin\\AppData\\Local\\Programs\\MiKTeX 2.9\\tex/latex/base\\t1cmss.fd\"\r\nFile: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions\r\n)\r\n[2]\r\n<./fig/svd1_1.png, id=26, 544.9158pt x 329.5512pt>\r\nFile: ./fig/svd1_1.png Graphic file (type png)\r\n<use ./fig/svd1_1.png>\r\nPackage pdftex.def Info: ./fig/svd1_1.png  used on input line 191.\r\n(pdftex.def)             Requested size: 234.30922pt x 141.70424pt.\r\n\r\nOverfull \\hbox (19.30692pt too wide) in paragraph at lines 191--194\r\n [][] \r\n []\r\n\r\n<./fig/svd1_2.png, id=28, 412.6617pt x 329.5512pt>\r\nFile: ./fig/svd1_2.png Graphic file (type png)\r\n<use ./fig/svd1_2.png>\r\nPackage pdftex.def Info: ./fig/svd1_2.png  used on input line 197.\r\n(pdftex.def)             Requested size: 177.44106pt x 141.70424pt.\r\n[3 <./fig/svd1_1.png> <./fig/svd1_2.png>]\r\n<fig/svd1_r_w.png, id=34, 1084.05pt x 722.7pt>\r\nFile: fig/svd1_r_w.png Graphic file (type png)\r\n<use fig/svd1_r_w.png>\r\nPackage pdftex.def Info: fig/svd1_r_w.png  used on input line 231.\r\n(pdftex.def)             Requested size: 487.818pt x 325.21199pt.\r\n\r\nOverfull \\hbox (57.81337pt too wide) in paragraph at lines 231--233\r\n [][] \r\n []\r\n\r\nreport.tex:238: Undefined control sequence.\r\nl.238 \\toprule\r\n              \r\nThe control sequence at the end of the top line\r\nof your error message was never \\def'ed. If you have\r\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\r\nspelling (e.g., `I\\hbox'). Otherwise just continue,\r\nand I'll forget about whatever was undefined.\r\n\r\nreport.tex:240: Undefined control sequence.\r\n<recently read> \\midrule \r\n                         \r\nl.240 \\midrule\r\n              \r\nThe control sequence at the end of the top line\r\nof your error message was never \\def'ed. If you have\r\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\r\nspelling (e.g., `I\\hbox'). Otherwise just continue,\r\nand I'll forget about whatever was undefined.\r\n\r\nreport.tex:247: Undefined control sequence.\r\n<recently read> \\bottomrule \r\n                            \r\nl.247 \\bottomrule\r\n                 \r\nThe control sequence at the end of the top line\r\nof your error message was never \\def'ed. If you have\r\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\r\nspelling (e.g., `I\\hbox'). Otherwise just continue,\r\nand I'll forget about whatever was undefined.\r\n\r\n[4 <./fig/svd1_r_w.png>]\r\n<./fig/svd2_1.png, id=39, 544.9158pt x 329.5512pt>\r\nFile: ./fig/svd2_1.png Graphic file (type png)\r\n<use ./fig/svd2_1.png>\r\nPackage pdftex.def Info: ./fig/svd2_1.png  used on input line 277.\r\n(pdftex.def)             Requested size: 234.30922pt x 141.70424pt.\r\n\r\nOverfull \\hbox (19.30692pt too wide) in paragraph at lines 277--280\r\n [][] \r\n []\r\n\r\n<./fig/svd2_2.png, id=40, 412.6617pt x 329.5512pt>\r\nFile: ./fig/svd2_2.png Graphic file (type png)\r\n<use ./fig/svd2_2.png>\r\nPackage pdftex.def Info: ./fig/svd2_2.png  used on input line 283.\r\n(pdftex.def)             Requested size: 177.44106pt x 141.70424pt.\r\n<./fig/svd2_r_w.png, id=41, 1084.05pt x 722.7pt>\r\nFile: ./fig/svd2_r_w.png Graphic file (type png)\r\n<use ./fig/svd2_r_w.png>\r\nPackage pdftex.def Info: ./fig/svd2_r_w.png  used on input line 299.\r\n(pdftex.def)             Requested size: 487.818pt x 325.21199pt.\r\n\r\nOverfull \\hbox (57.81337pt too wide) in paragraph at lines 299--300\r\n [][] \r\n []\r\n\r\n[5 <./fig/svd2_1.png> <./fig/svd2_2.png>]\r\nreport.tex:304: Undefined control sequence.\r\nl.304 \\toprule\r\n              \r\nThe control sequence at the end of the top line\r\nof your error message was never \\def'ed. If you have\r\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\r\nspelling (e.g., `I\\hbox'). Otherwise just continue,\r\nand I'll forget about whatever was undefined.\r\n\r\nreport.tex:306: Undefined control sequence.\r\n<recently read> \\midrule \r\n                         \r\nl.306 \\midrule\r\n              \r\nThe control sequence at the end of the top line\r\nof your error message was never \\def'ed. If you have\r\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\r\nspelling (e.g., `I\\hbox'). Otherwise just continue,\r\nand I'll forget about whatever was undefined.\r\n\r\nreport.tex:313: Undefined control sequence.\r\n<recently read> \\bottomrule \r\n                            \r\nl.313 \\bottomrule\r\n                 \r\nThe control sequence at the end of the top line\r\nof your error message was never \\def'ed. If you have\r\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\r\nspelling (e.g., `I\\hbox'). Otherwise just continue,\r\nand I'll forget about whatever was undefined.\r\n\r\n<./fig/nmf_1.png, id=47, 544.9158pt x 329.5512pt>\r\nFile: ./fig/nmf_1.png Graphic file (type png)\r\n<use ./fig/nmf_1.png>\r\nPackage pdftex.def Info: ./fig/nmf_1.png  used on input line 326.\r\n(pdftex.def)             Requested size: 234.30922pt x 141.70424pt.\r\n\r\nOverfull \\hbox (19.30692pt too wide) in paragraph at lines 326--329\r\n [][] \r\n []\r\n\r\n<./fig/nmf_2.png, id=48, 412.6617pt x 329.5512pt>\r\nFile: ./fig/nmf_2.png Graphic file (type png)\r\n<use ./fig/nmf_2.png>\r\nPackage pdftex.def Info: ./fig/nmf_2.png  used on input line 332.\r\n(pdftex.def)             Requested size: 177.44106pt x 141.70424pt.\r\n\r\nUnderfull \\vbox (badness 4341) has occurred while \\output is active []\r\n\r\n [6 <./fig/svd2_r_w.png>]\r\nreport.tex:353: Undefined control sequence.\r\nl.353 \\toprule\r\n              \r\nThe control sequence at the end of the top line\r\nof your error message was never \\def'ed. If you have\r\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\r\nspelling (e.g., `I\\hbox'). Otherwise just continue,\r\nand I'll forget about whatever was undefined.\r\n\r\nreport.tex:355: Undefined control sequence.\r\n<recently read> \\midrule \r\n                         \r\nl.355 \\midrule\r\n              \r\nThe control sequence at the end of the top line\r\nof your error message was never \\def'ed. If you have\r\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\r\nspelling (e.g., `I\\hbox'). Otherwise just continue,\r\nand I'll forget about whatever was undefined.\r\n\r\nreport.tex:362: Undefined control sequence.\r\n<recently read> \\bottomrule \r\n                            \r\nl.362 \\bottomrule\r\n                 \r\nThe control sequence at the end of the top line\r\nof your error message was never \\def'ed. If you have\r\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\r\nspelling (e.g., `I\\hbox'). Otherwise just continue,\r\nand I'll forget about whatever was undefined.\r\n\r\n<./fig/nmf_r_w.png, id=53, 1084.05pt x 722.7pt>\r\nFile: ./fig/nmf_r_w.png Graphic file (type png)\r\n<use ./fig/nmf_r_w.png>\r\nPackage pdftex.def Info: ./fig/nmf_r_w.png  used on input line 372.\r\n(pdftex.def)             Requested size: 487.818pt x 325.21199pt.\r\n\r\nOverfull \\hbox (57.81337pt too wide) in paragraph at lines 372--373\r\n [][] \r\n []\r\n\r\n\r\nUnderfull \\vbox (badness 1975) has occurred while \\output is active []\r\n\r\n [7 <./fig/nmf_1.png> <./fig/nmf_2.png>]\r\nFile: ./fig/svd1_1.png Graphic file (type png)\r\n<use ./fig/svd1_1.png>\r\nPackage pdftex.def Info: ./fig/svd1_1.png  used on input line 386.\r\n(pdftex.def)             Requested size: 234.30922pt x 141.70424pt.\r\n\r\nOverfull \\hbox (19.30692pt too wide) in paragraph at lines 386--389\r\n [][] \r\n []\r\n\r\nFile: ./fig/svd1_2.png Graphic file (type png)\r\n<use ./fig/svd1_2.png>\r\nPackage pdftex.def Info: ./fig/svd1_2.png  used on input line 392.\r\n(pdftex.def)             Requested size: 177.44106pt x 141.70424pt.\r\n[8 <./fig/nmf_r_w.png>] [9]\r\n(C:/Users\\admin\\PycharmProjects\\MoCaDR_proj1\\Report\\out\\report.aux)\r\n\r\nLaTeX Warning: There were multiply-defined labels.\r\n\r\n ) \r\nHere is how much of TeX's memory you used:\r\n 6284 strings out of 481556\r\n 91032 string characters out of 2913869\r\n 336023 words of memory out of 3000000\r\n 21271 multiletter control sequences out of 15000+200000\r\n 552539 words of font info for 78 fonts, out of 3000000 for 9000\r\n 1302 hyphenation exceptions out of 8191\r\n 39i,10n,43p,815b,294s stack positions out of 5000i,500n,10000p,200000b,50000s\r\n <C:\\Users\\admin\\AppData\\Local\\MiKTeX\\2.9\\fonts/pk/ljfour/jknappen/ec/dpi600\\\r\necss1095.pk> <C:\\Users\\admin\\AppData\\Local\\MiKTeX\\2.9\\fonts/pk/ljfour/jknappen/\r\nec/dpi600\\ecrm0800.pk> <C:\\Users\\admin\\AppData\\Local\\MiKTeX\\2.9\\fonts/pk/ljfour\r\n/jknappen/ec/dpi600\\ecti1095.pk> <C:\\Users\\admin\\AppData\\Local\\MiKTeX\\2.9\\fonts\r\n/pk/ljfour/jknappen/ec/dpi600\\ecbx1095.pk> <C:\\Users\\admin\\AppData\\Local\\MiKTeX\r\n\\2.9\\fonts/pk/ljfour/jknappen/ec/dpi600\\eccc1095.pk> <C:\\Users\\admin\\AppData\\Lo\r\ncal\\MiKTeX\\2.9\\fonts/pk/ljfour/jknappen/ec/dpi600\\ecrm1095.pk> <C:\\Users\\admin\\\r\nAppData\\Local\\MiKTeX\\2.9\\fonts/pk/ljfour/jknappen/ec/dpi600\\ecrm1200.pk> <C:\\Us\r\ners\\admin\\AppData\\Local\\MiKTeX\\2.9\\fonts/pk/ljfour/jknappen/ec/dpi600\\ecrm1728.\r\npk><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont\r\ns/cm/cmex10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p\r\nublic/amsfonts/cm/cmmi10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/\r\nfonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/admin/AppData/Local/Programs\r\n/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/admin/AppData/\r\nLocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ad\r\nmin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><\r\nC:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm\r\n/cmr8.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/\r\namsfonts/cm/cmsy10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/\r\ntype1/public/amsfonts/cm/cmsy6.pfb><C:/Users/admin/AppData/Local/Programs/MiKTe\r\nX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>\r\nOutput written on C:/Users\\admin\\PycharmProjects\\MoCaDR_proj1\\Report\\out\\report\r\n.pdf (9 pages, 581368 bytes).\r\nPDF statistics:\r\n 322 PDF objects out of 1000 (max. 8388607)\r\n 0 named destinations out of 1000 (max. 500000)\r\n 46 words of extra memory for PDF output out of 10000 (max. 10000000)\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Report/auxil/report.log b/Report/auxil/report.log
+--- a/Report/auxil/report.log	(revision 334daf19f542c19cd5f934002a5f6a1e6a2315c6)
++++ b/Report/auxil/report.log	(date 1649673806307)
+@@ -1,87 +1,82 @@
+-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.3.10)  9 APR 2022 22:27
++This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.3.10)  11 APR 2022 12:43
+ entering extended mode
++ restricted \write18 enabled.
++ file:line:error style messages enabled.
++ %&-line parsing enabled.
+ **./report.tex
+ (report.tex
+-LaTeX2e <2020-02-02> patch level 2
+-L3 programming layer <2020-02-14>
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amscls\amsart.cls"
+-Document Class: amsart 2017/10/31 v2.20.4
+-\linespacing=\dimen134
+-\normalparindent=\dimen135
++LaTeX2e <2021-11-15> patch level 1
++L3 programming layer <2022-02-24>
++(D:\Programy\MikTeX\tex/latex/amscls\amsart.cls
++Document Class: amsart 2020/05/29 v2.20.6
++\linespacing=\dimen138
++\normalparindent=\dimen139
+ \normaltopskip=\skip47
+-
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsmath.st
+-y"
+-Package: amsmath 2020/01/20 v2.17e AMS math features
++(D:\Programy\MikTeX\tex/latex/amsmath\amsmath.sty
++Package: amsmath 2021/10/15 v2.17l AMS math features
+ \@mathmargin=\skip48
+ 
+ For additional information on amsmath, use the `?' option.
++(D:\Programy\MikTeX\tex/latex/amsmath\amstext.sty
++Package: amstext 2021/08/26 v2.01 AMS text
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amstext.st
+-y"
+-Package: amstext 2000/06/29 v2.01 AMS text
+-
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty
+-"
++(D:\Programy\MikTeX\tex/latex/amsmath\amsgen.sty
+ File: amsgen.sty 1999/11/30 v2.0 generic functions
+-\@emptytoks=\toks14
+-\ex@=\dimen136
++\@emptytoks=\toks16
++\ex@=\dimen140
+ ))
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty
+-"
++(D:\Programy\MikTeX\tex/latex/amsmath\amsbsy.sty
+ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+-\pmbraise@=\dimen137
++\pmbraise@=\dimen141
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsopn.sty
+-"
+-Package: amsopn 2016/03/08 v2.02 operator names
++(D:\Programy\MikTeX\tex/latex/amsmath\amsopn.sty
++Package: amsopn 2021/08/26 v2.02 operator names
+ )
+-\inf@bad=\count167
+-LaTeX Info: Redefining \frac on input line 227.
+-\uproot@=\count168
+-\leftroot@=\count169
+-LaTeX Info: Redefining \overline on input line 389.
+-\classnum@=\count170
+-\DOTSCASE@=\count171
+-LaTeX Info: Redefining \ldots on input line 486.
+-LaTeX Info: Redefining \dots on input line 489.
+-LaTeX Info: Redefining \cdots on input line 610.
+-\Mathstrutbox@=\box45
+-\strutbox@=\box46
+-\big@size=\dimen138
+-LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+-LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+-\macc@depth=\count172
+-\c@MaxMatrixCols=\count173
++\inf@bad=\count185
++LaTeX Info: Redefining \frac on input line 234.
++\uproot@=\count186
++\leftroot@=\count187
++LaTeX Info: Redefining \overline on input line 399.
++\classnum@=\count188
++\DOTSCASE@=\count189
++LaTeX Info: Redefining \ldots on input line 496.
++LaTeX Info: Redefining \dots on input line 499.
++LaTeX Info: Redefining \cdots on input line 620.
++\Mathstrutbox@=\box50
++\strutbox@=\box51
++\big@size=\dimen142
++LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
++LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
++\macc@depth=\count190
++\c@MaxMatrixCols=\count191
+ \dotsspace@=\muskip16
+-\c@parentequation=\count174
+-\dspbrk@lvl=\count175
+-\tag@help=\toks15
+-\row@=\count176
+-\column@=\count177
+-\maxfields@=\count178
+-\andhelp@=\toks16
+-\eqnshift@=\dimen139
+-\alignsep@=\dimen140
+-\tagshift@=\dimen141
+-\tagwidth@=\dimen142
+-\totwidth@=\dimen143
+-\lineht@=\dimen144
+-\@envbody=\toks17
++\c@parentequation=\count192
++\dspbrk@lvl=\count193
++\tag@help=\toks17
++\row@=\count194
++\column@=\count195
++\maxfields@=\count196
++\andhelp@=\toks18
++\eqnshift@=\dimen143
++\alignsep@=\dimen144
++\tagshift@=\dimen145
++\tagwidth@=\dimen146
++\totwidth@=\dimen147
++\lineht@=\dimen148
++\@envbody=\toks19
+ \multlinegap=\skip49
+ \multlinetaggap=\skip50
+-\mathdisplay@stack=\toks18
+-LaTeX Info: Redefining \[ on input line 2859.
+-LaTeX Info: Redefining \] on input line 2860.
++\mathdisplay@stack=\toks20
++LaTeX Info: Redefining \[ on input line 2938.
++LaTeX Info: Redefining \] on input line 2939.
+ )
+-LaTeX Font Info:    Trying to load font information for U+msa on input line 398
++LaTeX Font Info:    Trying to load font information for U+msa on input line 397
+ .
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
++(D:\Programy\MikTeX\tex/latex/amsfonts\umsa.fd
+ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amsfonts.
+-sty"
++(D:\Programy\MikTeX\tex/latex/amsfonts\amsfonts.sty
+ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+ \symAMSa=\mathgroup4
+ \symAMSb=\mathgroup5
+@@ -90,207 +85,184 @@
+ (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+ )
+ \copyins=\insert199
+-\abstractbox=\box47
++\abstractbox=\box52
+ \listisep=\skip51
+-\c@part=\count179
+-\c@section=\count180
+-\c@subsection=\count181
+-\c@subsubsection=\count182
+-\c@paragraph=\count183
+-\c@subparagraph=\count184
+-\c@figure=\count185
+-\c@table=\count186
++\c@part=\count197
++\c@section=\count198
++\c@subsection=\count266
++\c@subsubsection=\count267
++\c@paragraph=\count268
++\c@subparagraph=\count269
++\c@figure=\count270
++\c@table=\count271
+ \abovecaptionskip=\skip52
+ \belowcaptionskip=\skip53
+-\captionindent=\dimen145
+-\thm@style=\toks19
+-\thm@bodyfont=\toks20
+-\thm@headfont=\toks21
+-\thm@notefont=\toks22
+-\thm@headpunct=\toks23
++\captionindent=\dimen149
++\thm@style=\toks21
++\thm@bodyfont=\toks22
++\thm@headfont=\toks23
++\thm@notefont=\toks24
++\thm@headpunct=\toks25
+ \thm@preskip=\skip54
+ \thm@postskip=\skip55
+ \thm@headsep=\skip56
+-\dth@everypar=\toks24
++\dth@everypar=\toks26
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\float.sty"
++(D:\Programy\MikTeX\tex/latex/float\float.sty
+ Package: float 2001/11/08 v1.3d Float enhancements (AL)
+-\c@float@type=\count187
+-\float@exts=\toks25
+-\float@box=\box48
+-\@float@everytoks=\toks26
+-\@floatcapt=\box49
++\c@float@type=\count272
++\float@exts=\toks27
++\float@box=\box53
++\@float@everytoks=\toks28
++\@floatcapt=\box54
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fontenc.sty"
+-Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
++(D:\Programy\MikTeX\tex/latex/base\fontenc.sty
++Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.
+-sty"
++(D:\Programy\MikTeX\tex/latex/geometry\geometry.sty
+ Package: geometry 2020/01/02 v5.9 Page Geometry
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\keyval.st
+-y"
++(D:\Programy\MikTeX\tex/latex/graphics\keyval.sty
+ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+-\KV@toks@=\toks27
++\KV@toks@=\toks29
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\ifvtex.sty
+-"
++(D:\Programy\MikTeX\tex/generic/iftex\ifvtex.sty
+ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+- ("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\iftex.sty
+-"
+-Package: iftex 2019/11/07 v1.0c TeX engine tests
++
++(D:\Programy\MikTeX\tex/generic/iftex\iftex.sty
++Package: iftex 2022/02/03 v1.0f TeX engine tests
+ ))
+-\Gm@cnth=\count188
+-\Gm@cntv=\count189
+-\c@Gm@tempcnt=\count190
+-\Gm@bindingoffset=\dimen146
+-\Gm@wd@mp=\dimen147
+-\Gm@odd@mp=\dimen148
+-\Gm@even@mp=\dimen149
+-\Gm@layoutwidth=\dimen150
+-\Gm@layoutheight=\dimen151
+-\Gm@layouthoffset=\dimen152
+-\Gm@layoutvoffset=\dimen153
+-\Gm@dimlist=\toks28
++\Gm@cnth=\count273
++\Gm@cntv=\count274
++\c@Gm@tempcnt=\count275
++\Gm@bindingoffset=\dimen150
++\Gm@wd@mp=\dimen151
++\Gm@odd@mp=\dimen152
++\Gm@even@mp=\dimen153
++\Gm@layoutwidth=\dimen154
++\Gm@layoutheight=\dimen155
++\Gm@layouthoffset=\dimen156
++\Gm@layoutvoffset=\dimen157
++\Gm@dimlist=\toks30
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.
+-cfg"))
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/parskip\parskip.st
+-y"
+-Package: parskip 2020-01-22 v2.0d non-zero parskip adjustments
++(D:\Programy\MikTeX\tex/latex/geometry\geometry.cfg))
++(D:\Programy\MikTeX\tex/latex/parskip\parskip.sty
++Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/kvoptions\kvoption
+-s.sty"
+-Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
++(D:\Programy\MikTeX\tex/latex/kvoptions\kvoptions.sty
++Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/generic/ltxcmds\ltxcmds.
+-sty"
+-Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
++(D:\Programy\MikTeX\tex/generic/ltxcmds\ltxcmds.sty
++Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/generic/kvsetkeys\kvsetk
+-eys.sty"
++(D:\Programy\MikTeX\tex/generic/kvsetkeys\kvsetkeys.sty
+ Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+ ))
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/etoolbox\etoolbox.
+-sty"
+-Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+-\etb@tempcnta=\count191
++(D:\Programy\MikTeX\tex/latex/etoolbox\etoolbox.sty
++Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
++\etb@tempcnta=\count276
+ )
+ Couldn't patch \@starttoc
+-)
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amssymb.s
+-ty"
++) (D:\Programy\MikTeX\tex/latex/amsfonts\amssymb.sty
+ Package: amssymb 2013/01/14 v3.01 AMS font symbols
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/titling\titling.st
+-y"
++(D:\Programy\MikTeX\tex/latex/titling\titling.sty
+ Package: titling 2009/09/04 v2.1d maketitle typesetting
+ \thanksmarkwidth=\skip57
+ \thanksmargin=\skip58
+ \droptitle=\skip59
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\enumerate.st
+-y"
++(D:\Programy\MikTeX\tex/latex/tools\enumerate.sty
+ Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+-\@enLab=\toks29
++\@enLab=\toks31
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/multirow\multirow.
+-sty"
+-Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
++(D:\Programy\MikTeX\tex/latex/multirow\multirow.sty
++Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+ \multirow@colwidth=\skip60
+-\multirow@cntb=\count192
++\multirow@cntb=\count277
+ \multirow@dima=\skip61
+-\bigstrutjot=\dimen154
++\bigstrutjot=\dimen158
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphics.
+-sty"
+-Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
++(D:\Programy\MikTeX\tex/latex/graphics\graphics.sty
++Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+-Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
++(D:\Programy\MikTeX\tex/latex/graphics\trig.sty
++Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\graph
+-ics.cfg"
++(D:\Programy\MikTeX\tex/latex/graphics-cfg\graphics.cfg
+ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+ )
+-Package graphics Info: Driver file: pdftex.def on input line 105.
++Package graphics Info: Driver file: pdftex.def on input line 107.
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdfte
+-x.def"
+-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
++(D:\Programy\MikTeX\tex/latex/graphics-def\pdftex.def
++File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+ ))
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphicx.
+-sty"
+-Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+-\Gin@req@height=\dimen155
+-\Gin@req@width=\dimen156
++(D:\Programy\MikTeX\tex/latex/graphics\graphicx.sty
++Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
++\Gin@req@height=\dimen159
++\Gin@req@width=\dimen160
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption.st
+-y"
+-Package: caption 2020/10/26 v3.5g Customizing captions (AR)
++(D:\Programy\MikTeX\tex/latex/caption\caption.sty
++Package: caption 2022/02/28 v3.6a Customizing captions (AR)
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption3.s
+-ty"
+-Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+-\captionmargin=\dimen157
+-\captionmargin@=\dimen158
+-\captionwidth=\dimen159
+-\caption@tempdima=\dimen160
+-\caption@indent=\dimen161
+-\caption@parindent=\dimen162
+-\caption@hangindent=\dimen163
++(D:\Programy\MikTeX\tex/latex/caption\caption3.sty
++Package: caption3 2022/02/28 v2.3a caption3 kernel (AR)
++\caption@tempdima=\dimen161
++\captionmargin=\dimen162
++\caption@leftmargin=\dimen163
++\caption@rightmargin=\dimen164
++\caption@width=\dimen165
++\caption@indent=\dimen166
++\caption@parindent=\dimen167
++\caption@hangindent=\dimen168
+ Package caption Info: AMS or SMF document class detected.
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption-am
+-s-smf.sto"
++(D:\Programy\MikTeX\tex/latex/caption\caption-ams-smf.sto
+ File: caption-ams-smf.sto 2020/08/22 v2.0 Adaption of the caption package to th
+ e AMS and SMF document classes (AR)
+ ))
+-\c@caption@flags=\count193
+-\c@continuedfloat=\count194
++\c@caption@flags=\count278
++\c@continuedfloat=\count279
+ Package caption Info: float package is loaded.
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\array.sty"
+-Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+-\col@sep=\dimen164
+-\ar@mcellbox=\box50
+-\extrarowheight=\dimen165
+-\NC@list=\toks30
++(D:\Programy\MikTeX\tex/latex/tools\array.sty
++Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
++\col@sep=\dimen169
++\ar@mcellbox=\box55
++\extrarowheight=\dimen170
++\NC@list=\toks32
+ \extratabsurround=\skip62
+ \backup@length=\skip63
+-\ar@cellbox=\box51
++\ar@cellbox=\box56
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xcolor\xcolor.sty"
+-Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
++(D:\Programy\MikTeX\tex/latex/xcolor\xcolor.sty
++Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\color
+-.cfg"
++(D:\Programy\MikTeX\tex/latex/graphics-cfg\color.cfg
+ File: color.cfg 2016/01/02 v1.6 sample color configuration
+ )
+-Package xcolor Info: Driver file: pdftex.def on input line 225.
+-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+-Package xcolor Info: Model `RGB' extended on input line 1364.
+-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
++Package xcolor Info: Driver file: pdftex.def on input line 227.
++Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
++Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
++Package xcolor Info: Model `RGB' extended on input line 1368.
++Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
++Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
++Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
++Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
++Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
++Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\subcaption
+-.sty"
+-Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+-\c@subfigure=\count195
+-\c@subtable=\count196
++(D:\Programy\MikTeX\tex/latex/caption\subcaption.sty
++Package: subcaption 2022/01/07 v1.5 Sub-captions (AR)
++\c@subfigure=\count280
++\c@subtable=\count281
+ )
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3backend\l3backen
+-d-pdfmode.def"
+-File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
+-\l__kernel_color_stack_int=\count197
+-\l__pdf_internal_box=\box52
++(D:\Programy\MikTeX\tex/latex/l3backend\l3backend-pdftex.def
++File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
++\l__color_backend_stack_int=\count282
++\l__pdf_internal_box=\box57
+ )
+-(C:/Users\admin\PycharmProjects\MoCaDR_proj1\Report\out\report.aux
++(D:/Studia\MoCaDR_proj1\Report\out\report.aux
+ 
+ LaTeX Warning: Label `fig:figure' multiply defined.
+ 
+@@ -322,12 +294,13 @@
+ LaTeX Font Info:    ... okay on input line 44.
+ LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
+ 
+- ("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
++ (D:\Programy\MikTeX\tex/latex/amsfonts\umsa.fd
+ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+ )
+ LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
+ 
+- ("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
++
++(D:\Programy\MikTeX\tex/latex/amsfonts\umsb.fd
+ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+ )
+ *geometry* driver: auto-detecting
+@@ -364,58 +337,56 @@
+ * \@reversemarginfalse
+ * (1in=72.27pt=25.4mm, 1cm=28.453pt)
+ 
+-
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
+-df.mkii"
++(D:\Programy\MikTeX\tex/context/base/mkii\supp-pdf.mkii
+ [Loading MPS to PDF converter (version 2006.09.02).]
+-\scratchcounter=\count198
+-\scratchdimen=\dimen166
+-\scratchbox=\box53
+-\nofMPsegments=\count266
+-\nofMParguments=\count267
+-\everyMPshowfont=\toks31
+-\MPscratchCnt=\count268
+-\MPscratchDim=\dimen167
+-\MPnumerator=\count269
+-\makeMPintoPDFobject=\count270
+-\everyMPtoPDFconversion=\toks32
+-)
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epsto
+-pdf-base.sty"
++\scratchcounter=\count283
++\scratchdimen=\dimen171
++\scratchbox=\box58
++\nofMPsegments=\count284
++\nofMParguments=\count285
++\everyMPshowfont=\toks33
++\MPscratchCnt=\count286
++\MPscratchDim=\dimen172
++\MPnumerator=\count287
++\makeMPintoPDFobject=\count288
++\everyMPtoPDFconversion=\toks34
++) (D:\Programy\MikTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+ 85.
+-)
++
++(D:\Programy\MikTeX\tex/latex/00miktex\epstopdf-sys.cfg
++File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
++))
+ Package caption Info: Begin \AtBeginDocument code.
+ Package caption Info: End \AtBeginDocument code.
+ 
+ 
+ LaTeX Warning: No \author given.
+ 
+-[1{C:/Users/admin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
++[1{C:/Users/dmika/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+ LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
+ 17.
+ 
+-("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1cmss.fd"
++(D:\Programy\MikTeX\tex/latex/base\t1cmss.fd
+ File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+-)
+-[2]
+-<./fig/svd1_1.png, id=26, 544.9158pt x 329.5512pt>
+-File: ./fig/svd1_1.png Graphic file (type png)
+-<use ./fig/svd1_1.png>
+-Package pdftex.def Info: ./fig/svd1_1.png  used on input line 191.
+-(pdftex.def)             Requested size: 234.30922pt x 141.70424pt.
++) [2]
++<./fig//svd1_1.png, id=26, 575.9919pt x 335.3328pt>
++File: ./fig//svd1_1.png Graphic file (type png)
++<use ./fig//svd1_1.png>
++Package pdftex.def Info: ./fig//svd1_1.png  used on input line 191.
++(pdftex.def)             Requested size: 247.67168pt x 144.19028pt.
+ 
+-Overfull \hbox (19.30692pt too wide) in paragraph at lines 191--194
++Overfull \hbox (32.66937pt too wide) in paragraph at lines 191--194
+  [][] 
+  []
+ 
+-<./fig/svd1_2.png, id=28, 412.6617pt x 329.5512pt>
+-File: ./fig/svd1_2.png Graphic file (type png)
+-<use ./fig/svd1_2.png>
+-Package pdftex.def Info: ./fig/svd1_2.png  used on input line 197.
+-(pdftex.def)             Requested size: 177.44106pt x 141.70424pt.
+-[3 <./fig/svd1_1.png> <./fig/svd1_2.png>]
++<./fig//svd1_2.png, id=28, 423.5022pt x 335.3328pt>
++File: ./fig//svd1_2.png Graphic file (type png)
++<use ./fig//svd1_2.png>
++Package pdftex.def Info: ./fig//svd1_2.png  used on input line 197.
++(pdftex.def)             Requested size: 182.10239pt x 144.19028pt.
++[3 <./fig//svd1_1.png> <./fig//svd1_2.png>]
+ <fig/svd1_r_w.png, id=34, 1084.05pt x 722.7pt>
+ File: fig/svd1_r_w.png Graphic file (type png)
+ <use fig/svd1_r_w.png>
+@@ -458,32 +429,32 @@
+ and I'll forget about whatever was undefined.
+ 
+ [4 <./fig/svd1_r_w.png>]
+-<./fig/svd2_1.png, id=39, 544.9158pt x 329.5512pt>
+-File: ./fig/svd2_1.png Graphic file (type png)
+-<use ./fig/svd2_1.png>
+-Package pdftex.def Info: ./fig/svd2_1.png  used on input line 277.
+-(pdftex.def)             Requested size: 234.30922pt x 141.70424pt.
++<./fig//svd2_1.png, id=39, 575.9919pt x 335.3328pt>
++File: ./fig//svd2_1.png Graphic file (type png)
++<use ./fig//svd2_1.png>
++Package pdftex.def Info: ./fig//svd2_1.png  used on input line 277.
++(pdftex.def)             Requested size: 247.67168pt x 144.19028pt.
+ 
+-Overfull \hbox (19.30692pt too wide) in paragraph at lines 277--280
++Overfull \hbox (32.66937pt too wide) in paragraph at lines 277--280
+  [][] 
+  []
+ 
+-<./fig/svd2_2.png, id=40, 412.6617pt x 329.5512pt>
+-File: ./fig/svd2_2.png Graphic file (type png)
+-<use ./fig/svd2_2.png>
+-Package pdftex.def Info: ./fig/svd2_2.png  used on input line 283.
+-(pdftex.def)             Requested size: 177.44106pt x 141.70424pt.
+-<./fig/svd2_r_w.png, id=41, 1084.05pt x 722.7pt>
+-File: ./fig/svd2_r_w.png Graphic file (type png)
+-<use ./fig/svd2_r_w.png>
+-Package pdftex.def Info: ./fig/svd2_r_w.png  used on input line 299.
++<./fig//svd2_2.png, id=40, 423.5022pt x 335.3328pt>
++File: ./fig//svd2_2.png Graphic file (type png)
++<use ./fig//svd2_2.png>
++Package pdftex.def Info: ./fig//svd2_2.png  used on input line 283.
++(pdftex.def)             Requested size: 182.10239pt x 144.19028pt.
++<./fig//svd2_r_w.png, id=41, 1084.05pt x 722.7pt>
++File: ./fig//svd2_r_w.png Graphic file (type png)
++<use ./fig//svd2_r_w.png>
++Package pdftex.def Info: ./fig//svd2_r_w.png  used on input line 299.
+ (pdftex.def)             Requested size: 487.818pt x 325.21199pt.
+ 
+ Overfull \hbox (57.81337pt too wide) in paragraph at lines 299--300
+  [][] 
+  []
+ 
+-[5 <./fig/svd2_1.png> <./fig/svd2_2.png>]
++[5 <./fig//svd2_1.png> <./fig//svd2_2.png>]
+ report.tex:304: Undefined control sequence.
+ l.304 \toprule
+               
+@@ -515,25 +486,25 @@
+ spelling (e.g., `I\hbox'). Otherwise just continue,
+ and I'll forget about whatever was undefined.
+ 
+-<./fig/nmf_1.png, id=47, 544.9158pt x 329.5512pt>
+-File: ./fig/nmf_1.png Graphic file (type png)
+-<use ./fig/nmf_1.png>
+-Package pdftex.def Info: ./fig/nmf_1.png  used on input line 326.
+-(pdftex.def)             Requested size: 234.30922pt x 141.70424pt.
++<./fig//nmf_1.png, id=47, 575.9919pt x 335.3328pt>
++File: ./fig//nmf_1.png Graphic file (type png)
++<use ./fig//nmf_1.png>
++Package pdftex.def Info: ./fig//nmf_1.png  used on input line 326.
++(pdftex.def)             Requested size: 247.67168pt x 144.19028pt.
+ 
+-Overfull \hbox (19.30692pt too wide) in paragraph at lines 326--329
++Overfull \hbox (32.66937pt too wide) in paragraph at lines 326--329
+  [][] 
+  []
+ 
+-<./fig/nmf_2.png, id=48, 412.6617pt x 329.5512pt>
+-File: ./fig/nmf_2.png Graphic file (type png)
+-<use ./fig/nmf_2.png>
+-Package pdftex.def Info: ./fig/nmf_2.png  used on input line 332.
+-(pdftex.def)             Requested size: 177.44106pt x 141.70424pt.
++<./fig//nmf_2.png, id=48, 423.5022pt x 335.3328pt>
++File: ./fig//nmf_2.png Graphic file (type png)
++<use ./fig//nmf_2.png>
++Package pdftex.def Info: ./fig//nmf_2.png  used on input line 332.
++(pdftex.def)             Requested size: 182.10239pt x 144.19028pt.
+ 
+ Underfull \vbox (badness 4341) has occurred while \output is active []
+ 
+- [6 <./fig/svd2_r_w.png>]
++ [6 <./fig//svd2_r_w.png>]
+ report.tex:353: Undefined control sequence.
+ l.353 \toprule
+               
+@@ -565,10 +536,10 @@
+ spelling (e.g., `I\hbox'). Otherwise just continue,
+ and I'll forget about whatever was undefined.
+ 
+-<./fig/nmf_r_w.png, id=53, 1084.05pt x 722.7pt>
+-File: ./fig/nmf_r_w.png Graphic file (type png)
+-<use ./fig/nmf_r_w.png>
+-Package pdftex.def Info: ./fig/nmf_r_w.png  used on input line 372.
++<./fig//nmf_r_w.png, id=53, 1084.05pt x 722.7pt>
++File: ./fig//nmf_r_w.png Graphic file (type png)
++<use ./fig//nmf_r_w.png>
++Package pdftex.def Info: ./fig//nmf_r_w.png  used on input line 372.
+ (pdftex.def)             Requested size: 487.818pt x 325.21199pt.
+ 
+ Overfull \hbox (57.81337pt too wide) in paragraph at lines 372--373
+@@ -576,61 +547,56 @@
+  []
+ 
+ 
+-Underfull \vbox (badness 1975) has occurred while \output is active []
++Underfull \vbox (badness 1838) has occurred while \output is active []
+ 
+- [7 <./fig/nmf_1.png> <./fig/nmf_2.png>]
+-File: ./fig/svd1_1.png Graphic file (type png)
+-<use ./fig/svd1_1.png>
+-Package pdftex.def Info: ./fig/svd1_1.png  used on input line 386.
+-(pdftex.def)             Requested size: 234.30922pt x 141.70424pt.
++ [7 <./fig//nmf_1.png> <./fig//nmf_2.png>]
++File: ./fig//svd1_1.png Graphic file (type png)
++<use ./fig//svd1_1.png>
++Package pdftex.def Info: ./fig//svd1_1.png  used on input line 386.
++(pdftex.def)             Requested size: 247.67168pt x 144.19028pt.
+ 
+-Overfull \hbox (19.30692pt too wide) in paragraph at lines 386--389
++Overfull \hbox (32.66937pt too wide) in paragraph at lines 386--389
+  [][] 
+  []
+ 
+-File: ./fig/svd1_2.png Graphic file (type png)
+-<use ./fig/svd1_2.png>
+-Package pdftex.def Info: ./fig/svd1_2.png  used on input line 392.
+-(pdftex.def)             Requested size: 177.44106pt x 141.70424pt.
+-[8 <./fig/nmf_r_w.png>] [9]
+-(C:/Users\admin\PycharmProjects\MoCaDR_proj1\Report\out\report.aux)
++File: ./fig//svd1_2.png Graphic file (type png)
++<use ./fig//svd1_2.png>
++Package pdftex.def Info: ./fig//svd1_2.png  used on input line 392.
++(pdftex.def)             Requested size: 182.10239pt x 144.19028pt.
++[8 <./fig//nmf_r_w.png>] [9] (D:/Studia\MoCaDR_proj1\Report\out\report.aux)
+ 
+ LaTeX Warning: There were multiply-defined labels.
+ 
+  ) 
+ Here is how much of TeX's memory you used:
+- 6284 strings out of 481556
+- 91032 string characters out of 2913869
+- 336023 words of memory out of 3000000
+- 21271 multiletter control sequences out of 15000+200000
+- 552539 words of font info for 78 fonts, out of 3000000 for 9000
++ 6911 strings out of 478582
++ 105770 string characters out of 2856538
++ 404528 words of memory out of 3000000
++ 24834 multiletter control sequences out of 15000+600000
++ 489460 words of font info for 82 fonts, out of 8000000 for 9000
+  1302 hyphenation exceptions out of 8191
+- 39i,10n,43p,815b,294s stack positions out of 5000i,500n,10000p,200000b,50000s
+- <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
+-ecss1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
+-ec/dpi600\ecrm0800.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
+-/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts
+-/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\admin\AppData\Local\MiKTeX
+-\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\admin\AppData\Lo
+-cal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\admin\
+-AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Us
+-ers\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.
+-pk><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
+-s/cm/cmex10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
+-ublic/amsfonts/cm/cmmi10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/
+-fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/admin/AppData/Local/Programs
+-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/admin/AppData/
+-Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ad
+-min/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><
+-C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+-/cmr8.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
+-amsfonts/cm/cmsy10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/
+-type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/admin/AppData/Local/Programs/MiKTe
+-X 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+-Output written on C:/Users\admin\PycharmProjects\MoCaDR_proj1\Report\out\report
+-.pdf (9 pages, 581368 bytes).
++ 69i,10n,76p,585b,301s stack positions out of 5000i,500n,10000p,200000b,80000s
++ <C:\Users\dmika\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss
++1095.pk> <C:\Users\dmika\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
++0\ecrm0800.pk> <C:\Users\dmika\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
++/dpi600\ecti1095.pk> <C:\Users\dmika\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
++pen/ec/dpi600\ecbx1095.pk> <C:\Users\dmika\AppData\Local\MiKTeX\fonts/pk/ljfour
++/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\dmika\AppData\Local\MiKTeX\fonts/pk/
++ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\dmika\AppData\Local\MiKTeX\fon
++ts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\dmika\AppData\Local\MiKT
++eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><D:/Programy/MikTeX/fonts/typ
++e1/public/amsfonts/cm/cmex10.pfb><D:/Programy/MikTeX/fonts/type1/public/amsfont
++s/cm/cmmi10.pfb><D:/Programy/MikTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D
++:/Programy/MikTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><D:/Programy/MikTe
++X/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Programy/MikTeX/fonts/type1/publ
++ic/amsfonts/cm/cmr6.pfb><D:/Programy/MikTeX/fonts/type1/public/amsfonts/cm/cmr8
++.pfb><D:/Programy/MikTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Programy
++/MikTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><D:/Programy/MikTeX/fonts/type
++1/public/amsfonts/cm/cmsy8.pfb>
++Output written on D:/Studia\MoCaDR_proj1\Report\out\report.pdf (9 pages, 624165
++ bytes).
+ PDF statistics:
+- 322 PDF objects out of 1000 (max. 8388607)
++ 332 PDF objects out of 1000 (max. 8388607)
+  0 named destinations out of 1000 (max. 500000)
+  46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 
+Index: Report/auxil/report.aux
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\\relax \r\n\\@writefile{toc}{\\contentsline {section}{\\tocsection {}{1}{Introduction}}{1}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsection}{\\tocsubsection {}{}{Statement of the problem}}{1}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsection}{\\tocsubsection {}{}{Description of methods}}{1}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsubsection}{\\tocsubsubsection {}{}{SVD1}}{1}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsubsection}{\\tocsubsubsection {}{}{SVD2}}{1}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsubsection}{\\tocsubsubsection {}{}{NMF}}{1}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsubsection}{\\tocsubsubsection {}{}{SGD}}{2}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {section}{\\tocsection {}{2}{Implementation}}{2}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsection}{\\tocsubsection {}{}{Description of the data}}{2}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsection}{\\tocsubsection {}{}{Performing methods}}{2}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsection}{\\tocsubsection {}{}{Quality of the system}}{2}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsection}{\\tocsubsection {}{}{Imputing the missing data}}{3}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {section}{\\tocsection {}{3}{Parameters tuning and results}}{3}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsection}{\\tocsubsection {}{}{SVD1}}{3}\\protected@file@percent }\r\n\\providecommand*\\caption@xref[2]{\\@setref\\relax\\@undefined{#1}}\r\n\\newlabel{fig:figure}{{\\caption@xref {fig:figure}{ on input line 232}}{4}}\r\n\\@writefile{toc}{\\contentsline {subsection}{\\tocsubsection {}{}{SVD2}}{5}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {subsection}{\\tocsubsection {}{}{NMF}}{6}\\protected@file@percent }\r\n\\newlabel{tocindent-1}{0pt}\r\n\\newlabel{tocindent0}{15.98535pt}\r\n\\newlabel{tocindent1}{19.35791pt}\r\n\\newlabel{tocindent2}{0pt}\r\n\\newlabel{tocindent3}{0pt}\r\n\\@writefile{toc}{\\contentsline {subsection}{\\tocsubsection {}{}{SGD}}{8}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {section}{\\tocsection {}{4}{}}{9}\\protected@file@percent }\r\n\\@writefile{toc}{\\contentsline {section}{\\tocsection {}{5}{Conclusions}}{9}\\protected@file@percent }\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Report/auxil/report.aux b/Report/auxil/report.aux
+--- a/Report/auxil/report.aux	(revision 334daf19f542c19cd5f934002a5f6a1e6a2315c6)
++++ b/Report/auxil/report.aux	(date 1649673806236)
+@@ -1,27 +1,28 @@
+ \relax 
+-\@writefile{toc}{\contentsline {section}{\tocsection {}{1}{Introduction}}{1}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Statement of the problem}}{1}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Description of methods}}{1}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsubsection}{\tocsubsubsection {}{}{SVD1}}{1}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsubsection}{\tocsubsubsection {}{}{SVD2}}{1}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsubsection}{\tocsubsubsection {}{}{NMF}}{1}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsubsection}{\tocsubsubsection {}{}{SGD}}{2}\protected@file@percent }
+-\@writefile{toc}{\contentsline {section}{\tocsection {}{2}{Implementation}}{2}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Description of the data}}{2}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Performing methods}}{2}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Quality of the system}}{2}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Imputing the missing data}}{3}\protected@file@percent }
+-\@writefile{toc}{\contentsline {section}{\tocsection {}{3}{Parameters tuning and results}}{3}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{SVD1}}{3}\protected@file@percent }
++\@writefile{toc}{\contentsline {section}{\tocsection {}{1}{Introduction}}{1}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Statement of the problem}}{1}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Description of methods}}{1}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsubsection}{\tocsubsubsection {}{}{SVD1}}{1}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsubsection}{\tocsubsubsection {}{}{SVD2}}{1}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsubsection}{\tocsubsubsection {}{}{NMF}}{1}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsubsection}{\tocsubsubsection {}{}{SGD}}{2}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {section}{\tocsection {}{2}{Implementation}}{2}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Description of the data}}{2}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Performing methods}}{2}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Quality of the system}}{2}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{Imputing the missing data}}{3}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {section}{\tocsection {}{3}{Parameters tuning and results}}{3}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{SVD1}}{3}{}\protected@file@percent }
+ \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+ \newlabel{fig:figure}{{\caption@xref {fig:figure}{ on input line 232}}{4}}
+-\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{SVD2}}{5}\protected@file@percent }
+-\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{NMF}}{6}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{SVD2}}{5}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{NMF}}{6}{}\protected@file@percent }
+ \newlabel{tocindent-1}{0pt}
+ \newlabel{tocindent0}{15.98535pt}
+ \newlabel{tocindent1}{19.35791pt}
+ \newlabel{tocindent2}{0pt}
+ \newlabel{tocindent3}{0pt}
+-\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{SGD}}{8}\protected@file@percent }
+-\@writefile{toc}{\contentsline {section}{\tocsection {}{4}{}}{9}\protected@file@percent }
+-\@writefile{toc}{\contentsline {section}{\tocsection {}{5}{Conclusions}}{9}\protected@file@percent }
++\@writefile{toc}{\contentsline {subsection}{\tocsubsection {}{}{SGD}}{8}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {section}{\tocsection {}{4}{}}{9}{}\protected@file@percent }
++\@writefile{toc}{\contentsline {section}{\tocsection {}{5}{Conclusions}}{9}{}\protected@file@percent }
++\gdef \@abspage@last{9}
+Index: src/presenting_results.ipynb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/presenting_results.ipynb b/src/presenting_results.ipynb
+--- a/src/presenting_results.ipynb	(revision 334daf19f542c19cd5f934002a5f6a1e6a2315c6)
++++ b/src/presenting_results.ipynb	(date 1649674204273)
+@@ -2,7 +2,7 @@
+  "cells": [
+   {
+    "cell_type": "code",
+-   "execution_count": 2,
++   "execution_count": 1,
+    "outputs": [
+     {
+      "data": {
+@@ -45,7 +45,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 14,
++   "execution_count": 2,
+    "outputs": [],
+    "source": [
+     "# SVD1\n",
+@@ -85,7 +85,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 25,
++   "execution_count": 3,
+    "outputs": [],
+    "source": [
+     "plot_svd1_1 = ggplot(res_svd1_long) + \\\n",
+@@ -116,7 +116,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 26,
++   "execution_count": 4,
+    "outputs": [
+     {
+      "data": {
+@@ -128,9 +128,9 @@
+     },
+     {
+      "data": {
+-      "text/plain": "<ggplot: (84572512503)>"
++      "text/plain": "<ggplot: (169005874969)>"
+      },
+-     "execution_count": 26,
++     "execution_count": 4,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+@@ -159,7 +159,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 27,
++   "execution_count": 5,
+    "outputs": [],
+    "source": [
+     "plot_svd2_1 = ggplot(res_svd2_long) + \\\n",
+@@ -191,14 +191,14 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 5,
++   "execution_count": 6,
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "       r        variable     value\n0      1          rmse_0  3.095144\n1      2          rmse_0  3.006560\n2      3          rmse_0  2.943416\n3      4          rmse_0  2.903454\n4      5          rmse_0  2.877835\n..   ...             ...       ...\n495   96  rmse_col_means  0.957780\n496   97  rmse_col_means  0.959530\n497   98  rmse_col_means  0.958531\n498   99  rmse_col_means  0.958267\n499  100  rmse_col_means  0.959624\n\n[500 rows x 3 columns]",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>r</th>\n      <th>variable</th>\n      <th>value</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1</td>\n      <td>rmse_0</td>\n      <td>3.095144</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>2</td>\n      <td>rmse_0</td>\n      <td>3.006560</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>3</td>\n      <td>rmse_0</td>\n      <td>2.943416</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>4</td>\n      <td>rmse_0</td>\n      <td>2.903454</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>5</td>\n      <td>rmse_0</td>\n      <td>2.877835</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>495</th>\n      <td>96</td>\n      <td>rmse_col_means</td>\n      <td>0.957780</td>\n    </tr>\n    <tr>\n      <th>496</th>\n      <td>97</td>\n      <td>rmse_col_means</td>\n      <td>0.959530</td>\n    </tr>\n    <tr>\n      <th>497</th>\n      <td>98</td>\n      <td>rmse_col_means</td>\n      <td>0.958531</td>\n    </tr>\n    <tr>\n      <th>498</th>\n      <td>99</td>\n      <td>rmse_col_means</td>\n      <td>0.958267</td>\n    </tr>\n    <tr>\n      <th>499</th>\n      <td>100</td>\n      <td>rmse_col_means</td>\n      <td>0.959624</td>\n    </tr>\n  </tbody>\n</table>\n<p>500 rows × 3 columns</p>\n</div>"
+      },
+-     "execution_count": 5,
++     "execution_count": 6,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+@@ -228,7 +228,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 37,
++   "execution_count": 7,
+    "outputs": [],
+    "source": [
+     "plot_nmf_1 = ggplot(res_nmf_long) + \\\n",
+@@ -273,7 +273,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 7,
++   "execution_count": 8,
+    "outputs": [],
+    "source": [
+     "res_svd2_stop = pd.read_csv('Results/results_stop_svd2.csv')"
+@@ -287,14 +287,14 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 8,
++   "execution_count": 9,
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "       stop   r      RMSE\n378  0.0086   9  0.879578\n356  0.0085   9  0.880032\n400  0.0087   9  0.880051\n421  0.0088   8  0.880321\n232  0.0079  17  0.880356\n399  0.0087   8  0.880363\n210  0.0078  17  0.880485\n299  0.0082  18  0.880578\n275  0.0081  16  0.880597\n384  0.0086  15  0.880600",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>stop</th>\n      <th>r</th>\n      <th>RMSE</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>378</th>\n      <td>0.0086</td>\n      <td>9</td>\n      <td>0.879578</td>\n    </tr>\n    <tr>\n      <th>356</th>\n      <td>0.0085</td>\n      <td>9</td>\n      <td>0.880032</td>\n    </tr>\n    <tr>\n      <th>400</th>\n      <td>0.0087</td>\n      <td>9</td>\n      <td>0.880051</td>\n    </tr>\n    <tr>\n      <th>421</th>\n      <td>0.0088</td>\n      <td>8</td>\n      <td>0.880321</td>\n    </tr>\n    <tr>\n      <th>232</th>\n      <td>0.0079</td>\n      <td>17</td>\n      <td>0.880356</td>\n    </tr>\n    <tr>\n      <th>399</th>\n      <td>0.0087</td>\n      <td>8</td>\n      <td>0.880363</td>\n    </tr>\n    <tr>\n      <th>210</th>\n      <td>0.0078</td>\n      <td>17</td>\n      <td>0.880485</td>\n    </tr>\n    <tr>\n      <th>299</th>\n      <td>0.0082</td>\n      <td>18</td>\n      <td>0.880578</td>\n    </tr>\n    <tr>\n      <th>275</th>\n      <td>0.0081</td>\n      <td>16</td>\n      <td>0.880597</td>\n    </tr>\n    <tr>\n      <th>384</th>\n      <td>0.0086</td>\n      <td>15</td>\n      <td>0.880600</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+      },
+-     "execution_count": 8,
++     "execution_count": 9,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+@@ -312,13 +312,13 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 34,
++   "execution_count": 10,
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "<matplotlib.colorbar.Colorbar at 0x13b106368c0>"
++      "text/plain": "<matplotlib.colorbar.Colorbar at 0x2759b6d3d60>"
+      },
+-     "execution_count": 34,
++     "execution_count": 10,
+      "metadata": {},
+      "output_type": "execute_result"
+     },
+@@ -366,7 +366,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 32,
++   "execution_count": 11,
+    "outputs": [],
+    "source": [
+     "res_svd1_3d = pd.read_csv('Results/results_r_w_svd1.csv')\n",
+@@ -394,14 +394,14 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 18,
++   "execution_count": 12,
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "     col_weight   r      RMSE\n423        0.39  10  0.873987\n401        0.38  10  0.874244\n489        0.42  10  0.874274\n357        0.36  10  0.874449\n424        0.39  11  0.874469\n379        0.37  10  0.874475\n467        0.41  10  0.874490\n445        0.40  10  0.874498\n466        0.41   9  0.874507\n470        0.41  13  0.874532",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>col_weight</th>\n      <th>r</th>\n      <th>RMSE</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>423</th>\n      <td>0.39</td>\n      <td>10</td>\n      <td>0.873987</td>\n    </tr>\n    <tr>\n      <th>401</th>\n      <td>0.38</td>\n      <td>10</td>\n      <td>0.874244</td>\n    </tr>\n    <tr>\n      <th>489</th>\n      <td>0.42</td>\n      <td>10</td>\n      <td>0.874274</td>\n    </tr>\n    <tr>\n      <th>357</th>\n      <td>0.36</td>\n      <td>10</td>\n      <td>0.874449</td>\n    </tr>\n    <tr>\n      <th>424</th>\n      <td>0.39</td>\n      <td>11</td>\n      <td>0.874469</td>\n    </tr>\n    <tr>\n      <th>379</th>\n      <td>0.37</td>\n      <td>10</td>\n      <td>0.874475</td>\n    </tr>\n    <tr>\n      <th>467</th>\n      <td>0.41</td>\n      <td>10</td>\n      <td>0.874490</td>\n    </tr>\n    <tr>\n      <th>445</th>\n      <td>0.40</td>\n      <td>10</td>\n      <td>0.874498</td>\n    </tr>\n    <tr>\n      <th>466</th>\n      <td>0.41</td>\n      <td>9</td>\n      <td>0.874507</td>\n    </tr>\n    <tr>\n      <th>470</th>\n      <td>0.41</td>\n      <td>13</td>\n      <td>0.874532</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+      },
+-     "execution_count": 18,
++     "execution_count": 12,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+@@ -419,7 +419,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 33,
++   "execution_count": 13,
+    "outputs": [
+     {
+      "data": {
+@@ -465,14 +465,14 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 13,
++   "execution_count": 14,
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "     col_weight  r      RMSE\n73         0.25  8  0.867393\n87         0.26  8  0.867397\n59         0.24  8  0.867402\n101        0.27  8  0.867410\n115        0.28  8  0.867494\n45         0.23  8  0.867501\n31         0.22  8  0.867509\n129        0.29  8  0.867578\n17         0.21  8  0.867675\n143        0.30  8  0.867697",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>col_weight</th>\n      <th>r</th>\n      <th>RMSE</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>73</th>\n      <td>0.25</td>\n      <td>8</td>\n      <td>0.867393</td>\n    </tr>\n    <tr>\n      <th>87</th>\n      <td>0.26</td>\n      <td>8</td>\n      <td>0.867397</td>\n    </tr>\n    <tr>\n      <th>59</th>\n      <td>0.24</td>\n      <td>8</td>\n      <td>0.867402</td>\n    </tr>\n    <tr>\n      <th>101</th>\n      <td>0.27</td>\n      <td>8</td>\n      <td>0.867410</td>\n    </tr>\n    <tr>\n      <th>115</th>\n      <td>0.28</td>\n      <td>8</td>\n      <td>0.867494</td>\n    </tr>\n    <tr>\n      <th>45</th>\n      <td>0.23</td>\n      <td>8</td>\n      <td>0.867501</td>\n    </tr>\n    <tr>\n      <th>31</th>\n      <td>0.22</td>\n      <td>8</td>\n      <td>0.867509</td>\n    </tr>\n    <tr>\n      <th>129</th>\n      <td>0.29</td>\n      <td>8</td>\n      <td>0.867578</td>\n    </tr>\n    <tr>\n      <th>17</th>\n      <td>0.21</td>\n      <td>8</td>\n      <td>0.867675</td>\n    </tr>\n    <tr>\n      <th>143</th>\n      <td>0.30</td>\n      <td>8</td>\n      <td>0.867697</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+      },
+-     "execution_count": 13,
++     "execution_count": 14,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+@@ -490,7 +490,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 35,
++   "execution_count": 15,
+    "outputs": [
+     {
+      "data": {
+@@ -536,14 +536,14 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 19,
++   "execution_count": 16,
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "     col_weight   r      RMSE\n884        0.40  37  0.874794\n927        0.41  37  0.874817\n822        0.39  18  0.874841\n841        0.39  37  0.874848\n865        0.40  18  0.874849\n779        0.38  18  0.874881\n970        0.42  37  0.874892\n908        0.41  18  0.874909\n736        0.37  18  0.874958\n798        0.38  37  0.874959",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>col_weight</th>\n      <th>r</th>\n      <th>RMSE</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>884</th>\n      <td>0.40</td>\n      <td>37</td>\n      <td>0.874794</td>\n    </tr>\n    <tr>\n      <th>927</th>\n      <td>0.41</td>\n      <td>37</td>\n      <td>0.874817</td>\n    </tr>\n    <tr>\n      <th>822</th>\n      <td>0.39</td>\n      <td>18</td>\n      <td>0.874841</td>\n    </tr>\n    <tr>\n      <th>841</th>\n      <td>0.39</td>\n      <td>37</td>\n      <td>0.874848</td>\n    </tr>\n    <tr>\n      <th>865</th>\n      <td>0.40</td>\n      <td>18</td>\n      <td>0.874849</td>\n    </tr>\n    <tr>\n      <th>779</th>\n      <td>0.38</td>\n      <td>18</td>\n      <td>0.874881</td>\n    </tr>\n    <tr>\n      <th>970</th>\n      <td>0.42</td>\n      <td>37</td>\n      <td>0.874892</td>\n    </tr>\n    <tr>\n      <th>908</th>\n      <td>0.41</td>\n      <td>18</td>\n      <td>0.874909</td>\n    </tr>\n    <tr>\n      <th>736</th>\n      <td>0.37</td>\n      <td>18</td>\n      <td>0.874958</td>\n    </tr>\n    <tr>\n      <th>798</th>\n      <td>0.38</td>\n      <td>37</td>\n      <td>0.874959</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+      },
+-     "execution_count": 19,
++     "execution_count": 16,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+@@ -561,7 +561,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 36,
++   "execution_count": 17,
+    "outputs": [
+     {
+      "data": {
+@@ -619,7 +619,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 10,
++   "execution_count": 18,
+    "outputs": [],
+    "source": [
+     "res_sgd_all = pd.read_csv('Results/results_sgd_all.csv')\n",
+@@ -636,14 +636,14 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 9,
++   "execution_count": 19,
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "     lambda     eta      r      RMSE\n0     0.001  0.0001    1.0  1.062113\n32    0.001  0.0100    5.0  0.974318\n33    0.001  0.0500    5.0  1.045763\n34    0.001  0.1000    5.0  1.244860\n154   0.001  0.1000   50.0  1.428379\n..      ...     ...    ...       ...\n177   1.000  0.0100   50.0  1.079815\n178   1.000  0.0500   50.0  1.365974\n179   1.000  0.1000   50.0  1.560010\n115   1.000  0.0001   15.0  1.068008\n239   1.000  0.1000  100.0  1.511697\n\n[240 rows x 4 columns]",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>lambda</th>\n      <th>eta</th>\n      <th>r</th>\n      <th>RMSE</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>0.001</td>\n      <td>0.0001</td>\n      <td>1.0</td>\n      <td>1.062113</td>\n    </tr>\n    <tr>\n      <th>32</th>\n      <td>0.001</td>\n      <td>0.0100</td>\n      <td>5.0</td>\n      <td>0.974318</td>\n    </tr>\n    <tr>\n      <th>33</th>\n      <td>0.001</td>\n      <td>0.0500</td>\n      <td>5.0</td>\n      <td>1.045763</td>\n    </tr>\n    <tr>\n      <th>34</th>\n      <td>0.001</td>\n      <td>0.1000</td>\n      <td>5.0</td>\n      <td>1.244860</td>\n    </tr>\n    <tr>\n      <th>154</th>\n      <td>0.001</td>\n      <td>0.1000</td>\n      <td>50.0</td>\n      <td>1.428379</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>177</th>\n      <td>1.000</td>\n      <td>0.0100</td>\n      <td>50.0</td>\n      <td>1.079815</td>\n    </tr>\n    <tr>\n      <th>178</th>\n      <td>1.000</td>\n      <td>0.0500</td>\n      <td>50.0</td>\n      <td>1.365974</td>\n    </tr>\n    <tr>\n      <th>179</th>\n      <td>1.000</td>\n      <td>0.1000</td>\n      <td>50.0</td>\n      <td>1.560010</td>\n    </tr>\n    <tr>\n      <th>115</th>\n      <td>1.000</td>\n      <td>0.0001</td>\n      <td>15.0</td>\n      <td>1.068008</td>\n    </tr>\n    <tr>\n      <th>239</th>\n      <td>1.000</td>\n      <td>0.1000</td>\n      <td>100.0</td>\n      <td>1.511697</td>\n    </tr>\n  </tbody>\n</table>\n<p>240 rows × 4 columns</p>\n</div>"
+      },
+-     "execution_count": 9,
++     "execution_count": 19,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+@@ -660,14 +660,14 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 11,
++   "execution_count": 20,
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "     lambda     eta      r      RMSE\n0     0.001  0.0001    1.0  1.060065\n1     0.001  0.0010    1.0  1.015277\n2     0.001  0.0100    1.0  0.967272\n3     0.001  0.0500    1.0  1.051208\n4     0.001  0.1000    1.0  1.410866\n..      ...     ...    ...       ...\n235   1.000  0.0001  100.0  1.065621\n236   1.000  0.0010  100.0  1.066486\n237   1.000  0.0100  100.0  1.119838\n238   1.000  0.0500  100.0  1.271468\n239   1.000  0.1000  100.0  1.385446\n\n[240 rows x 4 columns]",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>lambda</th>\n      <th>eta</th>\n      <th>r</th>\n      <th>RMSE</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>0.001</td>\n      <td>0.0001</td>\n      <td>1.0</td>\n      <td>1.060065</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>0.001</td>\n      <td>0.0010</td>\n      <td>1.0</td>\n      <td>1.015277</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>0.001</td>\n      <td>0.0100</td>\n      <td>1.0</td>\n      <td>0.967272</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>0.001</td>\n      <td>0.0500</td>\n      <td>1.0</td>\n      <td>1.051208</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>0.001</td>\n      <td>0.1000</td>\n      <td>1.0</td>\n      <td>1.410866</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>235</th>\n      <td>1.000</td>\n      <td>0.0001</td>\n      <td>100.0</td>\n      <td>1.065621</td>\n    </tr>\n    <tr>\n      <th>236</th>\n      <td>1.000</td>\n      <td>0.0010</td>\n      <td>100.0</td>\n      <td>1.066486</td>\n    </tr>\n    <tr>\n      <th>237</th>\n      <td>1.000</td>\n      <td>0.0100</td>\n      <td>100.0</td>\n      <td>1.119838</td>\n    </tr>\n    <tr>\n      <th>238</th>\n      <td>1.000</td>\n      <td>0.0500</td>\n      <td>100.0</td>\n      <td>1.271468</td>\n    </tr>\n    <tr>\n      <th>239</th>\n      <td>1.000</td>\n      <td>0.1000</td>\n      <td>100.0</td>\n      <td>1.385446</td>\n    </tr>\n  </tbody>\n</table>\n<p>240 rows × 4 columns</p>\n</div>"
+      },
+-     "execution_count": 11,
++     "execution_count": 20,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+@@ -684,18 +684,8 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 4,
+-   "outputs": [
+-    {
+-     "data": {
+-      "text/plain": "      lambda     eta     r      RMSE\n0      0.001  0.0080   1.0  0.954649\n1      0.001  0.0090   1.0  0.956765\n2      0.001  0.0099   1.0  0.971456\n3      0.001  0.0100   1.0  0.940564\n4      0.001  0.0110   1.0  0.940409\n...      ...     ...   ...       ...\n4181   0.050  0.0099  50.0  1.019674\n4182   0.050  0.0100  50.0  0.978794\n4183   0.050  0.0110  50.0  1.029345\n4184   0.050  0.0120  50.0  1.038733\n4185   0.050  0.0200  50.0  0.992154\n\n[4186 rows x 4 columns]",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>lambda</th>\n      <th>eta</th>\n      <th>r</th>\n      <th>RMSE</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>0.001</td>\n      <td>0.0080</td>\n      <td>1.0</td>\n      <td>0.954649</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>0.001</td>\n      <td>0.0090</td>\n      <td>1.0</td>\n      <td>0.956765</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>0.001</td>\n      <td>0.0099</td>\n      <td>1.0</td>\n      <td>0.971456</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>0.001</td>\n      <td>0.0100</td>\n      <td>1.0</td>\n      <td>0.940564</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>0.001</td>\n      <td>0.0110</td>\n      <td>1.0</td>\n      <td>0.940409</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>4181</th>\n      <td>0.050</td>\n      <td>0.0099</td>\n      <td>50.0</td>\n      <td>1.019674</td>\n    </tr>\n    <tr>\n      <th>4182</th>\n      <td>0.050</td>\n      <td>0.0100</td>\n      <td>50.0</td>\n      <td>0.978794</td>\n    </tr>\n    <tr>\n      <th>4183</th>\n      <td>0.050</td>\n      <td>0.0110</td>\n      <td>50.0</td>\n      <td>1.029345</td>\n    </tr>\n    <tr>\n      <th>4184</th>\n      <td>0.050</td>\n      <td>0.0120</td>\n      <td>50.0</td>\n      <td>1.038733</td>\n    </tr>\n    <tr>\n      <th>4185</th>\n      <td>0.050</td>\n      <td>0.0200</td>\n      <td>50.0</td>\n      <td>0.992154</td>\n    </tr>\n  </tbody>\n</table>\n<p>4186 rows × 4 columns</p>\n</div>"
+-     },
+-     "execution_count": 4,
+-     "metadata": {},
+-     "output_type": "execute_result"
+-    }
+-   ],
++   "execution_count": 21,
++   "outputs": [],
+    "source": [
+     "res_sgd_all3 = pd.read_csv('Results/results_sgd_all2.csv')\n",
+     "res_sgd_all3.drop('index', inplace=True, axis=1)"
+@@ -709,14 +699,14 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 5,
++   "execution_count": 22,
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "      lambda     eta     r      RMSE\n0      0.001  0.0080   1.0  0.954649\n1      0.001  0.0090   1.0  0.956765\n2      0.001  0.0099   1.0  0.971456\n3      0.001  0.0100   1.0  0.940564\n4      0.001  0.0110   1.0  0.940409\n...      ...     ...   ...       ...\n4181   0.050  0.0099  50.0  1.019674\n4182   0.050  0.0100  50.0  0.978794\n4183   0.050  0.0110  50.0  1.029345\n4184   0.050  0.0120  50.0  1.038733\n4185   0.050  0.0200  50.0  0.992154\n\n[4186 rows x 4 columns]",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>lambda</th>\n      <th>eta</th>\n      <th>r</th>\n      <th>RMSE</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>0.001</td>\n      <td>0.0080</td>\n      <td>1.0</td>\n      <td>0.954649</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>0.001</td>\n      <td>0.0090</td>\n      <td>1.0</td>\n      <td>0.956765</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>0.001</td>\n      <td>0.0099</td>\n      <td>1.0</td>\n      <td>0.971456</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>0.001</td>\n      <td>0.0100</td>\n      <td>1.0</td>\n      <td>0.940564</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>0.001</td>\n      <td>0.0110</td>\n      <td>1.0</td>\n      <td>0.940409</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>4181</th>\n      <td>0.050</td>\n      <td>0.0099</td>\n      <td>50.0</td>\n      <td>1.019674</td>\n    </tr>\n    <tr>\n      <th>4182</th>\n      <td>0.050</td>\n      <td>0.0100</td>\n      <td>50.0</td>\n      <td>0.978794</td>\n    </tr>\n    <tr>\n      <th>4183</th>\n      <td>0.050</td>\n      <td>0.0110</td>\n      <td>50.0</td>\n      <td>1.029345</td>\n    </tr>\n    <tr>\n      <th>4184</th>\n      <td>0.050</td>\n      <td>0.0120</td>\n      <td>50.0</td>\n      <td>1.038733</td>\n    </tr>\n    <tr>\n      <th>4185</th>\n      <td>0.050</td>\n      <td>0.0200</td>\n      <td>50.0</td>\n      <td>0.992154</td>\n    </tr>\n  </tbody>\n</table>\n<p>4186 rows × 4 columns</p>\n</div>"
+      },
+-     "execution_count": 5,
++     "execution_count": 22,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+@@ -745,7 +735,7 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 51,
++   "execution_count": 23,
+    "outputs": [],
+    "source": [
+     "res_svd1_reps = pd.read_csv('Results/results_reps_svd1.csv')"
+@@ -759,14 +749,14 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 56,
++   "execution_count": 24,
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "     rep  weight     r      RMSE\n5      1    0.37  10.0  0.878849\n19     2    0.41  13.0  0.871667\n21     3    0.38  10.0  0.883794\n39     4    0.41  13.0  0.865293\n49     5    0.41  13.0  0.885750\n59     6    0.41  13.0  0.868848\n69     7    0.41  13.0  0.878588\n79     8    0.41  13.0  0.887374\n88     9    0.41   9.0  0.879621\n99    10    0.41  13.0  0.867972\n109   11    0.41  13.0  0.877385\n119   12    0.41  13.0  0.872681\n124   13    0.39  11.0  0.879833\n139   14    0.41  13.0  0.872548\n149   15    0.41  13.0  0.888480\n159   16    0.41  13.0  0.867906\n168   17    0.41   9.0  0.868453\n179   18    0.41  13.0  0.867510\n189   19    0.41  13.0  0.873485\n199   20    0.41  13.0  0.879318",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>rep</th>\n      <th>weight</th>\n      <th>r</th>\n      <th>RMSE</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>5</th>\n      <td>1</td>\n      <td>0.37</td>\n      <td>10.0</td>\n      <td>0.878849</td>\n    </tr>\n    <tr>\n      <th>19</th>\n      <td>2</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.871667</td>\n    </tr>\n    <tr>\n      <th>21</th>\n      <td>3</td>\n      <td>0.38</td>\n      <td>10.0</td>\n      <td>0.883794</td>\n    </tr>\n    <tr>\n      <th>39</th>\n      <td>4</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.865293</td>\n    </tr>\n    <tr>\n      <th>49</th>\n      <td>5</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.885750</td>\n    </tr>\n    <tr>\n      <th>59</th>\n      <td>6</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.868848</td>\n    </tr>\n    <tr>\n      <th>69</th>\n      <td>7</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.878588</td>\n    </tr>\n    <tr>\n      <th>79</th>\n      <td>8</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.887374</td>\n    </tr>\n    <tr>\n      <th>88</th>\n      <td>9</td>\n      <td>0.41</td>\n      <td>9.0</td>\n      <td>0.879621</td>\n    </tr>\n    <tr>\n      <th>99</th>\n      <td>10</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.867972</td>\n    </tr>\n    <tr>\n      <th>109</th>\n      <td>11</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.877385</td>\n    </tr>\n    <tr>\n      <th>119</th>\n      <td>12</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.872681</td>\n    </tr>\n    <tr>\n      <th>124</th>\n      <td>13</td>\n      <td>0.39</td>\n      <td>11.0</td>\n      <td>0.879833</td>\n    </tr>\n    <tr>\n      <th>139</th>\n      <td>14</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.872548</td>\n    </tr>\n    <tr>\n      <th>149</th>\n      <td>15</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.888480</td>\n    </tr>\n    <tr>\n      <th>159</th>\n      <td>16</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.867906</td>\n    </tr>\n    <tr>\n      <th>168</th>\n      <td>17</td>\n      <td>0.41</td>\n      <td>9.0</td>\n      <td>0.868453</td>\n    </tr>\n    <tr>\n      <th>179</th>\n      <td>18</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.867510</td>\n    </tr>\n    <tr>\n      <th>189</th>\n      <td>19</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.873485</td>\n    </tr>\n    <tr>\n      <th>199</th>\n      <td>20</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.879318</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+      },
+-     "execution_count": 56,
++     "execution_count": 24,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+@@ -783,14 +773,14 @@
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 52,
++   "execution_count": 25,
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "     rep  weight     r      RMSE\n39     4    0.41  13.0  0.865293\n30     4    0.39  10.0  0.865373\n33     4    0.36  10.0  0.865408\n31     4    0.38  10.0  0.865569\n34     4    0.39  11.0  0.865717\n35     4    0.37  10.0  0.866763\n37     4    0.40  10.0  0.867131\n179   18    0.41  13.0  0.867510\n32     4    0.42  10.0  0.867536\n36     4    0.41  10.0  0.867569",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>rep</th>\n      <th>weight</th>\n      <th>r</th>\n      <th>RMSE</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>39</th>\n      <td>4</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.865293</td>\n    </tr>\n    <tr>\n      <th>30</th>\n      <td>4</td>\n      <td>0.39</td>\n      <td>10.0</td>\n      <td>0.865373</td>\n    </tr>\n    <tr>\n      <th>33</th>\n      <td>4</td>\n      <td>0.36</td>\n      <td>10.0</td>\n      <td>0.865408</td>\n    </tr>\n    <tr>\n      <th>31</th>\n      <td>4</td>\n      <td>0.38</td>\n      <td>10.0</td>\n      <td>0.865569</td>\n    </tr>\n    <tr>\n      <th>34</th>\n      <td>4</td>\n      <td>0.39</td>\n      <td>11.0</td>\n      <td>0.865717</td>\n    </tr>\n    <tr>\n      <th>35</th>\n      <td>4</td>\n      <td>0.37</td>\n      <td>10.0</td>\n      <td>0.866763</td>\n    </tr>\n    <tr>\n      <th>37</th>\n      <td>4</td>\n      <td>0.40</td>\n      <td>10.0</td>\n      <td>0.867131</td>\n    </tr>\n    <tr>\n      <th>179</th>\n      <td>18</td>\n      <td>0.41</td>\n      <td>13.0</td>\n      <td>0.867510</td>\n    </tr>\n    <tr>\n      <th>32</th>\n      <td>4</td>\n      <td>0.42</td>\n      <td>10.0</td>\n      <td>0.867536</td>\n    </tr>\n    <tr>\n      <th>36</th>\n      <td>4</td>\n      <td>0.41</td>\n      <td>10.0</td>\n      <td>0.867569</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+      },
+-     "execution_count": 52,
++     "execution_count": 25,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
