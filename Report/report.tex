@@ -163,7 +163,7 @@ Since three of our methods (SVD1, SVD2 and NMF) are given a full matrix $\boldsy
 
 We decided to impute the data in 5 different ways, we replace missing values with:
 \begin{itemize}
-    \item 0 ,
+    \item 0,
     \item global mean,
     \item column means,
     \item row means,
@@ -178,33 +178,33 @@ We may expect that the closer to reality we impute the missing data, the better 
 
 
 
-\section{Parameters tuning and results}
+\section{Parameters tuning}
 
 Before performing our methods and obtaining results we have to set some parameters.
 
 First of all, all the methods need a parameter $r$, which is the rank of matrices in $Z$ decomposition.
-SGD needs also learning rate and $\lambda$.
-And iteration methods need maximum of possible iterations or a stop condition.
+SGD needs also learning rate $\eta$ and $\lambda$.
+The iteration methods need maximum of possible iterations or a stop condition.
 
-What's more, for all of our methods we want to choose optimal $\alpha$ in the last imputation method data.
+What's more, for all of our methods we want to choose optimal $\alpha$ in the data imputation method with weighted means.
 
 
 
 \subsection*{SVD1}
 \subsubsection*{Optimizing $r$}
-For a start, let's consider only imputation methods that don't need estimation of $\alpha$, so:
-\begin{itemize}
-    \item putting 0 everywhere,
-    \item putting global mean everywhere,
-    \item putting column means,
-    \item putting row means,
-    \item putting weighted row and column mean $\frac{1}{2} \cdot \text{\textsf{col\_mean}} + \frac{1}{2} \cdot \text{\textsf{row\_mean}}$.
-\end{itemize}
-The last method is the weighted method for $\alpha = \frac{1}{2}$.
-The imputation methods mentioned above will be called \textit{basic} in this report.
+For a start, let's consider only imputation methods that don't need estimation of $\alpha$, so replacing missing values with: 0, global mean, column mean, row mean and weighted row and column mean with $\alpha = \frac{1}{2}$.
+%\begin{itemize}
+%    \item putting 0 everywhere,
+%    \item putting global mean everywhere,
+%    \item putting column means,
+%    \item putting row means,
+%    \item putting weighted row and column mean $\frac{1}{2} \cdot \text{\textsf{col\_mean}} + \frac{1}{2} \cdot \text{\textsf{row\_mean}}$.
+%\end{itemize}
+%The last method is the weighted method for $\alpha = \frac{1}{2}$.
+%These imputation methods will be called \textit{basic} in this report.
 
-For these methods we only need to find optimal $r$.
-So for every basic imputation method and for every $r$ from 1 to 100 we perform SVD1.
+For these methods we only need to find optimal $r$ and we will call them \textit{basic}.
+So for each of them and for every $r$ from 1 to 100 we perform SVD1.
 Below, we present a graph showing results.
 
 
@@ -226,13 +226,13 @@ Below, we present a graph showing results.
 \caption{RMSE of SVD1 for basic imputation methods and $r = 1, \dots, 100$}
 \end{figure}
 
-Let's denote that we perform it for only one split of the data into train and test set.
-This results can be different if we take different split.
-
-\tami{jakieś wnioski}
+Let's denote that the results in the graph above are computed for the same split of data into train and test set.
+%we perform it for only one split of the data into train and test set.
+That's why we can compare them.
+Also, these results can be much different if we take different split.
 
 Of course we look for the lowest RMSE obtained for each imputation method and the optimal $r$.
-So below we present a table containing these information.
+So below we present a table containing this information.
 \begin{table}[H]
 \begin{tabular}{c|ccccc}
 & 0 & column means & global mean & weighted means & row means \\
@@ -246,13 +246,13 @@ RMSE & 2.8660 & 0.9458 & 0.9870 & 0.8767 & 0.9043 \\
 %jakieś wnioski, te zera beznadziejne
 %że weighted wypadają najlepiej i chcemy to alfa dobrać optymalnie
 
-First of all, we observe that as we expected the choice of the imputation method does matter.
+First of all, from both the graph and the table we can observe that as we expected the choice of the imputation method affects the RMSE.
 It can be most clearly seen on an example of data filled with zeros.
 For the best $r$ RMSE there is around $2.9$ that is, it is about 3 times larger than for other imputation methods.
 Other methods also differ.
 The lowest RMSE is obtained for the data filled with weighted data.
 But the result for data filled with row means is also quite good.
-That's why we may suspect that optimizing $\alpha$ can give even better results.
+That's why we may suspect that optimizing $\alpha$ in our weighted imputation method can give even better results.
 
 %wprowadzenie, że dobieramy alfa
 %no i ten rysunek wyżej nam pozwala obciąć r
@@ -261,7 +261,7 @@ That's why we may suspect that optimizing $\alpha$ can give even better results.
 \subsubsection*{Optimizing $\alpha$}
 
 To get optimal result we perform optimization with respect to two parameters: $\alpha$ and $r$.
-As we can see on the picture above only $r$ between $0$ and $50$ give some reasonable results, so we consider only those (we could use all $r$, but it is time consuming).
+As we can see on the graph above only $r$ between $0$ and $50$ give some reasonable results, so we consider only those (we could use all $r$, but it is time-consuming).
 Below, we present graph showing results of optimization.
 
 \begin{figure}[H]
@@ -283,13 +283,14 @@ Below we present also table with 5 lowest RMSE and pairs $(\alpha, r)$ that gave
 \end{tabular}
 \caption{5 lowest RMSE of SVD1 for weigthed imputation method and ($\alpha$, $r$) that gave them}
 \end{table}
-As we can see the pair $(0.39, 10)$ seems to be optimal in this case.
-All other pairs are close to it.
-\tami{może coś o tych RMSE}
+Obtained best RMSEs are similar, but they differ in fourth decimal place.
+We can observe also that the pair $(0.39, 10)$ seems to be optimal in this case and all other pairs are close to it.
 
-All results above are obtained for only one data split into train and test set.
-To find the best parameters in our method we have to average those parameters over different splits.
-So we considered 20 different splits and the results were as follows
+
+Is this means that we choose the weighted imputation method with $\alpha = 0.39$ and $r=10$ to perform SVD1?
+No, because until now, we have considered only one data split into train and test set.
+To find the best parameters in our method we have to average optimal $\alpha$ and $r$ over different splits.
+So we consider 20 different splits and the results are as follows
 \begin{itemize}
     \item mean value of the best $(\alpha, r)$ is $(0.4055, 12.2)$,
     \item median of the best $(\alpha, r)$ is $(0.41, 13)$,
@@ -304,18 +305,27 @@ So we considered 20 different splits and the results were as follows
 
 
 \subsection*{SVD2}
-In this case we want to proceed as in SVD1 case.
-But before we start we have to choose some stop condition for SVD2.
+We are going to proceed as in SVD1 case, but before we have to choose some stop condition.
 
 \subsubsection*{Stop condition}
+We decided to use the stop condition of following form: if the difference of $Z$ obtained in previous step is enough close to $Z$ obtained in this step we stop the algorithm.
+Precisely, we stop algorithm if $\|Z_{n+1} - Z_n\| < \varepsilon$, where $\|\cdot\|$ is the Frobenius norm, $Z_n$ is the matrix obtained in $n$th step and $\varepsilon$ is a parameter to be set.
+
+To find optimal $\epsilon$ we perform an optimization with respect to $r$ and $\epsilon$
+on the data filled with weighted means with $\alpha = \frac{1}{2}$.
+Below we present the graph with results.
+
 \begin{figure}[H]
     \includegraphics[scale=0.55]{svd2_stop2}
-    \caption{\tami{tutaj}}
+    \caption{RMSE of SVD2 for weigthed imputation method with $\alpha = \frac{1}{2}$ for different $r$ and $\epsilon$}
 \end{figure}
+
+\tami{tutaj}
+
 
 \subsubsection*{Optimizing $r$}
 After choosing the stop condition we can proceed exactly as in SVD1 case.
-So first of all we present a graph showing dependence of RMSE on $r$ and on the imputation method for basic imputation methods.
+So first we present a graph showing dependence of RMSE on $r$ and on the imputation method for basic imputation methods.
 \begin{figure}[H]
 \centering
 \begin{minipage}{.63\textwidth}
@@ -333,7 +343,11 @@ So first of all we present a graph showing dependence of RMSE on $r$ and on the 
 \caption{RMSE of SVD2 for basic imputation methods and $r = 1, \dots, 100$}
 \end{figure}
 
-\tami{tutaj, że te wykresy są takie bardziej skaczące, ale generalnie trendy są te same}
+Comparing it with analogous graph for SVD1 we observe bigger ,,jumps'' for imputation methods using global means and row means.
+And for these methods best RMSEs are improved.
+But after jumps the graph is very similar to the previous one - results and trends are similar.
+In case of imputation methods with column means and weighted means doesn't look like the trajectories are changed much.
+%\tami{tutaj, że te wykresy są takie bardziej skaczące, ale generalnie trendy są te same}
 
 Now we present a table showing the best $r$ and RMSE for every imputation method.
 \begin{table}[H]
@@ -347,10 +361,10 @@ RMSE & 2.7789 & 0.9420 & 0.9425 & 0.8749 & 0.8778 \\
 \end{table}
 
 Firstly, we can observe that SVD2 improved the results of SVD1.
-Every result is smaller, but order which methods are better or worse didn't change, maybe differences are a bit smaller.
+Every result is smaller, differences are also smaller, but the order which methods are better or worse is the same.
 
 We can observe again that only $r$ between 0 and 50 gives reasonable results.
-Although the best $r$ chosen by SVD2 in all cases differ a lot from those chosen by SVD1.
+Though the best $r$ chosen by SVD2 in all cases differ a lot from $r$ chosen by SVD1.
 
 \subsubsection*{Optimizing $\alpha$}
 Moving on to the weighted imputation method, we present a graph showing the results of optimization with respect to $\alpha$ and $r$.
@@ -358,7 +372,13 @@ Moving on to the weighted imputation method, we present a graph showing the resu
 \includegraphics[scale = 0.6]{svd2_r_w2}
 \caption{RMSE of SVD2 for weigthed imputation method for different $\alpha$ and $r$}
 \end{figure}
-\tami{It may look very similar to analogous graph for SVD1, but results actually differ a bit and it can be seen in following table.}
+
+The graph differs a lot from the analogous graph for SVD1.
+This time the minimum is taken for smaller $\alpha$ and smaller $r$.
+\tami{tutaj coś}
+
+To find exact values of minimum let's look at the results in table.
+
 \begin{table}[H]
 \begin{tabular}{cc|c}
 $\alpha$ &  $r$ &     RMSE \\
@@ -373,8 +393,7 @@ $\alpha$ &  $r$ &     RMSE \\
 \end{table}
 This time method did the best 5 results for the same $r$.
 Also in this case, the result are closer.
-It may suggest that this method is even more stable.
-\domi{It is intuitive for iterative method because they usually converge to some specific model and that is why we get clear results.}
+It is intuitive for iterative method because they usually converge to some specific model and that is why we get clear results.
 
 After repeating this optimization for 20 different splits we get that:
 \begin{itemize}
@@ -406,9 +425,14 @@ So firstly we present a graph showing dependence of RMSE on $r$ and on the imput
 \caption{RMSE of NMF for basic imputation methods and $r = 1, \dots, 100$}
 \end{figure}
 
-Comparing this graph to the graph for SVD we can see that it oscillates a lot, which means that for similar $r$ it gives quite different RMSE.
-What's more, here it is not so obvious where to look for optimal $r$, because for instance for weighted means RMSE don't grow much with $r$. \tami{przeformułować}
-\tami{jeszcze że kolejność kto który jest podobna}
+Comparing this graph to the graph for SVDs we observe that the previous graphs where smoother.
+This time trajectories oscillate a lot, which means that for similar $r$ it gives quite different RMSE.
+So this method seem more unstable than the previous ones.
+
+What's more, here it is not so obvious where to look for optimal $r$.
+For instance for imputation method with weighted means RMSE don't grow much with greater $r$.
+
+Nevertheless, the order of methods (so which one is the best and so on) is the same.
 
 Below we also present a table with the lowest RMSE for every imputation method and the parameter $r$ that gave it.
 
@@ -433,7 +457,11 @@ Now we perform the optimization with respect to $\alpha$ and $r$ and present a g
 \caption{RMSE of NMF for weigthed imputation method for different $\alpha$ and $r$}
 \end{figure}
 
-Similarly as above, this graph is \tami{taki postrzępiony} looking at the axis of $r$.
+Comparing this graph to previuos analogous graphs this one is completely different.
+RMSE in here doen't grow much with growth of $r$.
+Similarly as in previuos graph for NMF, this graph oscillates a lot looking at the axis of $r$.
+
+To find where is the minimum of RMSE taken we have to look at the results in table.
 
 \begin{table}[H]
 \begin{tabular}{cc|c}
@@ -448,6 +476,7 @@ $\alpha$ &  $r$ &     RMSE \\
 \caption{5 lowest RMSE of NMF for weigthed imputation method and ($\alpha$, $r$) that gave them}
 \end{table}
 
+\tami{ważne wnioski, że te r są takie różne, a wyniki bardzo bliskie}
 
 After repeating this optimization for 20 different splits we get that:
 \begin{itemize}

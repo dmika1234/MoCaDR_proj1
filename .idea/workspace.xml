@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Report">
-      <change afterPath="$PROJECT_DIR$/Report/fig/nmf_r_w2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/fig/svd1_r_w2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/fig/svd2_r_w2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/fig/svd2_stop.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/fig/svd2_stop2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report/fig/syf/svd2_stop2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoCaDR_proj1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_04_2022_09_43__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_04_2022_09_43__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/auxil/report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/auxil/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/out/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/report.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/out/report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/report.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Report/report.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Report/report.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auxil/report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/auxil/report.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auxil/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/auxil/report.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/out/report.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/out/report.synctex.gz" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +73,7 @@
       <recent name="D:\Studia\MoCaDR_proj1\Report" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.compute_results_sgd_test">
+  <component name="RunManager" selected="LaTeX.report">
     <configuration name="report" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" temporary="true">
       <texify>
         <compiler>PDFLATEX</compiler>
@@ -224,8 +215,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.compute_results_sgd_test" />
         <item itemvalue="LaTeX.report" />
+        <item itemvalue="Python.compute_results_sgd_test" />
         <item itemvalue="Python.splitting_data" />
         <item itemvalue="Python.performing_algorithms" />
         <item itemvalue="Python.compute_results3" />
@@ -282,6 +273,8 @@
       <workItem from="1649407349351" duration="1672000" />
       <workItem from="1649429201664" duration="3019000" />
       <workItem from="1649438274438" duration="1751000" />
+      <workItem from="1649686874514" duration="78000" />
+      <workItem from="1649692535120" duration="7918000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -479,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649518863744</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Report">
+      <created>1649686912044</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1649686912044</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,7 +512,8 @@
     <MESSAGE value="Computing stop condition svd2" />
     <MESSAGE value="Presenting results for NMF" />
     <MESSAGE value="computing results" />
-    <option name="LAST_COMMIT_MESSAGE" value="computing results" />
+    <MESSAGE value="Report" />
+    <option name="LAST_COMMIT_MESSAGE" value="Report" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$performing_algorithms.coverage" NAME="performing_algorithms Coverage Results" MODIFIED="1647784050444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
@@ -525,6 +526,6 @@
     <SUITE FILE_PATH="coverage/main_py$a.coverage" NAME="a Coverage Results" MODIFIED="1648057368569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$algorithm_functions.coverage" NAME="algorithm_functions Coverage Results" MODIFIED="1648826781925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$computing_results.coverage" NAME="computing_results Coverage Results" MODIFIED="1648727756891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$compute_results_sgd_test.coverage" NAME="compute_results_sgd_test Coverage Results" MODIFIED="1649528622400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$compute_results_sgd_test.coverage" NAME="compute_results_sgd_test Coverage Results" MODIFIED="1649692596753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>
