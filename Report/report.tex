@@ -2,7 +2,7 @@
 %! Date = 10.03.2022
 
 % Preamble
-\documentclass[11pt]{amsart}
+\documentclass[10pt]{amsart}
 
 % Packages
 \usepackage{float}
@@ -23,7 +23,7 @@
 \usepackage{array}
 \usepackage{xcolor}
 \usepackage{subcaption}
-
+\usepackage[justification=centering]{caption}
 
 \graphicspath{ {./fig/} }
 
@@ -108,10 +108,10 @@ We look for
 where $h_j$ is $j$-th column of $h$, $w_i^T$ is $i$-th row of $W$ and $\lambda > 0$ is a parameter.
 So roughly speaking we look for $W$ and $H$ such that $Z \approx WH$ for elements known in $Z$, but also we want $W$ and $H$ to have quite small values (it gives us the part of sum with parameter $\lambda$).
 
-It is an iterative method and work this way: set some $W$ and $H$,
+It is an iterative method and work this way: set some $W = W_0$ and $H = H_0$ ($W_0$, $H_0$ are called a \textit{starting point}),
 \begin{enumerate}
     \item sample one pair $(i,j)$ from $I$,
-    \item let $\tilde{w}_i^T := w_i^T - \eta \cdot \left(2(z_{ij} - w_i^T h_j) h_j + 2 \lambda w_i^T \right)$ and $\tilde{h}_j := h_j - \eta \cdot \left(2(z_{ij} - w_i^T  h_{j}) w_i^T + 2 \lambda h_j \right)$,
+    \item let $\tilde{w}_i^T = w_i^T - \eta \cdot \left(2(z_{ij} - w_i^T h_j) h_j + 2 \lambda w_i^T \right)$ and $\tilde{h}_j = h_j - \eta \cdot \left(2(z_{ij} - w_i^T  h_{j}) w_i^T + 2 \lambda h_j \right)$,
     \item the rests of matrices $W$ and $H$ stay unchanged, so $\tilde{w}_k^T = w_k^T$ for $k \neq i$ and $\tilde{h}_l = h_l$ for $l \neq j$,
     \item take $W = \tilde{W}$ and $H = \tilde{H}$,
 \end{enumerate}
@@ -150,10 +150,10 @@ We will use the distance measure called \textbf{root-mean square error} (RMSE).
 Let call the matrix containing the data from the train set as $\boldsymbol{Z}$ and the matrix containing the data from the test set as $\boldsymbol{T}$.
 Assume that our algorithm return a matrix $\boldsymbol{Z}^{'}$.
 Then the quality of our programs is computed as
-\[\textsf{RMSE} =
+\[\textsf{RMSE} :=
 \sqrt{\frac{1}{|\mathcal{T}|} \sum_{(u,m) \in \mathcal{T}} \left(\boldsymbol{Z}^{'}[u,m] - \boldsymbol{T}[u,m] \right)^2}\]
 where $\mathcal{T}$ contains pairs $(u,m)$ from test set.
-So it is a distance between matrices $Z$ and $Z^'$ on only elements from $\mathcal{T}$.
+So it is a distance between matrices $Z$ and $Z^{'}$ on only elements from $\mathcal{T}$.
 
 \subsection*{Imputing the missing data}
 
@@ -170,14 +170,14 @@ We decided to impute the data in 5 different ways, we replace missing values wit
 
 We may expect that the closer to reality we impute the missing data, the better results we will obtain.
 That's why we expect that filling missing data with 0 will give worse result than the rest methods.
-\tami{Similarly, probably since filling data with global mean doesn't differentiate the users or the movies}
+Similarly, probably methods using row means, column means or weighted means will give better results than using the global mean since they differentiate the users or the movies.
 
 \subsection*{Performing methods}
 
 The first thing to do is to actually implement our methods.
 In case of SVD1 and NMF we just perform the method described in first section on the filled matrix $\boldsymbol{Z}$.
 SVD2 we also perform on the filled $\boldsymbol{Z}$ and in every iteration step we fill the elements from train set with real values.
-We make this correction, beacause \tami{...}
+We make this correction, because \tami{...}
 SGD we perform only on values from train set.
 
 
@@ -187,7 +187,7 @@ SGD we perform only on values from train set.
 
 Before performing our methods and obtaining results we have to set some parameters.
 
-First of all, all the methods need a parameter $r$, which is the rank of matrices in $Z$ decomposition.
+First, all the methods need a parameter $r$, which is the rank of matrices in $Z$ decomposition.
 SGD needs also learning rate $\eta$ and $\lambda$.
 The iteration methods need maximum of possible iterations or a stop condition.
 
@@ -228,7 +228,8 @@ Below, we present a graph showing results.
 %  \captionof{figure}{Another figure}
 %  \label{fig:test2}
 \end{minipage}
-\caption{RMSE of SVD1 for basic imputation methods and $r = 1, \dots, 100$}
+\caption{RMSE of SVD1 for basic imputation methods and $r = 1, \dots, 100$ \\
+left picture: all methods, right picture: only methods using means}
 \end{figure}
 
 Let's denote that the results in the graph above are computed for the same split of data into train and test set.
@@ -236,7 +237,7 @@ Let's denote that the results in the graph above are computed for the same split
 That's why we can compare them.
 Also, these results can be much different if we take different split.
 
-Of course we look for the lowest RMSE obtained for each imputation method and the optimal $r$.
+Of course, we look for the lowest RMSE obtained for each imputation method and the optimal $r$.
 So below we present a table containing this information.
 \begin{table}[H]
 \begin{tabular}{c|ccccc}
@@ -270,7 +271,7 @@ As we can see on the graph above only $r$ between $0$ and $50$ give some reasona
 Below, we present graph showing results of optimization.
 
 \begin{figure}[H]
-\includegraphics[scale=0.6]{fig/svd1_r_w2}
+\includegraphics[scale=0.54]{fig/svd1_r_w2}
 \label{fig:figure}
 \caption{RMSE of SVD1 for weigthed imputation method for different $\alpha$ and $r$}
 \end{figure}
@@ -303,6 +304,10 @@ So we consider 20 different splits and the results are as follows
 \end{itemize}
 \textbf{So $\alpha = 0.41$ and $r = 13$ are the parameters we use in our method SVD1 with weighted means as the imputation method.}
 
+If we assume that the optimal data for this method is the one that is possibly the closest to real values, then we can make some conclusions about our data.
+In columns, we keep indexes of movies, and we scale column means by $\alpha$.
+Since our $\alpha$ is less than 0.5, then it can suggest that the mean of the ratings of our user has greater impact on his rating than the mean of the rating of the movie.
+
 
 
 
@@ -321,12 +326,12 @@ on the data filled with weighted means with $\alpha = \frac{1}{2}$.
 Below we present the graph with results.
 
 \begin{figure}[H]
-    \includegraphics[scale=0.55]{svd2_stop2}
+    \includegraphics[scale=0.54]{svd2_stop2}
     \caption{RMSE of SVD2 for weigthed imputation method with $\alpha = \frac{1}{2}$ for different $r$ and $\varepsilon$}
 \end{figure}
 
 The minimum of RMSE on the graph above is taken for $r=9$ and $\varepsilon = 0.0086$.
-So we decided to take $\vaepsilon = 0.0086$ in this method.
+So we decided to take $\varepsilon = 0.0086$ in this method.
 
 
 \subsubsection*{Optimizing $r$}
@@ -346,14 +351,14 @@ So first we present a graph showing dependence of RMSE on $r$ and on the imputat
 %  \captionof{figure}{Another figure}
 %  \label{fig:test2}
 \end{minipage}
-\caption{RMSE of SVD2 for basic imputation methods and $r = 1, \dots, 100$}
+\caption{RMSE of SVD2 for basic imputation methods and $r = 1, \dots, 100$\\
+left picture: all methods, right picture: only methods using means}
 \end{figure}
 
 Comparing it with analogous graph for SVD1 we observe bigger ,,jumps'' for imputation methods using global means and row means.
 And for these methods best RMSEs are improved.
 But after jumps the graph is very similar to the previous one - results and trends are similar.
 In case of imputation methods with column means and weighted means doesn't look like the trajectories are changed much.
-%\tami{tutaj, że te wykresy są takie bardziej skaczące, ale generalnie trendy są te same}
 
 Now we present a table showing the best $r$ and RMSE for every imputation method.
 \begin{table}[H]
@@ -369,14 +374,13 @@ RMSE & 2.7789 & 0.9420 & 0.9425 & 0.8749 & 0.8778 \\
 Firstly, we can observe that SVD2 improved the results of SVD1.
 We expected that since it is SVD1 just performed many times.
 So every result is smaller, differences between results are also smaller, but the order which methods are better or worse stayed the same.
-
-We can observe again that only $r$ between 0 and 50 gives reasonable results.
+Also, similarly as in previous case only $r$ between 0 and 50 gives reasonable results.
 Though the best $r$ chosen by SVD2 in all cases differ a lot from $r$ chosen by SVD1.
 
 \subsubsection*{Optimizing $\alpha$}
 Moving on to the weighted imputation method, we present a graph showing the results of optimization with respect to $\alpha$ and $r$.
 \begin{figure}[H]
-\includegraphics[scale = 0.6]{svd2_r_w2}
+\includegraphics[scale = 0.54]{svd2_r_w2}
 \caption{RMSE of SVD2 for weigthed imputation method for different $\alpha$ and $r$}
 \end{figure}
 The graph differs a lot from the analogous graph for SVD1.
@@ -426,16 +430,15 @@ So firstly we present a graph showing dependence of RMSE on $r$ and on the imput
 %  \captionof{figure}{Another figure}
 %  \label{fig:test2}
 \end{minipage}
-\caption{RMSE of NMF for basic imputation methods and $r = 1, \dots, 100$}
+\caption{RMSE of NMF for basic imputation methods and $r = 1, \dots, 100$\\
+left picture: all methods, right picture: only methods using means}
 \end{figure}
 
 Comparing this graph to the graph for SVDs we observe that the previous graphs where smoother.
 This time trajectories oscillate a lot, which means that for similar $r$ it gives quite different RMSE.
 So this method seem more unstable than the previous ones.
-
-What's more, here it is not so obvious where to look for optimal $r$.
+Also here it is not so obvious where to look for optimal $r$.
 For instance for imputation method with weighted means RMSE don't grow much with greater $r$.
-
 Nevertheless, the order of methods (so which one is the best and so on) is the same.
 
 Below we also present a table with the lowest RMSE for every imputation method and the parameter $r$ that gave it.
@@ -457,7 +460,7 @@ The RMSEs are very similar to those obtained using SVD1.
 Now we perform the optimization with respect to $\alpha$ and $r$ and present a graph showing the results.
 
 \begin{figure}[H]
-\includegraphics[scale = 0.6]{nmf_r_w2}
+\includegraphics[scale = 0.54]{nmf_r_w2}
 \caption{RMSE of NMF for weigthed imputation method for different $\alpha$ and $r$}
 \end{figure}
 
@@ -480,9 +483,8 @@ $\alpha$ &  $r$ &     RMSE \\
 \end{table}
 
 This time something unusual happened, two far values of $r$ gave very close RMSEs.
-\tami{ważne wnioski, że te r są takie różne, a wyniki bardzo bliskie}
-
-After repeating this optimization for 20 different splits we get that:
+After repeating this optimization for 20 different splits we get similar issue.
+The results after repetition are:
 \begin{itemize}
     \item the mean value of the best $(\alpha, r)$ is $(0.393, 32.25)$,
     \item the median of the best $(\alpha, r)$ is $(0.39, 37)$,
@@ -494,7 +496,7 @@ After repeating this optimization for 20 different splits we get that:
 
 
 \subsection*{SGD}
-In case of this method we have to set parameters $r$, $\eta$ and $\lambda$, but also set some stop condition.
+In case of this method we have to set parameters $r$, $\eta$ and $\lambda$, but also set a stop condition and starting point.
 
 \subsubsection*{Stop condition}
 We chose to use a similar stop condition as in the case of SVD2.
@@ -504,40 +506,30 @@ This time we used different norm less time-consuming, so $\| \cdot \|$ is $L^1$ 
 Performing similar analysis as in the case of SVD2 this time we decided to use as small $\varepsilon$ as possible so that it can be computed.
 So in this case $\varepsilon = 10^{-11}$.
 
-\subsubsection*{Optimizing $r$, $\eta$ and $\lambda$}
-Then we performed optimization with respect to $r$, $\eta$ and $\lambda$.
-The result are as follows \tami{...}
+\subsubsection*{Starting point}
+We take such $W_0$ and $H_0$ that $W_{0} H_0$ was the matrix with all elements equal to global mean of rating from train set.
 
-So $r=5$, $\eta = 0.007$ and $\lambda = 0.01$ are parameters we use in our SGD.}
+\subsubsection*{Optimizing $r$, $\eta$ and $\lambda$}
+Now we perform the optimization of RMSE with respect to $r$, $\eta$ and $\lambda$.
+The results are that optimal parameters are $r=5$, $\eta = 0.007$ and $\lambda = 0.01$.
+
+\textbf{So $r=5$, $\eta = 0.007$ and $\lambda = 0.01$ are parameters we use in our SGD.}
 
 %$5\cdot 10^{-10}$, faktyczna- $10^{-11}$(norma $L_1$)
 %$r = 5$
 %$\lambda = 0.01$
 %$\eta = 0.007$
 
-%\begin{figure}[H]
-%\centering
-%\begin{minipage}{.5\textwidth}
-%  \centering
-%  \includegraphics[scale=0.43]{svd1_1}
-%%  \captionof{figure}{A figure}
-%%  \label{fig:test1}
-%\end{minipage}%
-%\begin{minipage}{.5\textwidth}
-%  \centering
-%  \includegraphics[scale=0.43]{svd1_2}
-%%  \captionof{figure}{Another figure}
-%%  \label{fig:test2}
-%\end{minipage}
-%\end{figure}
 
 
 
-\section{}
 
 \section{Results}
 
-Since in columns we keep indexes of movies, it means that our filled data take a bit more information from user ratings mean than from the movie ratings mean.
-That is probably logical \tami{...}
+To conclude, we present results of our methods for the parameters set above.
+
+
+Let's mention that we tried to combine those methods.
+To be presice
 
 \end{document}

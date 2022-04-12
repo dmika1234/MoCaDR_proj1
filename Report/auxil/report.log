@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.3.10)  12 APR 2022 11:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.3.10)  12 APR 2022 17:55
 entering extended mode
 **./report.tex
 (report.tex
@@ -393,11 +393,11 @@ Package caption Info: End \AtBeginDocument code.
 LaTeX Warning: No \author given.
 
 [1{C:/Users/admin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (19.25575pt too wide) in paragraph at lines 114--115
-[]\T1/cmr/m/n/10.95 let $[] \OT1/cmr/m/n/10.95 := \OML/cmm/m/it/10.95 w[] \OMS/
-cmsy/m/n/10.95   \OML/cmm/m/it/10.95  \OMS/cmsy/m/n/10.95  []$ \T1/cmr/m/n/10
-.95 and $[] \OT1/cmr/m/n/10.95 := \OML/cmm/m/it/10.95 h[] \OMS/cmsy/m/n/10.95  
- \OML/cmm/m/it/10.95  \OMS/cmsy/m/n/10.95  []$\T1/cmr/m/n/10.95 , 
+Overfull \hbox (13.17241pt too wide) in paragraph at lines 114--115
+[]\T1/cmr/m/n/10.95 let $[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 w[] \OMS/c
+msy/m/n/10.95   \OML/cmm/m/it/10.95  \OMS/cmsy/m/n/10.95  []$ \T1/cmr/m/n/10.
+95 and $[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 h[] \OMS/cmsy/m/n/10.95   \
+OML/cmm/m/it/10.95  \OMS/cmsy/m/n/10.95  []$\T1/cmr/m/n/10.95 , 
  []
 
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
@@ -491,40 +491,34 @@ File: ./fig/svd2_r_w2.png Graphic file (type png)
 <use ./fig/svd2_r_w2.png>
 Package pdftex.def Info: ./fig/svd2_r_w2.png  used on input line 378.
 (pdftex.def)             Requested size: 293.14745pt x 229.00732pt.
- [8 <./fig/svd2_r_w2.png>]
-<./fig/nmf_1.png, id=60, 575.9919pt x 335.3328pt>
-File: ./fig/nmf_1.png Graphic file (type png)
-<use ./fig/nmf_1.png>
-Package pdftex.def Info: ./fig/nmf_1.png  used on input line 419.
-(pdftex.def)             Requested size: 270.905pt x 157.719pt.
-<./fig/nmf_2.png, id=61, 423.5022pt x 335.3328pt>
-File: ./fig/nmf_2.png Graphic file (type png)
-<use ./fig/nmf_2.png>
-Package pdftex.def Info: ./fig/nmf_2.png  used on input line 425.
-(pdftex.def)             Requested size: 171.99922pt x 136.18767pt.
-
-Overfull \hbox (12.8996pt too wide) in paragraph at lines 417--429
- []$[]$$[]$ 
- []
-
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9]
-<./fig/nmf_r_w2.png, id=65, 485.56406pt x 379.4175pt>
+ [8]
+[9 <./fig/svd2_r_w2.png>]
+<./fig/nmf_1.png, id=63, 575.9919pt x 335.3328pt>
+File: ./fig/nmf_1.png Graphic file (type png)
+<use ./fig/nmf_1.png>
+Package pdftex.def Info: ./fig/nmf_1.png  used on input line 418.
+(pdftex.def)             Requested size: 270.905pt x 157.719pt.
+<./fig/nmf_2.png, id=64, 423.5022pt x 335.3328pt>
+File: ./fig/nmf_2.png Graphic file (type png)
+<use ./fig/nmf_2.png>
+Package pdftex.def Info: ./fig/nmf_2.png  used on input line 424.
+(pdftex.def)             Requested size: 171.99922pt x 136.18767pt.
+
+Overfull \hbox (12.8996pt too wide) in paragraph at lines 416--428
+ []$[]$$[]$ 
+ []
+
+[10 <./fig/nmf_1.png> <./fig/nmf_2.png>]
+<./fig/nmf_r_w2.png, id=70, 485.56406pt x 379.4175pt>
 File: ./fig/nmf_r_w2.png Graphic file (type png)
 <use ./fig/nmf_r_w2.png>
-Package pdftex.def Info: ./fig/nmf_r_w2.png  used on input line 460.
+Package pdftex.def Info: ./fig/nmf_r_w2.png  used on input line 459.
 (pdftex.def)             Requested size: 291.34068pt x 227.65225pt.
-
-[10 <./fig/nmf_1.png> <./fig/nmf_2.png>] [11 <./fig/nmf_r_w2.png>]
-report.tex:511: Too many }'s.
-l.511 ... 0.01$ are parameters we use in our SGD.}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-[12] (C:/Users\admin\PycharmProjects\MoCaDR_proj1\Report\out\report.aux)
+ [11 <./fig/nmf_r_w2.png>] [12]
+(C:/Users\admin\PycharmProjects\MoCaDR_proj1\Report\out\report.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -559,7 +553,7 @@ amsfonts/cm/cmsy10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/admin/AppData/Local/Programs/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 Output written on C:/Users\admin\PycharmProjects\MoCaDR_proj1\Report\out\report
-.pdf (12 pages, 664631 bytes).
+.pdf (12 pages, 664764 bytes).
 PDF statistics:
  358 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

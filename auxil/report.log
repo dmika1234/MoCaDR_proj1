@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.3.10)  10 APR 2022 21:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.3.10)  12 APR 2022 22:00
 entering extended mode
 **./report.tex
 (report.tex
@@ -289,7 +289,7 @@ d-pdfmode.def"
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count197
 \l__pdf_internal_box=\box52
-) (C:/Users\admin\PycharmProjects\MoCaDR_proj1\auxil\report.aux)
+) (C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report.aux)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
@@ -380,58 +380,52 @@ Package caption Info: End \AtBeginDocument code.
 LaTeX Warning: No \author given.
 
 [1{C:/Users/admin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (19.25575pt too wide) in paragraph at lines 113--114
-[]\T1/cmr/m/n/10.95 let $[] \OT1/cmr/m/n/10.95 := \OML/cmm/m/it/10.95 w[] \OMS/
-cmsy/m/n/10.95   \OML/cmm/m/it/10.95  \OMS/cmsy/m/n/10.95  []$ \T1/cmr/m/n/10
-.95 and $[] \OT1/cmr/m/n/10.95 := \OML/cmm/m/it/10.95 h[] \OMS/cmsy/m/n/10.95  
- \OML/cmm/m/it/10.95  \OMS/cmsy/m/n/10.95  []$\T1/cmr/m/n/10.95 , 
- []
-
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
-27.
+28.
+
 ("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1cmss.fd"
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-[2] [3]
-<./fig/svd1_1.png, id=29, 575.9919pt x 335.3328pt>
+[2]
+<./fig/svd1_1.png, id=26, 575.9919pt x 335.3328pt>
 File: ./fig/svd1_1.png Graphic file (type png)
 <use ./fig/svd1_1.png>
-Package pdftex.def Info: ./fig/svd1_1.png  used on input line 216.
+Package pdftex.def Info: ./fig/svd1_1.png  used on input line 221.
 (pdftex.def)             Requested size: 270.905pt x 157.719pt.
-<./fig/svd1_2.png, id=31, 423.5022pt x 335.3328pt>
+<./fig/svd1_2.png, id=28, 423.5022pt x 335.3328pt>
 File: ./fig/svd1_2.png Graphic file (type png)
 <use ./fig/svd1_2.png>
-Package pdftex.def Info: ./fig/svd1_2.png  used on input line 222.
+Package pdftex.def Info: ./fig/svd1_2.png  used on input line 227.
 (pdftex.def)             Requested size: 171.99922pt x 136.18767pt.
 
-Overfull \hbox (12.8996pt too wide) in paragraph at lines 214--226
+Overfull \hbox (12.8996pt too wide) in paragraph at lines 219--232
  []$[]$$[]$ 
  []
 
-[4 <./fig/svd1_1.png> <./fig/svd1_2.png>]
-<fig/svd1_r_w2.png, id=37, 481.8pt x 382.42876pt>
+[3]
+<fig/svd1_r_w2.png, id=32, 481.8pt x 382.42876pt>
 File: fig/svd1_r_w2.png Graphic file (type png)
 <use fig/svd1_r_w2.png>
-Package pdftex.def Info: fig/svd1_r_w2.png  used on input line 268.
-(pdftex.def)             Requested size: 289.08221pt x 229.45901pt.
- [5 <./fig/svd1_r_w2.png>]
+Package pdftex.def Info: fig/svd1_r_w2.png  used on input line 274.
+(pdftex.def)             Requested size: 260.16812pt x 206.50844pt.
+ [4 <./fig/svd1_1.png> <./fig/svd1_2.png>] [5 <./fig/svd1_r_w2.png>]
 <./fig/svd2_stop2.png, id=42, 487.06969pt x 382.42876pt>
 File: ./fig/svd2_stop2.png Graphic file (type png)
 <use ./fig/svd2_stop2.png>
-Package pdftex.def Info: ./fig/svd2_stop2.png  used on input line 312.
-(pdftex.def)             Requested size: 267.88914pt x 210.33646pt.
+Package pdftex.def Info: ./fig/svd2_stop2.png  used on input line 329.
+(pdftex.def)             Requested size: 263.0137pt x 206.50844pt.
 <./fig/svd2_1.png, id=43, 575.9919pt x 335.3328pt>
 File: ./fig/svd2_1.png Graphic file (type png)
 <use ./fig/svd2_1.png>
-Package pdftex.def Info: ./fig/svd2_1.png  used on input line 323.
+Package pdftex.def Info: ./fig/svd2_1.png  used on input line 344.
 (pdftex.def)             Requested size: 270.905pt x 157.719pt.
 <./fig/svd2_2.png, id=44, 423.5022pt x 335.3328pt>
 File: ./fig/svd2_2.png Graphic file (type png)
 <use ./fig/svd2_2.png>
-Package pdftex.def Info: ./fig/svd2_2.png  used on input line 329.
+Package pdftex.def Info: ./fig/svd2_2.png  used on input line 350.
 (pdftex.def)             Requested size: 171.99922pt x 136.18767pt.
 
-Overfull \hbox (12.8996pt too wide) in paragraph at lines 321--333
+Overfull \hbox (12.8996pt too wide) in paragraph at lines 342--355
  []$[]$$[]$ 
  []
 
@@ -439,71 +433,69 @@ Overfull \hbox (12.8996pt too wide) in paragraph at lines 321--333
 <./fig/svd2_r_w2.png, id=49, 488.57532pt x 381.67593pt>
 File: ./fig/svd2_r_w2.png Graphic file (type png)
 <use ./fig/svd2_r_w2.png>
-Package pdftex.def Info: ./fig/svd2_r_w2.png  used on input line 358.
-(pdftex.def)             Requested size: 293.14745pt x 229.00732pt.
+Package pdftex.def Info: ./fig/svd2_r_w2.png  used on input line 383.
+(pdftex.def)             Requested size: 263.82674pt x 206.10193pt.
 
-Underfull \vbox (badness 2884) has occurred while \output is active []
+Underfull \vbox (badness 1067) has occurred while \output is active []
 
- [7 <./fig/svd2_1.png> <./fig/svd2_2.png>] [8 <./fig/svd2_r_w2.png>]
-<./fig/nmf_1.png, id=60, 575.9919pt x 335.3328pt>
+ [7 <./fig/svd2_1.png> <./fig/svd2_2.png>]
+<./fig/nmf_1.png, id=56, 575.9919pt x 335.3328pt>
 File: ./fig/nmf_1.png Graphic file (type png)
 <use ./fig/nmf_1.png>
-Package pdftex.def Info: ./fig/nmf_1.png  used on input line 396.
+Package pdftex.def Info: ./fig/nmf_1.png  used on input line 423.
 (pdftex.def)             Requested size: 270.905pt x 157.719pt.
-<./fig/nmf_2.png, id=61, 423.5022pt x 335.3328pt>
+<./fig/nmf_2.png, id=57, 423.5022pt x 335.3328pt>
 File: ./fig/nmf_2.png Graphic file (type png)
 <use ./fig/nmf_2.png>
-Package pdftex.def Info: ./fig/nmf_2.png  used on input line 402.
+Package pdftex.def Info: ./fig/nmf_2.png  used on input line 429.
 (pdftex.def)             Requested size: 171.99922pt x 136.18767pt.
 
-Overfull \hbox (12.8996pt too wide) in paragraph at lines 394--406
+Overfull \hbox (12.8996pt too wide) in paragraph at lines 421--434
  []$[]$$[]$ 
  []
 
+[8 <./fig/svd2_r_w2.png>]
 <./fig/nmf_r_w2.png, id=62, 485.56406pt x 379.4175pt>
 File: ./fig/nmf_r_w2.png Graphic file (type png)
 <use ./fig/nmf_r_w2.png>
-Package pdftex.def Info: ./fig/nmf_r_w2.png  used on input line 432.
-(pdftex.def)             Requested size: 291.34068pt x 227.65225pt.
-[9 <./fig/nmf_1.png> <./fig/nmf_2.png>] [10 <./fig/nmf_r_w2.png>] [11]
-(C:/Users\admin\PycharmProjects\MoCaDR_proj1\auxil\report.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+Package pdftex.def Info: ./fig/nmf_r_w2.png  used on input line 463.
+(pdftex.def)             Requested size: 262.20068pt x 204.88239pt.
+ [9 <./fig/nmf_1.png> <./fig/nmf_2.png>] [10 <./fig/nmf_r_w2.png>] [11] (C:/Use
+rs\admin\PycharmProjects\MoCaDR_proj1\out\report.aux) ) 
 Here is how much of TeX's memory you used:
- 6291 strings out of 481556
- 91184 string characters out of 2913869
- 336989 words of memory out of 3000000
- 21278 multiletter control sequences out of 15000+200000
- 552539 words of font info for 78 fonts, out of 3000000 for 9000
+ 6278 strings out of 481556
+ 91024 string characters out of 2913869
+ 337983 words of memory out of 3000000
+ 21271 multiletter control sequences out of 15000+200000
+ 550484 words of font info for 71 fonts, out of 3000000 for 9000
  1302 hyphenation exceptions out of 8191
- 39i,10n,43p,815b,321s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
-ecss1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
-ec/dpi600\ecrm0800.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
-/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts
-/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\admin\AppData\Local\MiKTeX
-\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\admin\AppData\Lo
-cal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\admin\
-AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Us
-ers\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.
-pk><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmex10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmmi10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/admin/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/admin/AppData/
-Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ad
-min/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><
-C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmr8.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/admin/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+ 39i,10n,43p,815b,308s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\admin\AppData
+\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1000.pk> <C:\Users\adm
+in\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:
+\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecti10
+00.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi
+600\ecbx1000.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknap
+pen/ec/dpi600\eccc1000.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/lj
+four/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\f
+onts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\admin\AppData\Local\Mi
+KTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk><C:/Users/admin/AppData
+/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/
+admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.p
+fb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmmi7.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmmib10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/admin/AppData/Local/Programs
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/admin/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/admin/
+AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
+/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+msy5.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmsy7.pfb>
 Output written on C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report.pdf (1
-1 pages, 660324 bytes).
+1 pages, 662002 bytes).
 PDF statistics:
- 357 PDF objects out of 1000 (max. 8388607)
+ 354 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

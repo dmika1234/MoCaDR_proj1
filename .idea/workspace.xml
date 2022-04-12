@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Report" />
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="Report">
+      <change afterPath="$PROJECT_DIR$/out/report.aux" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/report1.aux" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/report1.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/report1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/report1.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/auxil/report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/auxil/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/out/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/report.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/out/report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/report.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/report.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Report/report.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxil/report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/auxil/report.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxil/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/auxil/report.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/out/report.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/out/report.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/out/report.synctex.gz" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,8 +94,8 @@
         <compiler-arguments />
         <envs />
         <main-file>$PROJECT_DIR$/Report/report.tex</main-file>
-        <output-path>$PROJECT_DIR$/Report/out</output-path>
-        <auxil-path>$PROJECT_DIR$/Report/auxil</auxil-path>
+        <output-path>$PROJECT_DIR$/out</output-path>
+        <auxil-path>$PROJECT_DIR$/auxil</auxil-path>
         <compile-twice>false</compile-twice>
         <output-format>PDF</output-format>
         <latex-distribution>MIKTEX</latex-distribution>
@@ -88,26 +105,25 @@
       </texify>
       <method v="2" />
     </configuration>
-    <configuration name="compute_results3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="MoCaDR_proj1" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/compute_results3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+    <configuration name="report1" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" temporary="true">
+      <texify>
+        <compiler>PDFLATEX</compiler>
+        <compiler-path />
+        <sumatra-path />
+        <pdf-viewer>SUMATRA</pdf-viewer>
+        <viewer-command />
+        <compiler-arguments />
+        <envs />
+        <main-file />
+        <output-path>$PROJECT_DIR$/out</output-path>
+        <auxil-path>{projectDir}/auxil</auxil-path>
+        <compile-twice>false</compile-twice>
+        <output-format>PDF</output-format>
+        <latex-distribution>MIKTEX</latex-distribution>
+        <has-been-run>true</has-been-run>
+        <bib-run-config>[]</bib-run-config>
+        <makeindex-run-config>[]</makeindex-run-config>
+      </texify>
       <method v="2" />
     </configuration>
     <configuration name="compute_results_sgd_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -199,9 +215,9 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="LaTeX.report1" />
       <item itemvalue="LaTeX.report" />
       <item itemvalue="Python.manipulating_datasets" />
-      <item itemvalue="Python.compute_results3" />
       <item itemvalue="Python.performing_algorithms" />
       <item itemvalue="Python.splitting_data" />
       <item itemvalue="Python.compute_results_sgd_test" />
@@ -209,10 +225,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="LaTeX.report" />
+        <item itemvalue="LaTeX.report1" />
         <item itemvalue="Python.compute_results_sgd_test" />
         <item itemvalue="Python.splitting_data" />
         <item itemvalue="Python.performing_algorithms" />
-        <item itemvalue="Python.compute_results3" />
       </list>
     </recent_temporary>
   </component>
@@ -270,6 +286,10 @@
       <workItem from="1649617160604" duration="489000" />
       <workItem from="1649690370612" duration="139000" />
       <workItem from="1649690526520" duration="5389000" />
+      <workItem from="1649762949341" duration="50000" />
+      <workItem from="1649778482653" duration="239000" />
+      <workItem from="1649778779545" duration="1355000" />
+      <workItem from="1649787253180" duration="4274000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -481,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649594938450</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Report">
+      <created>1649762971355</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1649762971355</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

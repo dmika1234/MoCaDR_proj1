@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.3.10)  12 APR 2022 18:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.3.10)  12 APR 2022 18:00
 entering extended mode
-**./report.tex
-(report.tex
+**./report1.tex
+(report1.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14>
 ("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amscls\amsart.cls"
@@ -289,8 +289,8 @@ d-pdfmode.def"
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count197
 \l__pdf_internal_box=\box52
-) (C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report.aux)
-\openout1 = `report.aux'.
+) (C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report1.aux)
+\openout1 = `report1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
 LaTeX Font Info:    ... okay on input line 44.
@@ -392,7 +392,29 @@ LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
 ("C:\Users\admin\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1cmss.fd"
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-[2] [3]
+[2]
+report1.tex:156: Missing { inserted.
+<to be read again> 
+                   ^
+l.156 ... a distance between matrices $Z$ and $Z^'
+                                                  $ on only elements from $\...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+report1.tex:156: Missing } inserted.
+<inserted text> 
+                }
+l.156 ...a distance between matrices $Z$ and $Z^'$
+                                                   on only elements from $\m...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+[3]
 <./fig/svd1_1.png, id=29, 575.9919pt x 335.3328pt>
 File: ./fig/svd1_1.png Graphic file (type png)
 <use ./fig/svd1_1.png>
@@ -424,6 +446,17 @@ Package pdftex.def Info: ./fig/svd2_stop2.png  used on input line 324.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
+report1.tex:329: Undefined control sequence.
+<recently read> \vaepsilon 
+                           
+l.329 So we decided to take $\vaepsilon
+                                        = 0.0086$ in this method.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <./fig/svd2_1.png, id=46, 575.9919pt x 335.3328pt>
 File: ./fig/svd2_1.png Graphic file (type png)
 <use ./fig/svd2_1.png>
@@ -472,39 +505,39 @@ File: ./fig/nmf_r_w2.png Graphic file (type png)
 Package pdftex.def Info: ./fig/nmf_r_w2.png  used on input line 459.
 (pdftex.def)             Requested size: 291.34068pt x 227.65225pt.
  [11 <./fig/nmf_r_w2.png>] [12]
-(C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report.aux) ) 
+(C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report1.aux) ) 
 Here is how much of TeX's memory you used:
- 6290 strings out of 481556
- 91124 string characters out of 2913869
- 336982 words of memory out of 3000000
- 21278 multiletter control sequences out of 15000+200000
+ 6291 strings out of 481556
+ 91144 string characters out of 2913869
+ 336985 words of memory out of 3000000
+ 21279 multiletter control sequences out of 15000+200000
  552539 words of font info for 78 fonts, out of 3000000 for 9000
  1302 hyphenation exceptions out of 8191
- 39i,10n,43p,815b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\admin\
-AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1095.pk> <C:\Us
-ers\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.
-pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600
-\ecti1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen
-/ec/dpi600\ecbx1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfou
-r/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\font
-s/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\admin\AppData\Local\MiKTe
-X\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\admin\AppData\L
-ocal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/admin/
-AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:
-/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmmi8.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmmib10.pfb><C:/Users/admin/AppData/Local/Programs/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/admin/AppData/Local/P
-rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/admin/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users
-/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmsy6.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmsy8.pfb>
-Output written on C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report.pdf (1
-2 pages, 664770 bytes).
+ 39i,10n,43p,816b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\admin
+\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1095.pk> <C:\U
+sers\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800
+.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi60
+0\ecti1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappe
+n/ec/dpi600\ecbx1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fonts/pk/ljfo
+ur/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\admin\AppData\Local\MiKTeX\2.9\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\admin\AppData\Local\MiKT
+eX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\admin\AppData\
+Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/admin
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C
+:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmmi8.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/admin/AppData/Local/Programs/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/admin/AppData/Local/
+Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/admin/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/User
+s/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmsy6.pfb><C:/Users/admin/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmsy8.pfb>
+Output written on C:/Users\admin\PycharmProjects\MoCaDR_proj1\out\report1.pdf (
+12 pages, 664764 bytes).
 PDF statistics:
  358 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
