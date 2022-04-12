@@ -50,8 +50,8 @@
 \subsection*{Statement of the problem}
 
 In this task we have to create a movie recommender system for our users.
-\domi{We have users who rated some movies}.
-Of course, not every user rated every movie and it is our task to fill those gaps.
+We have users who rated some movies.
+Of course, not every user rated every movie, and it is our task to fill those gaps.
 So if one user hasn't seen one movie, we want to predict how he would like it.
 
 
@@ -71,7 +71,8 @@ Our task is to tune parameters of those methods and try to get the best possible
 
 \subsection*{Description of methods}
 
-In this problem, we use different methods which are subset of PCA methods. They are often used for dimensionality reduction and matrix factorization.
+In this problem, we use different methods which are subset of PCA methods.
+They are often used for dimensionality reduction and matrix factorization.
 
 \subsubsection*{SVD1}
 
@@ -132,30 +133,27 @@ In element $(i,j)$ we put the rate of the user $i$ of the movie $j$.
 If the user $i$ haven't rated the movie $j$ we leave the element empty.
 
 
-\subsection*{Performing methods}
+\subsection*{Quality of the system}
+We want somehow judge how well each method work, and which one works the best.
+So before performing algorithms we split our data into two parts: train set and test set.
+The train set will be used to build the programs.
+And the test set is intended to evaluate how our programs work.
 
-\tami{??tutaj jakaś intuicja po co dzielić dane??}
+Of course, we don't want to construct optimal programs for only one split of data, we want it to be as good as possible for every data.
+So we will have to repeatedly split our data, find the best possible model for every split, and then average them somehow.
 
-So to be able to evaluate the quality of the programs we split our data to two parts: train set and test set.
-The train set is used to build the programs.
-And the test set is used to evaluate how our programs work.
+To give our programs enough information about every user we split the data so that the train set contains 90\% of ratings of each user (and the test set the remaining ones).
 
-
-To give our programs enough information about every user we split the data so that the train set contain 90\% of ratings of each user (and the test set the remaining ones).
-\tami{tutaj coś o tym, że będziemy to powtarzać??}
+How exactly we want to evaluate how good our program is?
+We will use the distance measure called \textbf{root-mean square error} (RMSE).
 
 Let call the matrix containing the data from the train set as $\boldsymbol{Z}$ and the matrix containing the data from the test set as $\boldsymbol{T}$.
-
-\tami{??In SVD2 we make a correction -- czy to tu}
-
-\subsection*{Quality of the system}
-
 Assume that our algorithm return a matrix $\boldsymbol{Z}^{'}$.
-Then the quality of our programs is computed as \textbf{root-mean square error}
+Then the quality of our programs is computed as
 \[\textsf{RMSE} =
 \sqrt{\frac{1}{|\mathcal{T}|} \sum_{(u,m) \in \mathcal{T}} \left(\boldsymbol{Z}^{'}[u,m] - \boldsymbol{T}[u,m] \right)^2}\]
 where $\mathcal{T}$ contains pairs $(u,m)$ from test set.
-
+So it is a distance between matrices $Z$ and $Z^'$ on only elements from $\mathcal{T}$.
 
 \subsection*{Imputing the missing data}
 
@@ -171,9 +169,16 @@ We decided to impute the data in 5 different ways, we replace missing values wit
 \end{itemize}
 
 We may expect that the closer to reality we impute the missing data, the better results we will obtain.
-\tami{tutaj przemyślenia na temat tego czemu niektóre metody działają lepiej i dlaczego}
+That's why we expect that filling missing data with 0 will give worse result than the rest methods.
+\tami{Similarly, probably since filling data with global mean doesn't differentiate the users or the movies}
 
+\subsection*{Performing methods}
 
+The first thing to do is to actually implement our methods.
+In case of SVD1 and NMF we just perform the method described in first section on the filled matrix $\boldsymbol{Z}$.
+SVD2 we also perform on the filled $\boldsymbol{Z}$ and in every iteration step we fill the elements from train set with real values.
+We make this correction, beacause \tami{...}
+SGD we perform only on values from train set.
 
 
 
@@ -186,7 +191,7 @@ First of all, all the methods need a parameter $r$, which is the rank of matrice
 SGD needs also learning rate $\eta$ and $\lambda$.
 The iteration methods need maximum of possible iterations or a stop condition.
 
-What's more, for all of our methods we want to choose optimal $\alpha$ in the data imputation method with weighted means.
+What's more, for the methods that need filled data we want to choose optimal parameter $\alpha$ in the imputation method with weighted means.
 
 
 
@@ -311,16 +316,17 @@ We are going to proceed as in SVD1 case, but before we have to choose some stop 
 We decided to use the stop condition of following form: if the difference of $Z$ obtained in previous step is enough close to $Z$ obtained in this step we stop the algorithm.
 Precisely, we stop algorithm if $\|Z_{n+1} - Z_n\| < \varepsilon$, where $\|\cdot\|$ is the Frobenius norm, $Z_n$ is the matrix obtained in $n$th step and $\varepsilon$ is a parameter to be set.
 
-To find optimal $\epsilon$ we perform an optimization with respect to $r$ and $\epsilon$
+To find optimal $\varepsilon$ we perform an optimization with respect to $r$ and $\varepsilon$
 on the data filled with weighted means with $\alpha = \frac{1}{2}$.
 Below we present the graph with results.
 
 \begin{figure}[H]
     \includegraphics[scale=0.55]{svd2_stop2}
-    \caption{RMSE of SVD2 for weigthed imputation method with $\alpha = \frac{1}{2}$ for different $r$ and $\epsilon$}
+    \caption{RMSE of SVD2 for weigthed imputation method with $\alpha = \frac{1}{2}$ for different $r$ and $\varepsilon$}
 \end{figure}
 
-\tami{tutaj}
+The minimum of RMSE on the graph above is taken for $r=9$ and $\varepsilon = 0.0086$.
+So we decided to take $\vaepsilon = 0.0086$ in this method.
 
 
 \subsubsection*{Optimizing $r$}
@@ -361,7 +367,8 @@ RMSE & 2.7789 & 0.9420 & 0.9425 & 0.8749 & 0.8778 \\
 \end{table}
 
 Firstly, we can observe that SVD2 improved the results of SVD1.
-Every result is smaller, differences are also smaller, but the order which methods are better or worse is the same.
+We expected that since it is SVD1 just performed many times.
+So every result is smaller, differences between results are also smaller, but the order which methods are better or worse stayed the same.
 
 We can observe again that only $r$ between 0 and 50 gives reasonable results.
 Though the best $r$ chosen by SVD2 in all cases differ a lot from $r$ chosen by SVD1.
@@ -372,11 +379,8 @@ Moving on to the weighted imputation method, we present a graph showing the resu
 \includegraphics[scale = 0.6]{svd2_r_w2}
 \caption{RMSE of SVD2 for weigthed imputation method for different $\alpha$ and $r$}
 \end{figure}
-
 The graph differs a lot from the analogous graph for SVD1.
 This time the minimum is taken for smaller $\alpha$ and smaller $r$.
-\tami{tutaj coś}
-
 To find exact values of minimum let's look at the results in table.
 
 \begin{table}[H]
@@ -391,8 +395,8 @@ $\alpha$ &  $r$ &     RMSE \\
 \end{tabular}
 \caption{5 lowest RMSE of SVD2 for weigthed imputation method and ($\alpha$, $r$) that gave them}
 \end{table}
-This time method did the best 5 results for the same $r$.
-Also in this case, the result are closer.
+This time method took the best 5 results for the same $r$.
+Also in this case, the differences between results are smaller.
 It is intuitive for iterative method because they usually converge to some specific model and that is why we get clear results.
 
 After repeating this optimization for 20 different splits we get that:
@@ -457,11 +461,10 @@ Now we perform the optimization with respect to $\alpha$ and $r$ and present a g
 \caption{RMSE of NMF for weigthed imputation method for different $\alpha$ and $r$}
 \end{figure}
 
-Comparing this graph to previuos analogous graphs this one is completely different.
-RMSE in here doen't grow much with growth of $r$.
-Similarly as in previuos graph for NMF, this graph oscillates a lot looking at the axis of $r$.
-
-To find where is the minimum of RMSE taken we have to look at the results in table.
+Comparing this graph to previous analogous graphs this one is completely different.
+RMSE in here doesn't grow much with growth of $r$.
+Similarly, as in previous graph for NMF, this graph oscillates a lot at the axis of $r$.
+To find where exactly is the minimum of RMSE taken we have to look at the results in table.
 
 \begin{table}[H]
 \begin{tabular}{cc|c}
@@ -476,6 +479,7 @@ $\alpha$ &  $r$ &     RMSE \\
 \caption{5 lowest RMSE of NMF for weigthed imputation method and ($\alpha$, $r$) that gave them}
 \end{table}
 
+This time something unusual happened, two far values of $r$ gave very close RMSEs.
 \tami{ważne wnioski, że te r są takie różne, a wyniki bardzo bliskie}
 
 After repeating this optimization for 20 different splits we get that:
@@ -490,10 +494,26 @@ After repeating this optimization for 20 different splits we get that:
 
 
 \subsection*{SGD}
-$5\cdot 10^{-10}$, faktyczna- $10^{-11}$(norma $L_1$)
-$r = 5$
-$\lambda = 0.01$
-$\eta = 0.007$
+In case of this method we have to set parameters $r$, $\eta$ and $\lambda$, but also set some stop condition.
+
+\subsubsection*{Stop condition}
+We chose to use a similar stop condition as in the case of SVD2.
+So we stop algorithm if $\|Z_{n+1} - Z_n\| < \varepsilon$, where $Z_n$ is the matrix obtained in $n$th step and $\varepsilon$ is a parameter to be set.
+This time we used different norm less time-consuming, so $\| \cdot \|$ is $L^1$ matrix norm.
+
+Performing similar analysis as in the case of SVD2 this time we decided to use as small $\varepsilon$ as possible so that it can be computed.
+So in this case $\varepsilon = 10^{-11}$.
+
+\subsubsection*{Optimizing $r$, $\eta$ and $\lambda$}
+Then we performed optimization with respect to $r$, $\eta$ and $\lambda$.
+The result are as follows \tami{...}
+
+So $r=5$, $\eta = 0.007$ and $\lambda = 0.01$ are parameters we use in our SGD.}
+
+%$5\cdot 10^{-10}$, faktyczna- $10^{-11}$(norma $L_1$)
+%$r = 5$
+%$\lambda = 0.01$
+%$\eta = 0.007$
 
 %\begin{figure}[H]
 %\centering
