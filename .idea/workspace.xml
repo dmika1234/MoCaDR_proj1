@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="computing results for sgd and correcting plots">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_04_2022_19_49__Changes_.xml" beforeDir="false" />
+    <list default="true" id="62d33fe8-2ec7-4d31-9bba-7fa36bc76fcb" name="Changes" comment="sgd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/auxil/report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/auxil/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/Report/auxil/report.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/out/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/report.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/out/report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Report/out/report.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report/report.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Report/report.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recom_system_309585_306393.py" beforeDir="false" afterPath="$PROJECT_DIR$/recom_system_309585_306393.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presenting_results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/presenting_results.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -279,6 +273,7 @@
       <workItem from="1649617160604" duration="489000" />
       <workItem from="1649690370612" duration="139000" />
       <workItem from="1649690526520" duration="5389000" />
+      <workItem from="1649758048287" duration="748000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1646775274557</created>
@@ -490,7 +485,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649594938450</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="sgd">
+      <created>1649747952916</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1649747952916</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -524,7 +526,8 @@
     <MESSAGE value="Presenting results for NMF" />
     <MESSAGE value="computing results" />
     <MESSAGE value="computing results for sgd and correcting plots" />
-    <option name="LAST_COMMIT_MESSAGE" value="computing results for sgd and correcting plots" />
+    <MESSAGE value="sgd" />
+    <option name="LAST_COMMIT_MESSAGE" value="sgd" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$splitting_manipulating_data.coverage" NAME="splitting_manipulating_data Coverage Results" MODIFIED="1648627073782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
