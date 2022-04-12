@@ -261,7 +261,7 @@ if alg == 'SGD':
     W = np.matrix(np.full((n, r), np.sqrt(global_mean) / np.sqrt(r)), dtype=np.longdouble)
     H = np.matrix(np.full((r, d), np.sqrt(global_mean) / np.sqrt(r)), dtype=np.longdouble)
     res = perform_sgd(train_df, test_array, init_W=W, init_H=H, r=r, lada=0.01,
-                      learning_rate=0.007, max_iter=500000, min_diff=1e-12)[0]
+                      learning_rate=0.007, max_iter=500000, min_diff=1e-11)[0]
 
 f = open(results_file, "w")
 f.write(str(res))
