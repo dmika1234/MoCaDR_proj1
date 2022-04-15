@@ -19,7 +19,6 @@
 \usepackage{multirow}
 \usepackage{graphics}
 \usepackage{graphicx}
-\usepackage{caption}
 \usepackage{array}
 \usepackage{xcolor}
 \usepackage{subcaption}
@@ -50,7 +49,7 @@
 \subsection*{Statement of the problem}
 
 In this task we have to create a movie recommender system for our users.
-We have users who rated some movies.
+We have dataset containing some movies, some users and information how the users rated some of the movies.
 Of course, not every user rated every movie, and it is our task to fill those gaps.
 So if one user hasn't seen one movie, we want to predict how he would like it.
 
@@ -64,12 +63,12 @@ So if one user hasn't seen one movie, we want to predict how he would like it.
 
 For this purpose we build few algorithms using different methods of predicting.
 %These methods are described in ...
-Of course different methods will give us different results (errors).
+Of course different methods will give us different results.
 Our task is to tune parameters of those methods and try to get the best possible ratings prediction.
 
 
 
-\subsection*{Description of methods}
+\subsection*{Description of the methods}
 
 In this problem, we use different methods which are subset of PCA methods.
 They are often used for dimensionality reduction and matrix factorization.
@@ -106,7 +105,8 @@ Let's assume that we have only some values of $z_{ij}$ and let call those pairs 
 We look for
 \[\argmin_{W, H} \sum_{(i,j)\in I} (z_{ij} - w_i^T h_j)^2 + \lambda(\|w_i^T\|^2 + \|h_j\|^2),\]
 where $h_j$ is $j$-th column of $h$, $w_i^T$ is $i$-th row of $W$ and $\lambda > 0$ is a parameter.
-So roughly speaking we look for $W$ and $H$ such that $Z \approx WH$ for elements known in $Z$, but also we want $W$ and $H$ to have quite small values (it gives us the part of sum with parameter $\lambda$).
+So we look for $W$ and $H$ such that $Z \approx WH$ for elements known in $Z$, which is ensured by limiting first part of the sum, and
+we want $W$ and $H$ to have quite small values, which is given by limiting the rest of the sum.
 
 It is an iterative method and work this way: set some $W = W_0$ and $H = H_0$ ($W_0$, $H_0$ are called a \textit{starting point}),
 \begin{enumerate}
@@ -116,15 +116,14 @@ It is an iterative method and work this way: set some $W = W_0$ and $H = H_0$ ($
     \item take $W = \tilde{W}$ and $H = \tilde{H}$,
 \end{enumerate}
 and repeat.
-
-$\eta$ is a parameter that tells us how big steps we want to do.
+The $\eta$ is a parameter that tells us how big steps we want to do.
 The method stops after a certain number of steps, or it can be given a stop condition.
 
 \section{Implementation}
 
 \subsection*{Description of the data}
 
-Our data contains information 100837 ratings - exactly 610 users rated 9724 movies.
+Our data contains information 610 users, 9724 movies and 100837 ratings.
 The columns are: \textsf{userId} (integer), \textsf{movieId} (integer) and \textsf{rating} (integer), where \textsf{userId} is a unique user id and \textsf{movieId} is a unique movie id.
 
 
@@ -135,10 +134,10 @@ If the user $i$ haven't rated the movie $j$ we leave the element empty.
 
 \subsection*{Quality of the system}
 We want somehow judge how well each method work, and which one works the best.
+
 So before performing algorithms we split our data into two parts: train set and test set.
 The train set will be used to build the programs.
 And the test set is intended to evaluate how our programs work.
-
 Of course, we don't want to construct optimal programs for only one split of data, we want it to be as good as possible for every data.
 So we will have to repeatedly split our data, find the best possible model for every split, and then average them somehow.
 
@@ -146,7 +145,6 @@ To give our programs enough information about every user we split the data so th
 
 How exactly we want to evaluate how good our program is?
 We will use the distance measure called \textbf{root-mean square error} (RMSE).
-
 Let call the matrix containing the data from the train set as $\boldsymbol{Z}$ and the matrix containing the data from the test set as $\boldsymbol{T}$.
 Assume that our algorithm return a matrix $\boldsymbol{Z}^{'}$.
 Then the quality of our programs is computed as
@@ -158,7 +156,6 @@ So it is a distance between matrices $Z$ and $Z^{'}$ on only elements from $\mat
 \subsection*{Imputing the missing data}
 
 Since three of our methods (SVD1, SVD2 and NMF) are given a full matrix $\boldsymbol{Z}$ then they need the missing data to be imputed before performing.
-
 We decided to impute the data in 5 different ways, we replace missing values with:
 \begin{itemize}
     \item 0,
@@ -167,17 +164,15 @@ We decided to impute the data in 5 different ways, we replace missing values wit
     \item row means,
     \item weighted row and column mean ($\alpha \cdot \text{\textsf{col\_mean}} + (1-\alpha) \cdot \text{\textsf{row\_mean}}$, where $\alpha>0$ is a parameter).
 \end{itemize}
-
 We may expect that the closer to reality we impute the missing data, the better results we will obtain.
 That's why we expect that filling missing data with 0 will give worse result than the rest methods.
 Similarly, probably methods using row means, column means or weighted means will give better results than using the global mean since they differentiate the users or the movies.
 
 \subsection*{Performing methods}
 
-The first thing to do is to actually implement our methods.
+Now we have to actually implement our methods.
 In case of SVD1 and NMF we just perform the method described in first section on the filled matrix $\boldsymbol{Z}$.
-SVD2 we also perform on the filled $\boldsymbol{Z}$ and in every iteration step we fill the elements from train set with real values.
-We make this correction, because \tami{...}
+SVD2 we also perform on the filled $\boldsymbol{Z}$ and in every iteration step we switch the values on the elements from train set to the real values.
 SGD we perform only on values from train set.
 
 
@@ -208,7 +203,7 @@ For a start, let's consider only imputation methods that don't need estimation o
 %The last method is the weighted method for $\alpha = \frac{1}{2}$.
 %These imputation methods will be called \textit{basic} in this report.
 
-For these methods we only need to find optimal $r$ and we will call them \textit{basic}.
+For these methods we only need to find optimal $r$ and that's why we will call them \textit{basic}.
 So for each of them and for every $r$ from 1 to 100 we perform SVD1.
 Below, we present a graph showing results.
 
@@ -246,7 +241,7 @@ So below we present a table containing this information.
 $r$ & 7 & 13 & 15 & 9 & 6 \\
 RMSE & 2.8660 & 0.9458 & 0.9870 & 0.8767 & 0.9043 \\
 \end{tabular}
-\caption{The lowest RMSE and optimal $r$ for SVD1 with basic imputation methods}
+\caption{The lowest RMSE and the optimal $r$ for SVD1 with basic imputation methods}
 \end{table}
 %wnioski, że ma wpływ jak uzupełniamy
 %jakieś wnioski, te zera beznadziejne
@@ -254,7 +249,7 @@ RMSE & 2.8660 & 0.9458 & 0.9870 & 0.8767 & 0.9043 \\
 
 First of all, from both the graph and the table we can observe that as we expected the choice of the imputation method affects the RMSE.
 It can be most clearly seen on an example of data filled with zeros.
-For the best $r$ RMSE there is around $2.9$ that is, it is about 3 times larger than for other imputation methods.
+For the best $r$ RMSE there is around $2.9$ that is about 3 times larger than for other imputation methods.
 Other methods also differ.
 The lowest RMSE is obtained for the data filled with weighted data.
 But the result for data filled with row means is also quite good.
@@ -304,9 +299,9 @@ So we consider 20 different splits and the results are as follows
 \end{itemize}
 \textbf{So $\alpha = 0.41$ and $r = 13$ are the parameters we use in our method SVD1 with weighted means as the imputation method.}
 
-If we assume that the optimal data for this method is the one that is possibly the closest to real values, then we can make some conclusions about our data.
+If we assume that the optimal data for this method is the one that is possibly the closest to real values, then now we can make some conclusions about our data.
 In columns, we keep indexes of movies, and we scale column means by $\alpha$.
-Since our $\alpha$ is less than 0.5, then it can suggest that the mean of the ratings of our user has greater impact on his rating than the mean of the rating of the movie.
+Since our $\alpha$ is less than 0.5, then it can suggest that the mean of the ratings of our user has greater impact on his rating than the mean of the ratings of the movie.
 
 
 
@@ -368,17 +363,18 @@ Now we present a table showing the best $r$ and RMSE for every imputation method
 $r$ & 19 & 10 & 6 & 13 & 7 \\
 RMSE & 2.7789 & 0.9420 & 0.9425 & 0.8749 & 0.8778 \\
 \end{tabular}
-\caption{The lowest RMSE and optimal $r$ for SVD2 with basic imputation methods}
+\caption{The lowest RMSE and the optimal $r$ for SVD2 with basic imputation methods}
 \end{table}
 
 Firstly, we can observe that SVD2 improved the results of SVD1.
 We expected that since it is SVD1 just performed many times.
-So every result is smaller, differences between results are also smaller, but the order which methods are better or worse stayed the same.
+So if SVD1 gives good results then performed many times should give even better.
+So every result is lower than in case of SVD1, differences between results are also lower, but the order which methods are better or worse stayed the same.
 Also, similarly as in previous case only $r$ between 0 and 50 gives reasonable results.
-Though the best $r$ chosen by SVD2 in all cases differ a lot from $r$ chosen by SVD1.
+Although the best $r$ chosen by SVD2 in all cases differ a lot from $r$ chosen by SVD1.
 
 \subsubsection*{Optimizing $\alpha$}
-Moving on to the weighted imputation method, we present a graph showing the results of optimization with respect to $\alpha$ and $r$.
+Moving on to the weighted imputation method, we present a graph showing the results of the optimization with respect to $\alpha$ and $r$.
 \begin{figure}[H]
 \includegraphics[scale = 0.54]{svd2_r_w2}
 \caption{RMSE of SVD2 for weigthed imputation method for different $\alpha$ and $r$}
@@ -400,7 +396,7 @@ $\alpha$ &  $r$ &     RMSE \\
 \caption{5 lowest RMSE of SVD2 for weigthed imputation method and ($\alpha$, $r$) that gave them}
 \end{table}
 This time method took the best 5 results for the same $r$.
-Also in this case, the differences between results are smaller.
+Also in this case, the differences between results are lower.
 It is intuitive for iterative method because they usually converge to some specific model and that is why we get clear results.
 
 After repeating this optimization for 20 different splits we get that:
@@ -411,7 +407,7 @@ After repeating this optimization for 20 different splits we get that:
 \textbf{So $\alpha = 0.26$ and $r=8$ are parameters we use in our SVD2 with weighted means as the imputation method.}
 
 \subsection*{NMF}
-In this case since we have only $r$ and $\alpha$ to find, we proceed in exactly the same way as in the case of SVD.
+In this case since we have only $r$ and $\alpha$ to find, we proceed in exactly the same way as in the case of SVD1.
 
 \subsubsection*{Optimizing $r$}
 So firstly we present a graph showing dependence of RMSE on $r$ and on the imputation method for basic imputation methods.
@@ -435,10 +431,10 @@ left picture: all methods, right picture: only methods using means}
 \end{figure}
 
 Comparing this graph to the graph for SVDs we observe that the previous graphs where smoother.
-This time trajectories oscillate a lot, which means that for similar $r$ it gives quite different RMSE.
+This time trajectories oscillate a lot, which means that for similar $r$ method gives quite different RMSE.
 So this method seem more unstable than the previous ones.
 Also here it is not so obvious where to look for optimal $r$.
-For instance for imputation method with weighted means RMSE don't grow much with greater $r$.
+For instance for imputation method with weighted means RMSE doesn't grow much with greater $r$.
 Nevertheless, the order of methods (so which one is the best and so on) is the same.
 
 Below we also present a table with the lowest RMSE for every imputation method and the parameter $r$ that gave it.
@@ -450,7 +446,7 @@ Below we also present a table with the lowest RMSE for every imputation method a
 $r$ & 6 & 47 & 30 & 37 & 15\\
 RMSE & 2.8997 & 0.9462 & 0.9870 & 0.8766 & 0.9053 \\
 \end{tabular}
-\caption{The lowest RMSE and optimal $r$ for NMF with basic imputation methods}
+\caption{The lowest RMSE and the optimal $r$ for NMF with basic imputation methods}
 \end{table}
 
 As we can see the parameters $r$ are in general bigger than in previous cases.
@@ -526,10 +522,32 @@ The results are that optimal parameters are $r=5$, $\eta = 0.007$ and $\lambda =
 
 \section{Results}
 
-To conclude, we present results of our methods for the parameters set above.
+At the end, we present the results of our best methods.
+The results are obtained for a sample data split and the parameters of methods set as mentioned above.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c}
+method & RMSE \\
+\hline
+SVD1 & 0.8720 \\
+SVD2 & 0.8693 \\
+NMF & 0.8725 \\
+SGD & 0.9035 \\
+\end{tabular}
+\caption{Best RMSE for every method}
+\end{table}
+So as we can see, first three methods give similar results.
+SVD1 and NMF give really close results, and SVD2 give results a bit better (that's what we expected).
+SGD give the worst result from all the methods.
 
-Let's mention that we tried to combine those methods.
-To be presice
+To obtain better result using SGD we tried to combine those methods and take $W$ and $H$ obtained with NMF as a starting point in SGD.
+The result is 0.8856, so it is definitely better than for usual SGD.
+
+Let's mention that we tried to round our results to \tami{do integral czy jak}.
+It doesn't give better, because the result for SVD was 0.9175.
+
+\tami{nie wiem jak zakończyć}
+
 
 \end{document}
