@@ -541,13 +541,22 @@ So as we can see, first three methods give similar results.
 SVD1 and NMF give really close results, and SVD2 give results a bit better (that's what we expected).
 SGD give the worst result from all the methods.
 
-To obtain better result using SGD we tried to combine those methods and take $W$ and $H$ obtained with NMF as a starting point in SGD.
-The result is 0.8856, so it is definitely better than for usual SGD.
+To obtain better result using SGD we tried to combine those methods and take $W$ and $H$ obtained with NMF as a starting point in SGD .
+The result is 0.8856, so it is definitely better than for usual SGD. But if we increase number of iteration in SGD algorithm results are
+getting close for between two starting points.
 
-Let's mention that we tried to round our results to \tami{do integral czy jak}.
-It doesn't give better, because the result for SVD was 0.9175.
+Let's mention that we tried to round our results to the closest integer value and cut values greater than $5.0$.
+It doesn't improve our results, because the result for SVD was 0.9175.
 
-\tami{nie wiem jak zakończyć}
+We observed various of methods and approaches for predicting movie ratings.
+We could clearly see that huge impact on performance of our models had imputation of missing data.
+    The best method we came up with was replacing missing values with weighted column and row mean.
+    Then we had to tune parameters for each algorithm to get the best possible results.
+We got that the best results are obtained for SVD2, and of course weighted means as imputation method.
+
+
+
+
 
 
 \end{document}
